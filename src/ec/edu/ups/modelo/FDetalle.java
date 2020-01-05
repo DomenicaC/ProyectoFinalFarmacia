@@ -16,7 +16,7 @@ public class FDetalle {
     private int codigo;
     private int cant;
     private double ivaPro;
-    private double totalCP;
+    private double totalIP;
     
     //Clase
     /*private Producto pro;
