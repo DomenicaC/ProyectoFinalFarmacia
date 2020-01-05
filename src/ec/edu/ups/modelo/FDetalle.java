@@ -78,7 +78,4 @@ public class FDetalle {
     }
     */
 
-    public void setCodigo(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
