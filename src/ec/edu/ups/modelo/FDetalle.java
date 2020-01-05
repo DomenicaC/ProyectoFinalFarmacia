@@ -77,4 +77,8 @@ public class FDetalle {
         return "FDetalle{" + "codigo=" + codigo + ", cant=" + cant + ", ivaPro=" + ivaPro + ", totalCP=" + totalCP + ", pro=" + pro + '}';
     }
     */
+
+    public void setCodigo(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
