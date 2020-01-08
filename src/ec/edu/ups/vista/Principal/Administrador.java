@@ -48,6 +48,11 @@ public class Administrador extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         desktop = new javax.swing.JDesktopPane();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -73,6 +78,11 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -87,6 +97,16 @@ public class Administrador extends javax.swing.JFrame {
         jMenuBar2.add(jMenu4);
 
         jMenuItem2.setText("jMenuItem2");
+
+        jMenu6.setText("File");
+        jMenuBar3.add(jMenu6);
+
+        jMenu7.setText("Edit");
+        jMenuBar3.add(jMenu7);
+
+        jMenuItem7.setText("jMenuItem7");
+
+        jMenuItem9.setText("jMenuItem9");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -276,6 +296,32 @@ public class Administrador extends javax.swing.JFrame {
 
         menuBar.add(jMenu5);
 
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/factura.png"))); // NOI18N
+        jMenu8.setText("Facturar");
+        jMenu8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jMenuItem11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/facturacrear.png"))); // NOI18N
+        jMenuItem11.setText("Crear Factura");
+        jMenu8.add(jMenuItem11);
+
+        jMenuItem10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/buscarfactura.png"))); // NOI18N
+        jMenuItem10.setText("Buscar Factura");
+        jMenu8.add(jMenuItem10);
+
+        jMenuItem8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/modifi.png"))); // NOI18N
+        jMenuItem8.setText("Modificar Factura");
+        jMenu8.add(jMenuItem8);
+
+        jMenuItem6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/deleteffac.png"))); // NOI18N
+        jMenuItem6.setText("Anular Factura");
+        jMenu8.add(jMenuItem6);
+
+        menuBar.add(jMenu8);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -363,13 +409,23 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
