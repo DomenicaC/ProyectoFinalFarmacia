@@ -26,7 +26,7 @@ public class Administrador extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(("src/ec/edu/ups/imageness/escudo.png")).getImage());         
         this.setExtendedState(Administrador.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
-        setTitle("***** FÁRMACIA FÁRMACOS *****");
+        setTitle("***** FÁRMACIA FÁRMACOS ADMINISTRADOR*****");
         this.setLocationRelativeTo(null);        
         
   
