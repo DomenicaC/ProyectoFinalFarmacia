@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.vista.Principal;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Jose Guillermo Quind
@@ -16,6 +18,11 @@ public class IngresoUsuario extends javax.swing.JFrame {
      */
     public IngresoUsuario() {
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("***** FÁRMACIA FÁRMACOS *****");
+        this.setLocationRelativeTo(null);  
+        this.setIconImage(new ImageIcon(("src/ec/edu/ups/imageness/escudo.png")).getImage()); 
+        
     }
 
     /**
