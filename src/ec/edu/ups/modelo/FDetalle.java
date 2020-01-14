@@ -19,16 +19,16 @@ public class FDetalle {
     private double totalIP;
     
     //Clase
-    /*private Producto pro;
+    private Producto pro;
 
     public FDetalle() {
     }
 
-    public FDetalle(int codigo, int cant, double ivaPro, double totalCP, Producto pro) {
+    public FDetalle(int codigo, int cant, double ivaPro, double totalIP, Producto pro) {
         this.codigo = codigo;
         this.cant = cant;
         this.ivaPro = ivaPro;
-        this.totalCP = totalCP;
+        this.totalIP = totalIP;
         this.pro = pro;
     }
 
@@ -56,12 +56,12 @@ public class FDetalle {
         this.ivaPro = ivaPro;
     }
 
-    public double getTotalCP() {
-        return totalCP;
+    public double getTotalIP() {
+        return totalIP;
     }
 
-    public void setTotalCP(double totalCP) {
-        this.totalCP = totalCP;
+    public void setTotalCP(double totalIP) {
+        this.totalIP = totalIP;
     }
 
     public Producto getPro() {
@@ -74,8 +74,7 @@ public class FDetalle {
 
     @Override
     public String toString() {
-        return "FDetalle{" + "codigo=" + codigo + ", cant=" + cant + ", ivaPro=" + ivaPro + ", totalCP=" + totalCP + ", pro=" + pro + '}';
+        return "FDetalle{" + "codigo=" + codigo + ", cant=" + cant + ", ivaPro=" + ivaPro + ", totalCP=" + totalIP + ", pro=" + pro + '}';
     }
-    */
 
 }
