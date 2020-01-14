@@ -10,17 +10,22 @@ package ec.edu.ups.modelo;
  * @author Edison
  */
 public class UnidadMedida {
-    private String id;
+    private int id;
     private String nombre;
 
     public UnidadMedida() {
     }
 
-    public String getId() {
+    public UnidadMedida(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+    
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

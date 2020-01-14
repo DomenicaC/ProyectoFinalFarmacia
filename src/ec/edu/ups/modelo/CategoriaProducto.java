@@ -11,17 +11,21 @@ package ec.edu.ups.modelo;
  */
 public class CategoriaProducto {
    
-   private String id;
+   private int id;
    private String nombre;
 
     public CategoriaProducto() {
     }
 
-    public String getId() {
+    public CategoriaProducto(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

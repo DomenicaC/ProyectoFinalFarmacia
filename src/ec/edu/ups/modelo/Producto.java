@@ -11,12 +11,12 @@ package ec.edu.ups.modelo;
  */
 public class Producto {
 
-    private String id;
+    private int id;
     private String codBarra;
     private String nombre;
     private Double precio;
     private int stock;
-    private boolean nacio;
+    private char nacionalidad;
     private boolean iva;
     private UnidadMedida um;
     private CategoriaProducto cp;
@@ -24,11 +24,23 @@ public class Producto {
     public Producto() {
     }
 
-    public String getId() {
+    public Producto(int id, String codBarra, String nombre, Double precio, int stock, char nacionalidad, boolean iva, UnidadMedida um, CategoriaProducto cp) {
+        this.id = id;
+        this.codBarra = codBarra;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+        this.nacionalidad = nacionalidad;
+        this.iva = iva;
+        this.um = um;
+        this.cp = cp;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -64,12 +76,12 @@ public class Producto {
         this.stock = stock;
     }
 
-    public boolean isNacio() {
-        return nacio;
+    public char getNacionalidad() {
+        return nacionalidad;
     }
 
-    public void setNacio(boolean nacio) {
-        this.nacio = nacio;
+    public void setNacionalidad(char nacionalidad) {
+        this.nacionalidad = nacionalidad;
     }
 
     public boolean isIva() {
@@ -98,7 +110,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", codBarra=" + codBarra + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + ", nacio=" + nacio + ", iva=" + iva + ", um=" + um + ", cp=" + cp + '}';
+        return "Producto{" + "id=" + id + ", codBarra=" + codBarra + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + ", nacionalidad=" + nacionalidad + ", iva=" + iva + ", um=" + um + ", cp=" + cp + '}';
     }
     
 }
