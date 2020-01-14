@@ -20,6 +20,7 @@ public class FCabecera {
     private double subtotal;
     private double iva;
     private double total;
+    private String estado;
     
     //Clases
     private Personas per;
@@ -34,16 +35,18 @@ public class FCabecera {
         
     }
 
-    public FCabecera(int ruc, Date fecha, double subtotal, double iva, double total, Personas per, Producto pro, List<FDetalle> detalle) {
+    public FCabecera(int ruc, Date fecha, double subtotal, double iva, double total, String estado, Personas per, Producto pro, List<FDetalle> detalle) {
         this.ruc = ruc;
         this.fecha = fecha;
         this.subtotal = subtotal;
         this.iva = iva;
         this.total = total;
+        this.estado = estado;
         this.per = per;
         this.pro = pro;
         this.detalle = detalle;
     }
+
 
     public int getRuc() {
         return ruc;
@@ -109,9 +112,18 @@ public class FCabecera {
         this.detalle = detalle;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
-        return "FCabecera{" + "ruc=" + ruc + ", fecha=" + fecha + ", subtotal=" + subtotal + ", iva=" + iva + ", total=" + total + ", per=" + per + ", pro=" + pro + ", detalle=" + detalle + '}';
+        return "FCabecera{" + "ruc=" + ruc + ", fecha=" + fecha + ", subtotal=" + subtotal + ", iva=" + iva + ", total=" + total + ", estado=" + estado + ", per=" + per + ", pro=" + pro + ", detalle=" + detalle + '}';
     }
+
     
 }
