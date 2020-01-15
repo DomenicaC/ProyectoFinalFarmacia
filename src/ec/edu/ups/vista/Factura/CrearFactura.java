@@ -5,7 +5,13 @@
  */
 package ec.edu.ups.vista.Factura;
 
+import ec.edu.ups.modelo.FCabecera;
+import ec.edu.ups.modelo.Personas;
+import ec.edu.ups.modelo.Producto;
+import java.awt.event.KeyEvent;
+import java.util.Date;
 import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,10 +22,39 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     /**
      * Creates new form NewJInternalFrame
      */
-    
+    public static String x;
+    private Date fecha;
+    private int contador;
+    private double totalCP, subtotal, iva, ivaPro, total;
+    private DefaultTableModel tablaF;
+
+    //clases
+    private Personas per;
+    private Producto pro;
+    private FCabecera fcab;
+
+    //Controladores
     public CrearFactura() {
         initComponents();
-        
+
+        this.fcab = new FCabecera();
+
+        totalCP = 0;
+        subtotal = 0;
+        iva = 0;
+        total = 0;
+        tablaF = null;
+        pro = null;
+        contador = 0;
+        ivaPro = 0;
+
+        x = "x";
+
+        //centrar pantalla
+        /*int a = VistaPrincipal.DesktopPane.getWidth() - this.getWidth();
+         int b = VistaPrincipal.DesktopPane.getHeight() - this.getHeight();
+         setLocation(a / 2, b / 2);
+         setVisible(true);*/
     }
 
     /**
@@ -423,29 +458,29 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     private void btnBuscarCFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCFActionPerformed
 
-       /* String cedula = txtCedC.getText();
-        cliente = controladorCliente.read1(cedula);
+        /* String cedula = txtCedC.getText();
+         cliente = controladorCliente.read1(cedula);
 
-        if (cliente == null) {
-            JOptionPane.showMessageDialog(null, "Cedula no Existe");
-        } else {
-            //txtCodC.setText(Integer.toString(cliente.getCodigo()));
-            txtNomC.setText(cliente.getNombre());
-            txtApeC.setText(cliente.getApellido());
-            txtDirC.setText(cliente.getDireccion());
-            txtTelC.setText(cliente.getTelefono());
-        }*/
+         if (cliente == null) {
+         JOptionPane.showMessageDialog(null, "Cedula no Existe");
+         } else {
+         //txtCodC.setText(Integer.toString(cliente.getCodigo()));
+         txtNomC.setText(cliente.getNombre());
+         txtApeC.setText(cliente.getApellido());
+         txtDirC.setText(cliente.getDireccion());
+         txtTelC.setText(cliente.getTelefono());
+         }*/
     }//GEN-LAST:event_btnBuscarCFActionPerformed
 
     private void btnCancelarFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarFActionPerformed
         // TODO add your handling code here:
 /*        x = null;
-        this.dispose();*/
+         this.dispose();*/
     }//GEN-LAST:event_btnCancelarFActionPerformed
 
     private void tblServFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblServFKeyReleased
-        
-        /*int key = evt.getKeyCode();
+
+        int key = evt.getKeyCode();
         if (key == KeyEvent.VK_ENTER) {
             int fila = tblServF.getSelectedRow();
             int columna = tblServF.getSelectedColumn();
@@ -455,23 +490,46 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
             if (columna == 0) {
                 codigoServ = Integer.parseInt(tblServF.getValueAt(fila, columna).toString());
-                servicio = controladorServicio.read(codigoServ);
+                //pro = controladorServicio.read(codigoServ);
 
                 int cant = Integer.parseInt(tblServF.getValueAt(fila, 1).toString());
 
                 tablaF = (DefaultTableModel) tblServF.getModel();
                 tablaF.removeRow(fila);
-                totalCP = cant * servicio.getPrecio();
 
-                Object[] datos = {codigoServ,
-                    cant,
-                    servicio.getNombreservicio(),
-                    servicio.getPrecio(),
-                    totalCP
-                };
+                if (pro.isIva() == true) {
 
-                tablaF.addRow(datos);
-                tablaF.addRow(datos1);
+                    ivaPro = pro.getPrecio() * 0.12;
+
+                    totalCP = cant * ivaPro;
+
+                    Object[] datos = {codigoServ,
+                        cant,
+                        pro.getNombre(),
+                        pro.getPrecio(),
+                        ivaPro,
+                        totalCP
+                    };
+
+                    tablaF.addRow(datos);
+                    tablaF.addRow(datos1);
+
+                } else {
+                    ivaPro = 0;
+                    totalCP = cant * pro.getPrecio();
+
+                    Object[] datos = {codigoServ,
+                        cant,
+                        pro.getNombre(),
+                        pro.getPrecio(),
+                        ivaPro,
+                        totalCP
+                    };
+
+                    tablaF.addRow(datos);
+                    tablaF.addRow(datos1);
+                }
+
             } else if (columna == 1) {
 
                 codigoServ = Integer.parseInt(tblServF.getValueAt(fila, columna - 1).toString());
@@ -479,17 +537,38 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 tablaF.removeRow(fila);
                 tablaF.removeRow(tblServF.getRowCount() - 1);
 
-                totalCP = cant * servicio.getPrecio();
+                if (pro.isIva() == true) {
 
-                Object[] datos = {codigoServ,
-                    cant,
-                    servicio.getNombreservicio(),
-                    servicio.getPrecio(),
-                    totalCP
-                };
+                    ivaPro = pro.getPrecio() * 0.12;
 
-                tablaF.addRow(datos);
-                tablaF.addRow(datos1);
+                    totalCP = cant * ivaPro;
+
+                    Object[] datos = {codigoServ,
+                        cant,
+                        pro.getNombre(),
+                        pro.getPrecio(),
+                        ivaPro,
+                        totalCP
+                    };
+
+                    tablaF.addRow(datos);
+                    tablaF.addRow(datos1);
+
+                } else {
+                    ivaPro = 0;
+                    totalCP = cant * pro.getPrecio();
+
+                    Object[] datos = {codigoServ,
+                        cant,
+                        pro.getNombre(),
+                        pro.getPrecio(),
+                        ivaPro,
+                        totalCP
+                    };
+
+                    tablaF.addRow(datos);
+                    tablaF.addRow(datos1);
+                }
 
             }
 
@@ -502,72 +581,72 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             total = subtotal + iva;
             txtTotal.setText(String.valueOf(total));
 
-        }*/
-        
+        }
+
     }//GEN-LAST:event_tblServFKeyReleased
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        
-/*//obtener fecha
-        fecha = new Date();
 
-        //obtener clases
-        String cedulaC = txtCedC.getText();
-        cliente = controladorCliente.readCedula(cedulaC);
+        /*//obtener fecha
+         fecha = new Date();
 
-        String cedulaV = txtCedV.getText();
-        veterinario = controladorVeterinario.readCedula(cedulaV);
+         //obtener clases
+         String cedulaC = txtCedC.getText();
+         cliente = controladorCliente.readCedula(cedulaC);
 
-        int codigoM = Integer.parseInt(txtCodM.getText());
-        mascota = controladorMascota.read(codigoM);
+         String cedulaV = txtCedV.getText();
+         veterinario = controladorVeterinario.readCedula(cedulaV);
 
-        //agregarDatos
-        factura.setFecha(fecha);
+         int codigoM = Integer.parseInt(txtCodM.getText());
+         mascota = controladorMascota.read(codigoM);
 
-        //clases
-        factura.setVet(veterinario);
-        factura.setCli(cliente);
-        factura.setMasc(mascota);
+         //agregarDatos
+         factura.setFecha(fecha);
 
-        //facDetalle
-        for (int i = 0; i < tblServF.getRowCount() - 1; i++) {
-            System.out.println("i " + i);
-            facDet = new FDetalle();
+         //clases
+         factura.setVet(veterinario);
+         factura.setCli(cliente);
+         factura.setMasc(mascota);
 
-            double cant = Integer.parseInt(tblServF.getValueAt(i, 1).toString());
-            int cant1 = (int) cant;
-            facDet.setCantidad(cant1);
+         //facDetalle
+         for (int i = 0; i < tblServF.getRowCount() - 1; i++) {
+         System.out.println("i " + i);
+         facDet = new FDetalle();
 
-            //facDet.setCodigo(Integer.parseInt(tblServF.getValueAt(i, 0).toString()));
-            //int codigoS = ;
-            //facDet.setServ(controladorServicio.read(Integer.parseInt(tblServF.getValueAt(i, 0).toString())));
-            facDet.setServ(controladorServicio.read(Integer.parseInt(tblServF.getValueAt(i, 0).toString())));
-            factura.añadirFacDetalle(facDet);
-            //            controladorFDetalle.create(facDet);
+         double cant = Integer.parseInt(tblServF.getValueAt(i, 1).toString());
+         int cant1 = (int) cant;
+         facDet.setCantidad(cant1);
 
-        }
+         //facDet.setCodigo(Integer.parseInt(tblServF.getValueAt(i, 0).toString()));
+         //int codigoS = ;
+         //facDet.setServ(controladorServicio.read(Integer.parseInt(tblServF.getValueAt(i, 0).toString())));
+         facDet.setServ(controladorServicio.read(Integer.parseInt(tblServF.getValueAt(i, 0).toString())));
+         factura.añadirFacDetalle(facDet);
+         //            controladorFDetalle.create(facDet);
 
-        llenarDatos();
-        //factura
-        factura.setSubtotal(subtotal);
-        factura.setIva(iva);
-        factura.setTotal(total);
+         }
 
-        controladorFactura.create(factura);
-        JOptionPane.showMessageDialog(this, "Factura Creada");
-        System.out.println("factura \n" + factura.toString());
-        /*
-        txtRuc.setText(Integer.toString(controladorFactura.getCodigo()));
-        factura.setRuc(Integer.parseInt(txtRuc.getText()));
+         llenarDatos();
+         //factura
+         factura.setSubtotal(subtotal);
+         factura.setIva(iva);
+         factura.setTotal(total);
 
-        int ruc = this.controladorFactura.getCodigo() + 1;
-        txtRuc.setText(String.valueOf(ruc));
-        txtFecha.setText(controladorFactura.getFecha());
+         controladorFactura.create(factura);
+         JOptionPane.showMessageDialog(this, "Factura Creada");
+         System.out.println("factura \n" + factura.toString());
+         /*
+         txtRuc.setText(Integer.toString(controladorFactura.getCodigo()));
+         factura.setRuc(Integer.parseInt(txtRuc.getText()));
 
-        contador = 0;
+         int ruc = this.controladorFactura.getCodigo() + 1;
+         txtRuc.setText(String.valueOf(ruc));
+         txtFecha.setText(controladorFactura.getFecha());
 
-        vaciarDatos();
-        vaciarTabla();*/
+         contador = 0;
+
+         vaciarDatos();
+         vaciarTabla();*/
     }//GEN-LAST:event_btnCrearActionPerformed
 
 
