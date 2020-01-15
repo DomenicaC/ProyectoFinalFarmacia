@@ -68,26 +68,6 @@ public class FCabeceraControlador {
 
     }
     
-    public void deleteFacCab(int ruc) {
-
-        String sql = "DELETE FROM \"Factura_Cabecera \"WHERE \"ruc \" = " + ruc + ";";
-        System.out.println("Base eliminada " + sql);
-
-        MiBaseDatos.conectar();
-        try {
-
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
-            sta.execute(sql);
-            MiBaseDatos.desconectar();
-
-        } catch (SQLException error) {
-
-            error.printStackTrace();
-
-        }
-
-    }
-    
     public Set printFacCab() {
 
         Set<FCabecera> lista = new HashSet<>();
