@@ -24,6 +24,9 @@ public class IngresoUsuario extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(("src/ec/edu/ups/imageness/escudo.png")).getImage()); 
         
     }
+    public void validacion(String usuario,String contrasenia){
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
