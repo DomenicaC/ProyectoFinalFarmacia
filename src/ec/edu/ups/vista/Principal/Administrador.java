@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.vista.Principal;
 
+import ec.edu.ups.controlador.CategoriaControlador;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.controlador.FCabeceraControlador;
 import ec.edu.ups.controlador.PersonaControlador;
@@ -16,6 +17,10 @@ import ec.edu.ups.personas.BuscarPersonas;
 import ec.edu.ups.personas.EliminarPersona;
 import ec.edu.ups.personas.ModificarEliminar;
 import ec.edu.ups.personas.RegistrarPersonas;
+import ec.edu.ups.vista.Categoria.BuscarCategoria;
+import ec.edu.ups.vista.Categoria.CrearCategoria;
+import ec.edu.ups.vista.Categoria.EliminarCategoria;
+import ec.edu.ups.vista.Categoria.ModificarCategoria;
 import ec.edu.ups.vista.Factura.AnularFactura;
 import ec.edu.ups.vista.Factura.BuscarFactura;
 import ec.edu.ups.vista.Factura.CrearFactura;
@@ -49,11 +54,17 @@ public class Administrador extends javax.swing.JFrame {
     private CrearFactura crearFactura;
     private BuscarFactura buscarFactura;
     private AnularFactura anularFactura;
+    private CrearCategoria crearCategoria;
+    private BuscarCategoria buscarCategoria;
+    private ModificarCategoria modificarCategoria;
+    private EliminarCategoria eliminarCategoria;
     
 //  ------------------------CONTROLADORES---------------------------
       private PersonaControlador personaControlador;
       private ControladorProducto controladorProducto;
       private FCabeceraControlador fCabeceraControlador;
+      private CategoriaControlador categoriaControlador;
+      private ControladorProducto controladorProducto1;
       String url = "jdbc:oracle:thin:@localhost:1521:orcl";
     String user = "BaseFarmacia";
     String password = "bf123";
@@ -63,6 +74,7 @@ public class Administrador extends javax.swing.JFrame {
     public Administrador() {
         initComponents();
         personaControlador=new PersonaControlador(url, user, password);
+        categoriaControlador = new CategoriaControlador(url, user, password);
         desktop.setBorder(new FondoEs());
         this.setIconImage(new ImageIcon(("src/ec/edu/ups/imageness/escudo.png")).getImage());
         this.setExtendedState(Administrador.MAXIMIZED_BOTH);
@@ -123,6 +135,11 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        jMCC = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -432,6 +449,27 @@ public class Administrador extends javax.swing.JFrame {
 
         menuBar.add(jMenu8);
 
+        jMenu9.setText("Categoria");
+
+        jMCC.setText("Crear Categoria");
+        jMCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMCCActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMCC);
+
+        jMenuItem14.setText("Buscar Categoria");
+        jMenu9.add(jMenuItem14);
+
+        jMenuItem15.setText("Modificar Categoria");
+        jMenu9.add(jMenuItem15);
+
+        jMenuItem12.setText("Eliminar Categoria");
+        jMenu9.add(jMenuItem12);
+
+        menuBar.add(jMenu9);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -720,6 +758,22 @@ public class Administrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMCCActionPerformed
+        String x = crearCategoria.x;
+        try {
+            if (x == null) {
+                if (crearCategoria == null || crearCategoria.isVisible() == false) {
+                    crearCategoria = new CrearCategoria(categoriaControlador);
+                    desktop.add(crearCategoria);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMCCActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -768,6 +822,7 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuItem jMCC;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -776,12 +831,16 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
