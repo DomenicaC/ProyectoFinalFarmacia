@@ -54,12 +54,15 @@ public class Administrador extends javax.swing.JFrame {
       private PersonaControlador personaControlador;
       private ControladorProducto controladorProducto;
       private FCabeceraControlador fCabeceraControlador;
-      
+      String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+    String user = "BaseFarmacia";
+    String password = "bf123";
     /**
      * Creates new form Administrador
      */
     public Administrador() {
         initComponents();
+        personaControlador=new PersonaControlador(url, user, password);
         desktop.setBorder(new FondoEs());
         this.setIconImage(new ImageIcon(("src/ec/edu/ups/imageness/escudo.png")).getImage());
         this.setExtendedState(Administrador.MAXIMIZED_BOTH);
