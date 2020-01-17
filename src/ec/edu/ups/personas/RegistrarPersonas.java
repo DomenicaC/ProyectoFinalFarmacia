@@ -130,7 +130,7 @@ public class RegistrarPersonas extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel8.setText("Rol:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Empleado", "Administrador" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -253,7 +253,7 @@ public class RegistrarPersonas extends javax.swing.JInternalFrame {
         String telefono = txttelefono.getText();
         String user = txtusuario.getText();
         String contraseña = txtcontraseña.getText();
-        int rol = jComboBox1.getSelectedIndex();
+        String rol = jComboBox1.getSelectedItem().toString();
         
         personas.setCedula(cedula);
         personas.setNombres(nombre);
@@ -262,7 +262,8 @@ public class RegistrarPersonas extends javax.swing.JInternalFrame {
         personas.setTelefono(telefono);  
         personas.setUsername(user);
         personas.setContrasenia(contraseña);       
-        personas.setRol_id(rol);
+        personas.setRol_id(Integer.parseInt(rol));
+        
         personaControlador.create(personas);
         
         JOptionPane.showMessageDialog(this, "Persona Registrada", "Crear Persona", JOptionPane.OK_OPTION);
