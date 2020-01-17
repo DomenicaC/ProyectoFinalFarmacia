@@ -24,16 +24,16 @@ public class PersonaControlador {
     }
 
     public void create(Personas persona) {
-        String sql = "INSERT INTO \"sdf_personas \" VALUES('" + persona.getCedula() + "',"
+        String sql = "INSERT INTO \"SDF_PERSONAS\" VALUES('" + persona.getCedula() + "',"
                 + "'" + persona.getNombres() + "',"
                 + "'"+ persona.getApellidos() + "',"
                 + "'"+persona.getDireccion()+ "',"               
                 + "'"+persona.getTelefono()+ "',"
                 + "'"+persona.getUsername() + "',"
                 + "'"+persona.getContrasenia() + "',"
-                + "',"+persona.getRol_id()+ "',"+         
-                "');";
-        System.out.println(sql);
+                +persona.getRol_id()+         
+                ")";
+        //System.out.println(sql);
         db.conectar();
         try {
             Statement sta = db.getConexionBD().createStatement();
