@@ -5,19 +5,29 @@
  */
 package ec.edu.ups.vista.Principal;
 
+import ec.edu.ups.controlador.PersonaControlador;
+import ec.edu.ups.modelo.Personas;
+import java.util.Set;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Jose Guillermo Quind
+ * @author Jose Guillermo Quinde
  */
 public class IngresoUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form IngresoUsuario
      */
+    String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+    String user = "BaseFarmacia";
+    String password = "bf123";
+    PersonaControlador controladorPersona;
+    public static String usuario1;
     public IngresoUsuario() {
         initComponents();
+        controladorPersona=new PersonaControlador(url, user, password);
         setLocationRelativeTo(null);
         setTitle("***** FÁRMACIA FÁRMACOS *****");
         this.setLocationRelativeTo(null);  
@@ -25,7 +35,35 @@ public class IngresoUsuario extends javax.swing.JFrame {
         
     }
     public void validacion(String usuario,String contrasenia){
-        
+        int cont=0;
+        try {
+            Set<Personas> listaPersonas=controladorPersona.listaPersonas();
+            for (Personas persona : listaPersonas) {
+             if (usuario.equals(persona.getUsername()) && contrasenia.equals(persona.getContrasenia())&& persona.getRol_id()==1) {
+            JOptionPane.showMessageDialog(this, "HA INGRESADO UN ADMINISTRADOR");
+            cont++;
+            usuario1=usuario;
+            Administrador a = new Administrador();
+            a.setVisible(true);
+            setVisible(false);
+        }    else if (usuario.equals(persona.getUsername()) && contrasenia.equals(persona.getContrasenia())&& persona.getRol_id()==2) {
+            JOptionPane.showMessageDialog(this, "HA INGRESADO UN EMPLEADO");
+            cont++;
+            usuario1=usuario;
+            Empleado e = new Empleado();
+            e.setVisible(true);
+            setVisible(false);
+        }   
+            }
+            if (cont==0){             
+            JOptionPane.showMessageDialog(this, "Contraseña Incorrecta o no existe el Administrador o Empleado");
+            txtUsuario.setText("");
+            txtContrasenia.setText("");
+        }  
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -63,9 +101,19 @@ public class IngresoUsuario extends javax.swing.JFrame {
 
         btnIngreso.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
         btnIngreso.setText("Ingresar");
+        btnIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresoActionPerformed(evt);
+            }
+        });
 
         btnSalir.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/escudo.png"))); // NOI18N
 
@@ -124,6 +172,18 @@ public class IngresoUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoActionPerformed
+        // TODO add your handling code here:
+        String u = txtUsuario.getText();
+        String pas = txtContrasenia.getText();
+        validacion(u, pas);
+    }//GEN-LAST:event_btnIngresoActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments

@@ -17,16 +17,16 @@ import java.util.Set;
  * @author ByronPC
  */
 public class PersonaControlador {
-     //private BaseDeDatos MiBaseDatos;
+     private BaseDeDatos db;
 
-    /*public PersonaControlador (String url ,String user, String password) {
-        MiBaseDatos = new BaseDeDatos(url,user,password);
-    }*/
+    public PersonaControlador (String url ,String user, String password) {
+        db = new BaseDeDatos(url,user,password);
+    }
 
     public void create(Personas persona) {
         String sql = "INSERT INTO \"PERSONA\" VALUES('" + persona.getCedula() + "',"
-                + "'" + persona.getNombre() + "',"
-                + "'"+ persona.getApellido() + "',"
+                + "'" + persona.getNombres() + "',"
+                + "'"+ persona.getApellidos() + "',"
                 + ",'"               
                 + persona.getDireccion() + "');";
         System.out.println(sql);
@@ -73,8 +73,8 @@ public class PersonaControlador {
 
     public void modificar(Personas p) throws SQLException {
         String sql = "UPDATE\"PERSONA\" SET \"PER_NOMBRE\" = '" 
-                + p.getNombre() + "',\"PER_APELLIDO\" = '" 
-                + p.getApellido() + "',\"PER_EDAD\" = " 
+                + p.getNombres() + "',\"PER_APELLIDO\" = '" 
+                + p.getApellidos() + "',\"PER_EDAD\" = " 
                 + ",\"PER_DIRECCION\" = '" 
                 + p.getDireccion() +"' WHERE \"PER_CEDULA\" = '" + p.getCedula()+ "';";
         
@@ -105,36 +105,40 @@ public class PersonaControlador {
 
         }*/
 
-    } 
-    /*public Set Listar() {
-        return null;
-
-        Set<Personas> lista = new HashSet<>();
+    }
+    /**
+        * Retorna la lista de Personas en la base de Datos
+     *
+     * @return
+     * @throws Exception
+     */
+   public Set<Personas> listaPersonas() throws Exception {
+        Set<Personas> listaPersonas = new HashSet<Personas>();
+        String sentenciaSQL = "SELECT * FROM \"SDF_PERSONAS\" ";
+        db.conectar();
         try {
-            String sql = "SELECT * FROM \"PERSONA\";";
-            System.out.println(sql);
-
-            MiBaseDatos.conectar();
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
-            ResultSet rs = sta.executeQuery(sql);
+            Statement sta = db.getConexionBD().createStatement();
+            ResultSet rs = sta.executeQuery(sentenciaSQL);
             while (rs.next()) {
                 Personas p = new Personas();
                 p.setCedula(rs.getString("PER_CEDULA"));
-                p.setApellido(rs.getString("PER_APELLIDO"));
-                p.setNombre(rs.getString("PER_NOMBRE"));
-                p.setEdad(rs.getInt("PER_EDAD"));
+                p.setNombres(rs.getString("PER_NOMBRES"));
+                p.setApellidos(rs.getString("PER_APELLIDOS"));
                 p.setDireccion(rs.getString("PER_DIRECCION"));
+                p.setTelefono(rs.getString("PER_TELEFONO"));
+                p.setUsername(rs.getString("PER_USERNAME"));
+                p.setContrasenia(rs.getString("PER_CONTRASENIA"));
+                p.setRol_id(rs.getInt("SDF_ROLES_ROL_ID")); 
+                //System.out.println(p.toString());
+                listaPersonas.add(p);
                 
-                lista.add(p);
             }
-
-            MiBaseDatos.desconectar();
-
+            sta.close();
+            rs.close();
+            db.desconectar();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println("Error Listar Personas: " + ex);
         }
-      
-    
-    }*/
-     
+        return listaPersonas;
+    } 
 }

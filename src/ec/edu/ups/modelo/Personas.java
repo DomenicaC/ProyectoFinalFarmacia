@@ -14,17 +14,26 @@ import java.util.Objects;
 public class Personas {
     
     private String cedula;
-    private String nombre;
-    private String apellido;
+    private String nombres;
+    private String apellidos;
     private String direccion;
     private String telefono;
+    private String username;
+    private String contrasenia;
+    private int rol_id;
 
-    public Personas(String cedula, String nombre, String apellido, String direccion, String telefono) {
+    public Personas() {
+    }
+
+    public Personas(String cedula, String nombres, String apellidos, String direccion, String telefono, String username, String contrasenia, int rol_id) {
         this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.username = username;
+        this.contrasenia = contrasenia;
+        this.rol_id = rol_id;
     }
 
     public String getCedula() {
@@ -35,20 +44,20 @@ public class Personas {
         this.cedula = cedula;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getDireccion() {
@@ -67,12 +76,38 @@ public class Personas {
         this.telefono = telefono;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+
+    public int getRol_id() {
+        return rol_id;
+    }
+
+    public void setRol_id(int rol_id) {
+        this.rol_id = rol_id;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 89 * hash + Objects.hashCode(this.cedula);
-        hash = 89 * hash + Objects.hashCode(this.nombre);
-        hash = 89 * hash + Objects.hashCode(this.apellido);
+        hash = 89 * hash + Objects.hashCode(this.nombres);
+        hash = 89 * hash + Objects.hashCode(this.apellidos);
         hash = 89 * hash + Objects.hashCode(this.direccion);
         hash = 89 * hash + Objects.hashCode(this.telefono);
         return hash;
@@ -95,8 +130,9 @@ public class Personas {
 
     @Override
     public String toString() {
-        return "Personas{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", telefono=" + telefono + '}';
+        return "Personas{" + "cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos + ", direccion=" + direccion + ", telefono=" + telefono + ", username=" + username + ", contrasenia=" + contrasenia + ", rol_id=" + rol_id + '}';
     }
-    
+
+   
     
 }

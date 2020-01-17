@@ -12,21 +12,25 @@ import java.util.Objects;
  * @author ByronPC
  */
 public class Rol {
-    private String codigo;
+    private int codigo;
     private String descripcion;
 
-    public Rol(String codigo, String descripcion) {
+    public Rol() {
+    }
+    
+    public Rol(int codigo, String descripcion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
 
     public String getDescripcion() {
         return descripcion;

@@ -5,36 +5,49 @@
  */
 package ec.edu.ups.controlador;
 
+import ec.edu.ups.modelo.Rol;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
- * @author Edison
+ * @author Jose Guillermo Quinde
  */
 public class RolesControlador {
+    private BaseDeDatos db;
     
-      /*public Set Listar() {
-        return null;
-
-        Set<Rol> lista = new HashSet<>();
+    public RolesControlador (String url ,String user, String password) {
+        db= new BaseDeDatos(url,user,password);
+    }
+    /**
+        * Retorna la lista de Personas en la base de Datos
+     *
+     * @return
+     * @throws Exception
+     */
+    public Set<Rol> listaRoles() throws Exception {
+        Set<Rol> lista = new HashSet<Rol>();
+        String sentenciaSQL = "SELECT * FROM \"SDF_ROLES\" ";
+        db.conectar();
         try {
-            String sql = "SELECT * FROM \"ROL\";";
-            System.out.println(sql);
-
-            DataBaseConnection.conectar();
-            Statement sta =DataBaseConnection.getConexionBD().createStatement();
-            ResultSet rs = sta.executeQuery(sql);
-            while (rs.next()) {
-                Rol r = new Rol();
-                r.setCodigo(rs.getInt("ROL_ID"));
-                r.setDescripcion(rs.getString("ROL_DESCRIPCION"));                
+            Statement sta = db.getConexionBD().createStatement();
+            ResultSet res = sta.executeQuery(sentenciaSQL);
+            while (res.next()) {
+            Rol r = new Rol();
+                r.setCodigo(res.getInt("ROL_ID"));
+                r.setDescripcion(res.getString("ROL_DESCRIPCION"));                
                 lista.add(r);
             }
-
-            DataBaseConnection.desconectar();
-
+            sta.close();
+            res.close();
+            db.desconectar();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println("Error Listar Roles: " + ex);
         }
         return lista;
-    
-    }*/
+    } 
+      
 }

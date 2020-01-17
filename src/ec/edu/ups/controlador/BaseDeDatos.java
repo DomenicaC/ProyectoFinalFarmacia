@@ -13,19 +13,49 @@ import java.sql.Statement;
 
 /**
  *
- * @author Eduardo Ayora
+ * @author Jose Guillermo Quinde
  */
-public class DataBaseConnection {
+public class BaseDeDatos {
     
     private Connection connection;
+    private String url;
+    private String user;
+    private String password;
+    
+    public BaseDeDatos() {
+    }
 
-    public Connection getConnection() {
+    public BaseDeDatos(String url, String user, String password) {
+        this.url = url;
+        this.user = user;
+        this.password = password;
+    }
+    
+    
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+
+    public Connection getConexionBD() {
         return connection;
     }
     
-    public void connect(){
+    public void conectar(){
         try {
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "BaseFarmacia", "bf123");
+            connection = DriverManager.getConnection(url,user,password);
             if (connection.isValid(2000)) {
                 System.out.println("Conectado!");
             } else {
@@ -38,7 +68,7 @@ public class DataBaseConnection {
         }
     }
     
-    public void disconnect(){
+    public void desconectar(){
         try{
             if(!connection.isClosed()){
                 connection.close();
@@ -53,7 +83,7 @@ public class DataBaseConnection {
         int code = 0;
         //SELECT MAX(salary) "Maximum" FROM employees;
         String sql = "SELECT MAX(" + nombreColumna + ") FROM " + nombreTabla;
-        connect();
+        conectar();
         try {
             Statement sta = connection.createStatement();
             ResultSet rs = sta.executeQuery(sql);
@@ -63,7 +93,7 @@ public class DataBaseConnection {
             }
             rs.close();
             sta.close();
-            disconnect();
+            desconectar();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
