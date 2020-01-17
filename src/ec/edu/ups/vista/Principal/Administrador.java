@@ -6,6 +6,10 @@
 package ec.edu.ups.vista.Principal;
 
 import ec.edu.ups.controlador.PersonaControlador;
+import ec.edu.ups.empleados.BuscarEmpleado;
+import ec.edu.ups.empleados.CrearEmpleado;
+import ec.edu.ups.empleados.EliminarEmpleado;
+import ec.edu.ups.empleados.ModificarEmpleado;
 import ec.edu.ups.personas.BuscarPersonas;
 import ec.edu.ups.personas.EliminarPersona;
 import ec.edu.ups.personas.ModificarEliminar;
@@ -25,8 +29,11 @@ public class Administrador extends javax.swing.JFrame {
     private PersonaControlador personaControlador;
     private BuscarPersonas buscarPersonas;
     private ModificarEliminar modificarEliminar;
-    private EliminarPersona eliminarPersona;           
-
+    private EliminarPersona eliminarPersona;
+    private CrearEmpleado crearEmpleado;
+    private BuscarEmpleado buscarEmpleado;
+    private EliminarEmpleado eliminarEmpleado;    
+    private ModificarEmpleado modificarEmpleado;
     /**
      * Creates new form Administrador
      */
@@ -272,24 +279,44 @@ public class Administrador extends javax.swing.JFrame {
         cutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/clienteicono.png"))); // NOI18N
         cutMenuItem.setMnemonic('t');
         cutMenuItem.setText("Crear Empleado");
+        cutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cutMenuItemActionPerformed(evt);
+            }
+        });
         editMenu.add(cutMenuItem);
 
         copyMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         copyMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/buscar.png"))); // NOI18N
         copyMenuItem.setMnemonic('y');
         copyMenuItem.setText("Buscar Empleado");
+        copyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyMenuItemActionPerformed(evt);
+            }
+        });
         editMenu.add(copyMenuItem);
 
         pasteMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         pasteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/actualizar2.png"))); // NOI18N
         pasteMenuItem.setMnemonic('p');
         pasteMenuItem.setText("Modificar Cliente");
+        pasteMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasteMenuItemActionPerformed(evt);
+            }
+        });
         editMenu.add(pasteMenuItem);
 
         deleteMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         deleteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/eliminarr.png"))); // NOI18N
         deleteMenuItem.setMnemonic('d');
         deleteMenuItem.setText("Eliminar Empleado");
+        deleteMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteMenuItemActionPerformed(evt);
+            }
+        });
         editMenu.add(deleteMenuItem);
 
         menuBar.add(editMenu);
@@ -445,6 +472,74 @@ public class Administrador extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_saveAsMenuItemActionPerformed
+
+    private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
+        // TODO add your handling code here:
+        String x = crearEmpleado.x;
+        try {
+            if (x == null) {
+                if (crearEmpleado == null || crearEmpleado.isVisible() == false) {
+                    crearEmpleado = new CrearEmpleado(personaControlador);
+                    desktop.add(crearEmpleado);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_cutMenuItemActionPerformed
+
+    private void copyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyMenuItemActionPerformed
+        // TODO add your handling code here:
+          String x = buscarEmpleado.x;
+        try {
+            if (x == null) {
+                if (buscarEmpleado == null || buscarEmpleado.isVisible() == false) {
+                    buscarEmpleado = new BuscarEmpleado(personaControlador);
+                    desktop.add(buscarEmpleado);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_copyMenuItemActionPerformed
+
+    private void pasteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasteMenuItemActionPerformed
+        // TODO add your handling code here:
+              String x = modificarEmpleado.x;
+        try {
+            if (x == null) {
+                if (modificarEmpleado == null || modificarEmpleado.isVisible() == false) {
+                    modificarEmpleado = new ModificarEmpleado(personaControlador);
+                    desktop.add(modificarEmpleado);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_pasteMenuItemActionPerformed
+
+    private void deleteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMenuItemActionPerformed
+        // TODO add your handling code here:
+              String x = eliminarEmpleado.x;
+        try {
+            if (x == null) {
+                if (eliminarEmpleado == null || eliminarEmpleado.isVisible() == false) {
+                    eliminarEmpleado = new EliminarEmpleado(personaControlador);                    
+                    desktop.add(eliminarEmpleado);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_deleteMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
