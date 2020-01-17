@@ -5,17 +5,31 @@
  */
 package ec.edu.ups.vista.Producto;
 
+
+import ec.edu.ups.controlador.ControladorProducto;
+import static ec.edu.ups.personas.BuscarPersonas.x;
+import ec.edu.ups.vista.Principal.Administrador;
+
 /**
  *
  * @author Edison
  */
 public class CrearProducto extends javax.swing.JInternalFrame {
 
+    public static String x;
+    private ControladorProducto controladorProducto;
+
     /**
      * Creates new form CrearProducto
      */
-    public CrearProducto() {
+    public CrearProducto(ControladorProducto controladorProducto) {
         initComponents();
+        x = "x";
+        int a = Administrador.desktop.getWidth() - this.getWidth();
+        int b = Administrador.desktop.getHeight() - this.getHeight();
+
+        setLocation(a / 2, b / 2);
+        setVisible(true);
     }
 
     /**
@@ -48,6 +62,27 @@ public class CrearProducto extends javax.swing.JInternalFrame {
         jComboBox5 = new javax.swing.JComboBox<>();
         jComboBox6 = new javax.swing.JComboBox<>();
         jComboBox7 = new javax.swing.JComboBox<>();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jLID.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLID.setText("Id:");
@@ -86,6 +121,11 @@ public class CrearProducto extends javax.swing.JInternalFrame {
 
         jToggleButton2.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jToggleButton2.setText("Cancelar");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "Falce" }));
 
@@ -200,6 +240,18 @@ public class CrearProducto extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        // TODO add your handling code here:
+        x=null;
+    }//GEN-LAST:event_formInternalFrameClosing
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+        x = null;
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

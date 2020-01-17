@@ -5,9 +5,12 @@
  */
 package ec.edu.ups.vista.Factura;
 
+import ec.edu.ups.controlador.FCabeceraControlador;
 import ec.edu.ups.modelo.FCabecera;
 import ec.edu.ups.modelo.Personas;
 import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.vista.Principal.Administrador;
+import static ec.edu.ups.vista.Producto.CrearProducto.x;
 import java.awt.event.KeyEvent;
 import java.util.Date;
 import javax.swing.JScrollPane;
@@ -19,10 +22,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CrearFactura extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form NewJInternalFrame
-     */
     public static String x;
+    private FCabeceraControlador fCabeceraControlador;
+    /**
+     * Creates new form NewJInternalFramepublic static String x; private
+     * FCabeceraControlador fCabeceraControlador;
+     */
+
     private Date fecha;
     private int contador;
     private double totalCP, subtotal, iva, ivaPro, total;
@@ -34,7 +40,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     private FCabecera fcab;
 
     //Controladores
-    public CrearFactura() {
+    public CrearFactura(FCabeceraControlador fCabeceraControlador) {
         initComponents();
 
         this.fcab = new FCabecera();
@@ -49,12 +55,12 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         ivaPro = 0;
 
         x = "x";
+        int a = Administrador.desktop.getWidth() - this.getWidth();
+        int b = Administrador.desktop.getHeight() - this.getHeight();
 
-        //centrar pantalla
-        /*int a = VistaPrincipal.DesktopPane.getWidth() - this.getWidth();
-         int b = VistaPrincipal.DesktopPane.getHeight() - this.getHeight();
-         setLocation(a / 2, b / 2);
-         setVisible(true);*/
+        setLocation(a / 2, b / 2);
+        setVisible(true);
+
     }
 
     /**
@@ -105,6 +111,23 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(500, 500));
 
@@ -422,7 +445,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                                 .addGap(6, 6, 6)
                                 .addComponent(lblTot))
                             .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCedC6)
                             .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -449,7 +472,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -474,8 +497,9 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     private void btnCancelarFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarFActionPerformed
         // TODO add your handling code here:
-/*        x = null;
-         this.dispose();*/
+        this.setVisible(false);
+        this.dispose();
+        x = null;
     }//GEN-LAST:event_btnCancelarFActionPerformed
 
     private void tblServFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblServFKeyReleased
@@ -648,6 +672,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
          vaciarDatos();
          vaciarTabla();*/
     }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        // TODO add your handling code here:
+        x = null;
+    }//GEN-LAST:event_formInternalFrameClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
