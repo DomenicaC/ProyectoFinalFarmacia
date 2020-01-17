@@ -44,33 +44,37 @@ public class PersonaControlador {
         }
     }
     public Personas BuscaarPersona(String cedula)  {
-        /*Personas per = new Personas();
+        Personas per = new Personas();
         try {
 
-            String sql = "SELECT * FROM \"PERSONA\"WHERE\"PER_CEDULA\"='" + cedula + "';";
+            String sql = "SELECT * FROM \"SDF_PERSONAS\"\"WHERE\"per_cedula\"='" + cedula + "';";
             System.out.println("Base " + sql);
 
-            MiBaseDatos.conectar();
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
+            db.conectar();
+            Statement sta = db.getConexionBD().createStatement();
             ResultSet res = sta.executeQuery(sql);
 
             while (res.next()) {
 
                 per.setCedula(cedula);
-                per.setNombre(res.getString("PER_NOMBRE"));
-                per.setApellido(res.getString("PER_APELLIDO"));
-                per.setEdad(res.getInt("PER_EDAD"));
+                per.setNombres(res.getString("PER_NOMBRES"));
+                per.setApellidos(res.getString("PER_APELLIDOS"));
                 per.setDireccion(res.getString("PER_DIRECCION"));
+                per.setTelefono(res.getString("PER_TELEFONO"));
+                per.setUsername(res.getString("PER_USERNAME"));
+                per.setContrasenia(res.getString("PER_CONTRASENIA"));
+                per.setRol_id(res.getInt("SDF_ROLES_ROL_ID")); 
+                
             }
             res.close();
             sta.close();
-            MiBaseDatos.desconectar();
+            db.desconectar();
 
         } catch (SQLException error) {
 
             error.printStackTrace();
 
-        }*/
+        }
       
         return null;
     }

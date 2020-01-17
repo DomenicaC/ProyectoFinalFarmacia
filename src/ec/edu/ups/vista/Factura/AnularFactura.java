@@ -30,11 +30,6 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         setLocation(a / 2, b / 2);
         setVisible(true);
 
-        //centrar pantalla
-        /*int a = VistaPrincipal.DesktopPane.getWidth() - this.getWidth();
-         int b = VistaPrincipal.DesktopPane.getHeight() - this.getHeight();
-         setLocation(a / 2, b / 2);
-         setVisible(true);*/
     }
 
     /**

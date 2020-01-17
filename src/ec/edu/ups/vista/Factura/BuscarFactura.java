@@ -29,11 +29,6 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
         setLocation(a / 2, b / 2);
         setVisible(true);
 
-        //centrar pantalla
-        /*int a = VistaPrincipal.DesktopPane.getWidth() - this.getWidth();
-         int b = VistaPrincipal.DesktopPane.getHeight() - this.getHeight();
-         setLocation(a / 2, b / 2);
-         setVisible(true);*/
     }
 
     /**
@@ -423,7 +418,7 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
