@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.vista.Principal;
 
+import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.controlador.FCabeceraControlador;
 import ec.edu.ups.controlador.PersonaControlador;
 import ec.edu.ups.empleados.BuscarEmpleado;
 import ec.edu.ups.empleados.CrearEmpleado;
@@ -14,6 +16,13 @@ import ec.edu.ups.personas.BuscarPersonas;
 import ec.edu.ups.personas.EliminarPersona;
 import ec.edu.ups.personas.ModificarEliminar;
 import ec.edu.ups.personas.RegistrarPersonas;
+import ec.edu.ups.vista.Factura.AnularFactura;
+import ec.edu.ups.vista.Factura.BuscarFactura;
+import ec.edu.ups.vista.Factura.CrearFactura;
+import ec.edu.ups.vista.Producto.BuscarProducto;
+import ec.edu.ups.vista.Producto.CrearProducto;
+import ec.edu.ups.vista.Producto.EliminarProducto;
+import ec.edu.ups.vista.Producto.ModificarProducto;
 import java.awt.Desktop;
 import java.net.URI;
 import javax.swing.JOptionPane;
@@ -25,8 +34,7 @@ import javax.swing.ImageIcon;
  */
 public class Administrador extends javax.swing.JFrame {
 
-    private RegistrarPersonas registrarPersonas;
-    private PersonaControlador personaControlador;
+    private RegistrarPersonas registrarPersonas;  
     private BuscarPersonas buscarPersonas;
     private ModificarEliminar modificarEliminar;
     private EliminarPersona eliminarPersona;
@@ -34,6 +42,19 @@ public class Administrador extends javax.swing.JFrame {
     private BuscarEmpleado buscarEmpleado;
     private EliminarEmpleado eliminarEmpleado;    
     private ModificarEmpleado modificarEmpleado;
+    private CrearProducto crearProducto;
+    private BuscarProducto buscarProducto;
+    private ModificarProducto modificarProducto;
+    private EliminarProducto eliminarProducto;
+    private CrearFactura crearFactura;
+    private BuscarFactura buscarFactura;
+    private AnularFactura anularFactura;
+    
+//  ------------------------CONTROLADORES---------------------------
+      private PersonaControlador personaControlador;
+      private ControladorProducto controladorProducto;
+      private FCabeceraControlador fCabeceraControlador;
+      
     /**
      * Creates new form Administrador
      */
@@ -328,21 +349,41 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/elimarservicio.png"))); // NOI18N
         jMenuItem1.setText("Crear Producto");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem1);
 
         jMenuItem3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/busacar2.png"))); // NOI18N
         jMenuItem3.setText("Buscar Producto");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem3);
 
         jMenuItem4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/listarrrr.png"))); // NOI18N
         jMenuItem4.setText("Modificar Producto");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem4);
 
         jMenuItem5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/listarr.png"))); // NOI18N
         jMenuItem5.setText("Eliminar Producto");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem5);
 
         menuBar.add(jMenu5);
@@ -354,11 +395,21 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/facturacrear.png"))); // NOI18N
         jMenuItem11.setText("Crear Factura");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem11);
 
         jMenuItem10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/buscarfactura.png"))); // NOI18N
         jMenuItem10.setText("Buscar Factura");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem10);
 
         jMenuItem8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -369,6 +420,11 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/deleteffac.png"))); // NOI18N
         jMenuItem6.setText("Anular Factura");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem6);
 
         menuBar.add(jMenu8);
@@ -540,6 +596,126 @@ public class Administrador extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_deleteMenuItemActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+             String x = crearProducto.x;
+        try {
+            if (x == null) {
+                if (crearProducto == null || crearProducto.isVisible() == false) {
+                    crearProducto = new CrearProducto(controladorProducto);
+                    desktop.add(crearProducto);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+             String x = buscarProducto.x;
+        try {
+            if (x == null) {
+                if (buscarProducto == null || buscarProducto.isVisible() == false) {
+                    buscarProducto = new BuscarProducto(controladorProducto);
+                    desktop.add(buscarProducto);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+               String x = modificarProducto.x;
+        try {
+            if (x == null) {
+                if (modificarProducto == null || modificarProducto.isVisible() == false) {
+                    modificarProducto = new ModificarProducto(controladorProducto);
+                    desktop.add(modificarProducto);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+                String x = eliminarProducto.x;
+        try {
+            if (x == null) {
+                if (eliminarProducto == null || eliminarProducto.isVisible() == false) {
+                    eliminarProducto = new EliminarProducto(controladorProducto);
+                    desktop.add(eliminarProducto);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+       String x = crearFactura.x;
+        try {
+            if (x == null) {
+                if (crearFactura == null || crearFactura.isVisible() == false) {
+                    crearFactura = new CrearFactura(fCabeceraControlador);
+                    desktop.add(crearFactura);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+         String x = buscarFactura.x;
+        try {
+            if (x == null) {
+                if (buscarFactura == null || buscarFactura.isVisible() == false) {
+                    buscarFactura = new BuscarFactura(fCabeceraControlador);
+                    desktop.add(buscarFactura);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+          String x = anularFactura.x;
+        try {
+            if (x == null) {
+                if (anularFactura == null || anularFactura.isVisible() == false) {
+                    anularFactura = new AnularFactura(fCabeceraControlador);
+                    desktop.add(anularFactura);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
