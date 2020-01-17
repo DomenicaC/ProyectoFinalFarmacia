@@ -24,20 +24,24 @@ public class PersonaControlador {
     }
 
     public void create(Personas persona) {
-        String sql = "INSERT INTO \"PERSONA\" VALUES('" + persona.getCedula() + "',"
+        String sql = "INSERT INTO \"sdf_personas \" VALUES('" + persona.getCedula() + "',"
                 + "'" + persona.getNombres() + "',"
                 + "'"+ persona.getApellidos() + "',"
-                + ",'"               
-                + persona.getDireccion() + "');";
+                + "'"+persona.getDireccion()+ "',"               
+                + "'"+persona.getTelefono()+ "',"
+                + "'"+persona.getUsername() + "',"
+                + "'"+persona.getContrasenia() + "',"
+                + "',"+persona.getRol_id()+                
+                "');";
         System.out.println(sql);
-      //  MiBaseDatos.conectar();
-       /* try {
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
             sta.execute(sql);
-            MiBaseDatos.desconectar();
+            db.desconectar();
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }*/
+        }
     }
     public Personas BuscaarPersona(String cedula)  {
         /*Personas per = new Personas();
