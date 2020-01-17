@@ -30,6 +30,7 @@ public class RegistrarPersonas extends javax.swing.JInternalFrame {
 
         setLocation(a / 2, b / 2);
         setVisible(true);
+        this.personaControlador = personaControlador;
     }
 
     /**
