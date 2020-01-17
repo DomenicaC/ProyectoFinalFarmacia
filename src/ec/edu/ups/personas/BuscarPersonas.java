@@ -18,15 +18,13 @@ import javax.swing.JOptionPane;
 public class BuscarPersonas extends javax.swing.JInternalFrame {
     public static String x;
     private PersonaControlador personaControlador;
-    String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-    String user = "BaseFarmacia";
-    String password = "bf123";
+    
     /**
      * Creates new form BuscarPersonas
      */
     public BuscarPersonas(PersonaControlador personaControlador) {
         initComponents();
-       personaControlador = new PersonaControlador(url,user,password);
+       this.personaControlador=personaControlador;
         x = "x";
         int a = Administrador.desktop.getWidth() - this.getWidth();
         int b = Administrador.desktop.getHeight() - this.getHeight();
@@ -207,9 +205,9 @@ public class BuscarPersonas extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       PersonaControlador cp = new PersonaControlador(url, user, password);
+       
         Personas p = new Personas();
-        p = cp.BuscaarPersona(txtcedula.getText());
+        p = personaControlador.BuscaarPersona(txtcedula.getText());
         if (p.getCedula() != null) {
             txtnombre.setText(p.getNombres());
             txtaoelldio.setText(p.getApellidos());

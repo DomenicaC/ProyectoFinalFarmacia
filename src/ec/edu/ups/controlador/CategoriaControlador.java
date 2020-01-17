@@ -13,6 +13,9 @@ import ec.edu.ups.modelo.CategoriaProducto;
  */
 public class CategoriaControlador {
     
+    private int codigo;
+    
+    
     private BaseDeDatos db;
 
     public CategoriaControlador(String url ,String user, String password) {      
