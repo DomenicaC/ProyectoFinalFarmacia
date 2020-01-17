@@ -6,7 +6,9 @@
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.modelo.FCabecera;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,18 +18,35 @@ import java.util.Set;
  */
 public class FCabeceraControlador {
     
-    /* public void createFacCab(FCabecera facCab) {
+    private BaseDeDatos db;
 
-        String sql = "INSERT INTO \"Factura_Cabecera\" VALUES(" + facCab.getRuc()+ "," + facCab.getFecha() + "," + facCab.getSubtotal() + "," + facCab.getIva()+"," + facCab.getTotal()+");";
+    public FCabeceraControlador(String url ,String user, String password) {
+        
+        db = new BaseDeDatos(url,user,password);
+        
+    }
+
+    
+    
+    
+    
+     public void createFacCab(FCabecera facCab) {
+
+        String sql = "INSERT INTO \"SDF_FACTURA_CABECERA\" VALUES(" + facCab.getRuc()+ "," 
+                + facCab.getFecha() + "," 
+                + facCab.getSubtotal() + "," 
+                + facCab.getIva()+"," 
+                + facCab.getTotal()
+                +");";
 
         System.out.println(sql);
 
-        MiBaseDatos.conectar();
+        db.conectar();
         try {
 
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
+            Statement sta = db.getConexionBD().createStatement();
             sta.execute(sql);
-            MiBaseDatos.desconectar();
+            db.desconectar();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -41,11 +60,11 @@ public class FCabeceraControlador {
 
         try {
 
-            String sql = "SELECT * FROM \"Factura_Cabecera\"WHERE\"ruc\"= " + ruc + ";";
+            String sql = "SELECT * FROM \"SDF_FACTURA_CABECERA\"WHERE\"ruc\"= " + ruc + ";";
             System.out.println("BASE" + sql);
 
-            MiBaseDatos.conectar();
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
+            db.conectar();
+            Statement sta = db.getConexionBD().createStatement();
             ResultSet res = sta.executeQuery(sql);
 
             while (res.next()) {
@@ -59,7 +78,7 @@ public class FCabeceraControlador {
             }
             res.close();
             sta.close();
-            MiBaseDatos.desconectar();
+            db.desconectar();
 
         } catch (SQLException error) {
             error.printStackTrace();
@@ -77,8 +96,8 @@ public class FCabeceraControlador {
             String sql = "SELECT * FROM \"Factura_Cabecera\";";
             System.out.println("Base listar" + sql);
 
-            MiBaseDatos.conectar();
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
+            db.conectar();
+            Statement sta = db.getConexionBD().createStatement();
             ResultSet res = sta.executeQuery(sql);
 
             while (res.next()) {
@@ -91,15 +110,16 @@ public class FCabeceraControlador {
                 facCab.setTotal(res.getDouble("fCab_total"));
 
             }
+            
             res.close();
             sta.close();
-            MiBaseDatos.desconectar();
+            db.desconectar();
         } catch (SQLException error) {
 
             error.printStackTrace();
 
         }
         return lista;
-    }*/
+    }
     
 }

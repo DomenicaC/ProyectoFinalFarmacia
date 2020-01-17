@@ -14,9 +14,9 @@ import java.util.Set;
  */
 public class FDetalleControlador {
     
-     /*public void createFacDet(FDetalle facDet) {
+  /*   public void createFacDet(FDetalle facDet) {
 
-        String sql = "INSERT INTO \"Factura_Detalle\" VALUES(" + facDet.getCantidad() + "," + facDet.getTotalCP() + "," + facDet.getCodigo() + ");";
+        String sql = "INSERT INTO \"Factura_Detalle\" VALUES(" + facDet.getCant()+ "," + facDet.getIvaPro() + "," + facDet.getCodigo() + ");";
 
         System.out.println(sql);
 
@@ -114,7 +114,6 @@ public class FDetalleControlador {
 
         }
         return lista;
-    }*/
-
-    
+    }
+    */
 }
