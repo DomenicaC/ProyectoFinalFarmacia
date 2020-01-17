@@ -5,7 +5,11 @@
  */
 package ec.edu.ups.vista.Principal;
 
-
+import ec.edu.ups.controlador.PersonaControlador;
+import ec.edu.ups.personas.BuscarPersonas;
+import ec.edu.ups.personas.EliminarPersona;
+import ec.edu.ups.personas.ModificarEliminar;
+import ec.edu.ups.personas.RegistrarPersonas;
 import java.awt.Desktop;
 import java.net.URI;
 import javax.swing.JOptionPane;
@@ -17,19 +21,24 @@ import javax.swing.ImageIcon;
  */
 public class Administrador extends javax.swing.JFrame {
 
+    private RegistrarPersonas registrarPersonas;
+    private PersonaControlador personaControlador;
+    private BuscarPersonas buscarPersonas;
+    private ModificarEliminar modificarEliminar;
+    private EliminarPersona eliminarPersona;           
+
     /**
      * Creates new form Administrador
      */
     public Administrador() {
         initComponents();
         desktop.setBorder(new FondoEs());
-        this.setIconImage(new ImageIcon(("src/ec/edu/ups/imageness/escudo.png")).getImage());         
+        this.setIconImage(new ImageIcon(("src/ec/edu/ups/imageness/escudo.png")).getImage());
         this.setExtendedState(Administrador.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
         setTitle("***** FÁRMACIA FÁRMACOS ADMINISTRADOR*****");
-        this.setLocationRelativeTo(null);        
-        
-  
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -191,8 +200,8 @@ public class Administrador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                         .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
-                                .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -212,18 +221,33 @@ public class Administrador extends javax.swing.JFrame {
         openMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/crearcliente.png"))); // NOI18N
         openMenuItem.setMnemonic('o');
         openMenuItem.setText("Crear Cliente");
+        openMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(openMenuItem);
 
         saveMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         saveMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/buscarcliente.png"))); // NOI18N
         saveMenuItem.setMnemonic('s');
         saveMenuItem.setText("Buscar Cliente");
+        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(saveMenuItem);
 
         saveAsMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         saveAsMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/modificarcliente.png"))); // NOI18N
         saveAsMenuItem.setMnemonic('a');
         saveAsMenuItem.setText("Modificar Cliente");
+        saveAsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveAsMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(saveAsMenuItem);
 
         exitMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -339,22 +363,88 @@ public class Administrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-       
+         String x = EliminarPersona.x;
+        try {
+            if (x == null) {
+                if (eliminarPersona == null || eliminarPersona.isVisible() == false) {
+                    eliminarPersona = new EliminarPersona(personaControlador);
+                    desktop.add(eliminarPersona);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-           try{
+        try {
             Desktop.getDesktop().browse(new URI("https://github.com/DomenicaC/ProyectoFinalFarmacia"));
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error el URL no existe");
-        } 
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
+        // TODO add your handling code here:
+        String x = RegistrarPersonas.x;
+        try {
+            if (x == null) {
+                if (registrarPersonas == null || registrarPersonas.isVisible() == false) {
+                    registrarPersonas = new RegistrarPersonas(personaControlador);
+                    desktop.add(registrarPersonas);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_openMenuItemActionPerformed
+
+    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
+        // TODO add your handling code here:
+        String x = BuscarPersonas.x;
+        try {
+            if (x == null) {
+                if (buscarPersonas == null || buscarPersonas.isVisible() == false) {
+                    buscarPersonas = new BuscarPersonas(personaControlador);
+                    desktop.add(buscarPersonas);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_saveMenuItemActionPerformed
+
+    private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed
+        // TODO add your handling code here:
+        String x = modificarEliminar.x;
+        try {
+            if (x == null) {
+                if (modificarEliminar == null || modificarEliminar.isVisible() == false) {
+                    modificarEliminar = new ModificarEliminar(personaControlador);
+                    desktop.add(modificarEliminar);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_saveAsMenuItemActionPerformed
 
     /**
      * @param args the command line arguments

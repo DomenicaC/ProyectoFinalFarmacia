@@ -5,17 +5,29 @@
  */
 package ec.edu.ups.personas;
 
+import ec.edu.ups.controlador.PersonaControlador;
+import static ec.edu.ups.personas.RegistrarPersonas.x;
+import ec.edu.ups.vista.Principal.Administrador;
+
 /**
  *
  * @author ByronPC
  */
 public class ModificarEliminar extends javax.swing.JInternalFrame {
+    public static String x;
+    private PersonaControlador personaControlador;
 
     /**
      * Creates new form ModificarEliminar
      */
-    public ModificarEliminar() {
+    public ModificarEliminar(PersonaControlador personaControlador) {
         initComponents();
+        x = "x";
+        int a = Administrador.desktop.getWidth() - this.getWidth();
+        int b = Administrador.desktop.getHeight() - this.getHeight();
+
+        setLocation(a / 2, b / 2);
+        setVisible(true);
     }
 
     /**
@@ -46,6 +58,23 @@ public class ModificarEliminar extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel3.setText("Cédula:");
@@ -79,6 +108,11 @@ public class ModificarEliminar extends javax.swing.JInternalFrame {
         jButton2.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jButton2.setText("Salir");
         jButton2.setActionCommand("");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel1.setText("Modificar Persona");
@@ -161,6 +195,18 @@ public class ModificarEliminar extends javax.swing.JInternalFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        // TODO add your handling code here:
+        x=null;
+    }//GEN-LAST:event_formInternalFrameClosing
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+        x = null;        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
