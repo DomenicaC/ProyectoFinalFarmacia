@@ -6,6 +6,8 @@
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.modelo.CategoriaProducto;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -24,8 +26,20 @@ public class CategoriaControlador {
     
     public void create(CategoriaProducto categoriaProducto){
         String sql = "INSERT INTO \"SDF_CATEGORIAS\" VALUES(" + categoriaProducto.getId() + ","
-                + "'" + categoriaProducto.getNombre() + "');";
+                + "'" + categoriaProducto.getNombre() + "')";
         System.out.println(sql);
+        
+         db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            sta.execute(sql);
+            db.desconectar();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    
     }
+    
+    //public void Buscar()
     
 }
