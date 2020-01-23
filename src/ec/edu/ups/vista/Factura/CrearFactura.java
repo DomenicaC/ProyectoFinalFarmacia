@@ -534,7 +534,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 tablaF = (DefaultTableModel) tblServF.getModel();
                 tablaF.removeRow(fila);
 
-                if (pro.isIva() == true) {
+                if (pro.getIva() == 'T') {
 
                     ivaPro = pro.getPrecio() * 0.12;
 
@@ -574,7 +574,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 tablaF.removeRow(fila);
                 tablaF.removeRow(tblServF.getRowCount() - 1);
 
-                if (pro.isIva() == true) {
+                if (pro.getIva() == 'F') {
 
                     ivaPro = pro.getPrecio() * 0.12;
 

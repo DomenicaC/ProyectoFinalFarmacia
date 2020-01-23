@@ -6,6 +6,7 @@
 package ec.edu.ups.vista.Producto;
 
 import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.vista.Principal.Administrador;
 import static ec.edu.ups.vista.Producto.CrearProducto.x;
 
@@ -24,6 +25,7 @@ public class BuscarProducto extends javax.swing.JInternalFrame {
          x = "x";
         int a = Administrador.desktop.getWidth() - this.getWidth();
         int b = Administrador.desktop.getHeight() - this.getHeight();
+        this.controladorProducto = controladorProducto;
 
         setLocation(a / 2, b / 2);
         setVisible(true);
@@ -123,6 +125,11 @@ public class BuscarProducto extends javax.swing.JInternalFrame {
 
         jToggleButton3.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jToggleButton3.setText("Buscar");
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -230,6 +237,10 @@ public class BuscarProducto extends javax.swing.JInternalFrame {
         this.dispose();
         x = null;
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        Producto p = controladorProducto.Buscar(Integer.parseInt(jTId.getText()));
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -30,6 +30,8 @@ public class CrearProducto extends javax.swing.JInternalFrame {
 
         setLocation(a / 2, b / 2);
         setVisible(true);
+        
+        this.controladorProducto = controladorProducto;
     }
 
     /**
@@ -127,9 +129,9 @@ public class CrearProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "Falce" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "T", "F" }));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "Falce" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "T", "F" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

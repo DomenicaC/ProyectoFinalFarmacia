@@ -6,6 +6,7 @@
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.modelo.CategoriaProducto;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -38,8 +39,38 @@ public class CategoriaControlador {
             ex.printStackTrace();
         }
     
+    }public CategoriaProducto Buscar(int id){
+        CategoriaProducto cat = new CategoriaProducto();
+        try {
+
+            String sql = "SELECT * FROM \"SDF_CATEGORIAS\" WHERE cat_id =" + id;
+            System.out.println("Base " + sql);
+
+            db.conectar();
+            Statement sta = db.getConexionBD().createStatement();
+            ResultSet res = sta.executeQuery(sql);
+
+          res.next();
+
+                cat.setId(id);
+                cat.setNombre(res.getString("CAT_NOMBRE"));
+                System.out.println(cat.toString());
+                
+            
+            res.close();
+            sta.close();
+            db.desconectar();
+
+        } catch (SQLException error) {
+
+            error.printStackTrace();
+
+        }
+      
+        return cat;
     }
     
-    //public void Buscar()
-    
+    public void eliminar(int id){
+        
+    }
 }

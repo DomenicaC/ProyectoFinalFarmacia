@@ -17,23 +17,11 @@ public class Producto {
     private Double precio;
     private int stock;
     private char nacionalidad;
-    private boolean iva;
+    private char iva;
     private UnidadMedida um;
     private CategoriaProducto cp;
 
     public Producto() {
-    }
-
-    public Producto(int id, String codBarra, String nombre, Double precio, int stock, char nacionalidad, boolean iva, UnidadMedida um, CategoriaProducto cp) {
-        this.id = id;
-        this.codBarra = codBarra;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.stock = stock;
-        this.nacionalidad = nacionalidad;
-        this.iva = iva;
-        this.um = um;
-        this.cp = cp;
     }
 
     public int getId() {
@@ -84,15 +72,13 @@ public class Producto {
         this.nacionalidad = nacionalidad;
     }
 
-    public boolean isIva() {
+    public char getIva() {
         return iva;
     }
 
-    public void setIva(boolean iva) {
+    public void setIva(char iva) {
         this.iva = iva;
     }
-
-   
 
     public UnidadMedida getUm() {
         return um;
@@ -114,5 +100,5 @@ public class Producto {
     public String toString() {
         return "Producto{" + "id=" + id + ", codBarra=" + codBarra + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + ", nacionalidad=" + nacionalidad + ", iva=" + iva + ", um=" + um + ", cp=" + cp + '}';
     }
-    
+
 }
