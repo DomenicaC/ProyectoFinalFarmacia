@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.vista.Factura;
 
+import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.controlador.FCabeceraControlador;
 import ec.edu.ups.controlador.PersonaControlador;
 import ec.edu.ups.modelo.FCabecera;
@@ -25,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
 public class CrearFactura extends javax.swing.JInternalFrame {
 
     public static String x;
-    private FCabeceraControlador fCabeceraControlador;
     /**
      * Creates new form NewJInternalFramepublic static String x; private
      * FCabeceraControlador fCabeceraControlador;
@@ -40,11 +40,12 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     private Personas per;
     private Producto pro;
     private FCabecera fcab;
-    
-    //Controladores
-    private PersonaControlador personaControlador;
 
     //Controladores
+    private FCabeceraControlador fCabeceraControlador;
+    private PersonaControlador personaControlador;
+    private ControladorProducto contPro;
+
     public CrearFactura(FCabeceraControlador fCabeceraControlador) {
         initComponents();
 
@@ -115,7 +116,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         txtRol = new javax.swing.JTextField();
         txtNomPro = new javax.swing.JTextField();
         lblCodC7 = new javax.swing.JLabel();
-        txtStock2 = new javax.swing.JTextField();
+        txtCodPro = new javax.swing.JTextField();
         lblCodC8 = new javax.swing.JLabel();
         btbnBusPro = new javax.swing.JButton();
 
@@ -361,9 +362,9 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         lblCodC7.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         lblCodC7.setText("Nombre:");
 
-        txtStock2.setEditable(false);
-        txtStock2.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
-        txtStock2.setEnabled(false);
+        txtCodPro.setEditable(false);
+        txtCodPro.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
+        txtCodPro.setEnabled(false);
 
         lblCodC8.setBackground(new java.awt.Color(255, 255, 255));
         lblCodC8.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
@@ -432,7 +433,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblCodC8)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtStock2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(lblCodC6)
                             .addGap(18, 18, 18)
@@ -476,7 +477,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                     .addComponent(lblCodC7)
                     .addComponent(txtNomPro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCodC8)
-                    .addComponent(txtStock2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btbnBusPro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -531,29 +532,28 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     private void btnBuscarCFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCFActionPerformed
 
-       
         Personas p = new Personas();
         p = personaControlador.BuscaarPersona(txtCedC.getText());
-        
+
         if (p.getCedula() != null) {
             txtNomC.setText(p.getNombres());
             txtApeC.setText(p.getApellidos());
-            txtDirC.setText(p.getDireccion());  
+            txtDirC.setText(p.getDireccion());
             txtTelC.setText(p.getTelefono());
             txtRol.setText(String.valueOf(p.getRol_id()));
-        }else{
-            
-            JOptionPane.showMessageDialog(this, "La cedula ingresada no esta registrada", "Buscar cedula de persona", JOptionPane.OK_OPTION);
+        } else {
+
+            JOptionPane.showMessageDialog(this, "La cedula ingresada no está registrada", "Buscar cédula de persona", JOptionPane.OK_OPTION);
         }
-         
+
     }//GEN-LAST:event_btnBuscarCFActionPerformed
 
     private void btnCancelarFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarFActionPerformed
-      
+
         this.setVisible(false);
         this.dispose();
         x = null;
-        
+
     }//GEN-LAST:event_btnCancelarFActionPerformed
 
     private void tblServFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblServFKeyReleased
@@ -728,12 +728,27 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-        // TODO add your handling code here:
+
         x = null;
+
     }//GEN-LAST:event_formInternalFrameClosing
 
     private void btbnBusProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbnBusProActionPerformed
-        // TODO add your handling code here:
+
+        pro = new Producto();
+        pro = contPro.BuscarNombre(txtNomPro.getText());
+
+        if (pro.getNombre() != null) {
+
+            txtCodPro.setText(String.valueOf(pro.getId()));
+            txtStock.setText(String.valueOf(pro.getPrecio()));
+
+        } else {
+
+            JOptionPane.showMessageDialog(this, "El producto ingresado no está registrado", "Buscar Producto", JOptionPane.OK_OPTION);
+
+        }
+
     }//GEN-LAST:event_btbnBusProActionPerformed
 
 
@@ -766,6 +781,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtApeC;
     private javax.swing.JTextField txtCedC;
     private javax.swing.JTextField txtCodC;
+    private javax.swing.JTextField txtCodPro;
     private javax.swing.JTextField txtDirC;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtFecha;
@@ -775,7 +791,6 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtRol;
     private javax.swing.JTextField txtRuc;
     private javax.swing.JTextField txtStock;
-    private javax.swing.JTextField txtStock2;
     private javax.swing.JTextField txtSubtotal;
     private javax.swing.JTextField txtTelC;
     private javax.swing.JTextField txtTotal;

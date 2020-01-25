@@ -128,7 +128,7 @@
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="lblCodC8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtStock2" min="-2" pref="101" max="-2" attributes="0"/>
+                                  <Component id="txtCodPro" min="-2" pref="101" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lblCodC6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -182,7 +182,7 @@
                           <Component id="lblCodC7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtNomPro" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="lblCodC8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtStock2" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="txtCodPro" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="btbnBusPro" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -708,7 +708,7 @@
                 <Property name="text" type="java.lang.String" value="Nombre:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtStock2">
+            <Component class="javax.swing.JTextField" name="txtCodPro">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
