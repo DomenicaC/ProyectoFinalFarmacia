@@ -25,10 +25,6 @@ public class FCabeceraControlador {
         db = new BaseDeDatos(url,user,password);
         
     }
-
-    
-    
-    
     
      public void createFacCab(FCabecera facCab) {
 

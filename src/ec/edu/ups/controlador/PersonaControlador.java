@@ -67,7 +67,7 @@ public class PersonaControlador {
                 System.out.println(per.toString());
                 
             
-            res.close();
+                res.close();
             sta.close();
             db.desconectar();
 
@@ -81,12 +81,9 @@ public class PersonaControlador {
     }
 
     public void modificar(Personas p) throws SQLException {
-        String sql = "UPDATE\"PERSONA\" SET \"PER_NOMBRE\" = '" 
+        String sql = "UPDATE\"SDF_PERSONAS \" SET \"PER_NOMBRE\" = '" 
                 + p.getNombres() + "',\"PER_APELLIDO\" = '" 
-                + p.getApellidos() + "',\"PER_EDAD\" = " 
-                + ",\"PER_DIRECCION\" = '" 
-                + p.getDireccion() +"' WHERE \"PER_CEDULA\" = '" + p.getCedula()+ "';";
-        
+                + p.getDireccion() + "',\"PER_DIRECCION\"='" + p.getTelefono();
         System.out.println(sql);
         /*MiBaseDatos.conectar();
         try {

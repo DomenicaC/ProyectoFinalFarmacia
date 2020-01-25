@@ -42,7 +42,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     private FCabecera fcab;
     
     //Controladores
-    private PersonaControlador perCon;
+    private PersonaControlador personaControlador;
 
     //Controladores
     public CrearFactura(FCabeceraControlador fCabeceraControlador) {
@@ -113,6 +113,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         lblCedC6 = new javax.swing.JLabel();
         txtEstado = new javax.swing.JTextField();
         txtRol = new javax.swing.JTextField();
+        txtNomPro = new javax.swing.JTextField();
+        lblCodC7 = new javax.swing.JLabel();
+        txtStock2 = new javax.swing.JTextField();
+        lblCodC8 = new javax.swing.JLabel();
+        btbnBusPro = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -350,10 +355,36 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
         txtRol.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
 
+        txtNomPro.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
+
+        lblCodC7.setBackground(new java.awt.Color(255, 255, 255));
+        lblCodC7.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        lblCodC7.setText("Nombre:");
+
+        txtStock2.setEditable(false);
+        txtStock2.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
+        txtStock2.setEnabled(false);
+
+        lblCodC8.setBackground(new java.awt.Color(255, 255, 255));
+        lblCodC8.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        lblCodC8.setText("Codigo:");
+
+        btbnBusPro.setFont(new java.awt.Font("Cambria Math", 1, 14)); // NOI18N
+        btbnBusPro.setText("Buscar");
+        btbnBusPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btbnBusProActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblTitulo)
+                .addGap(257, 257, 257))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,7 +398,12 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                                 .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(208, 208, 208)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnCrear)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(btnCancelarF))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(209, 209, 209)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(lblSub)
@@ -383,14 +419,24 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addComponent(lblTot)
                                                         .addGap(18, 18, 18)
-                                                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnCrear)
-                                        .addGap(34, 34, 34)
-                                        .addComponent(btnCancelarF)))
+                                                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                                 .addGap(6, 6, 6))))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(lblCodC7)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtNomPro, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btbnBusPro)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblCodC8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtStock2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblCodC6)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(127, 127, 127)
                             .addComponent(lblRuc)
@@ -403,18 +449,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtRol, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblTitulo)
-                        .addGap(257, 257, 257))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblCodC6)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(224, 224, 224))))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,38 +469,42 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                             .addComponent(lblFecha))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodC6)
-                    .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCodC7)
+                    .addComponent(txtNomPro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCodC8)
+                    .addComponent(txtStock2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btbnBusPro))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSub)
                     .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIva))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblIva))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(lblTot))
-                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCedC6)
-                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6)
+                        .addComponent(lblTot))
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblCedC6)
+                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCrear)
                             .addComponent(btnCancelarF))))
-                .addContainerGap())
+                .addGap(77, 77, 77))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -483,7 +522,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -492,9 +531,10 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     private void btnBuscarCFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCFActionPerformed
 
-/*        PersonaControlador cp = new PersonaControlador(url, user, password);
+       
         Personas p = new Personas();
-        p = cp.BuscaarPersona(txtCedC.getText());
+        p = personaControlador.BuscaarPersona(txtCedC.getText());
+        
         if (p.getCedula() != null) {
             txtNomC.setText(p.getNombres());
             txtApeC.setText(p.getApellidos());
@@ -502,8 +542,9 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             txtTelC.setText(p.getTelefono());
             txtRol.setText(String.valueOf(p.getRol_id()));
         }else{
-            JOptionPane.showMessageDialog(this, "No existe la persona", "Buscar Persona", JOptionPane.OK_OPTION);
-        }*/
+            
+            JOptionPane.showMessageDialog(this, "La cedula ingresada no esta registrada", "Buscar cedula de persona", JOptionPane.OK_OPTION);
+        }
          
     }//GEN-LAST:event_btnBuscarCFActionPerformed
 
@@ -534,7 +575,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 tablaF = (DefaultTableModel) tblServF.getModel();
                 tablaF.removeRow(fila);
 
-                if (pro.getIva() == 'T') {
+                if (pro.getIva() == 'S') {
 
                     ivaPro = pro.getPrecio() * 0.12;
 
@@ -574,7 +615,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 tablaF.removeRow(fila);
                 tablaF.removeRow(tblServF.getRowCount() - 1);
 
-                if (pro.getIva() == 'F') {
+                if (pro.getIva() == 'S') {
 
                     ivaPro = pro.getPrecio() * 0.12;
 
@@ -691,8 +732,13 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         x = null;
     }//GEN-LAST:event_formInternalFrameClosing
 
+    private void btbnBusProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbnBusProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btbnBusProActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btbnBusPro;
     private javax.swing.JButton btnBuscarCF;
     private javax.swing.JButton btnCancelarF;
     private javax.swing.JButton btnCrear;
@@ -705,6 +751,8 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblCedC6;
     private javax.swing.JLabel lblCodC5;
     private javax.swing.JLabel lblCodC6;
+    private javax.swing.JLabel lblCodC7;
+    private javax.swing.JLabel lblCodC8;
     private javax.swing.JLabel lblDirC5;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIva;
@@ -723,9 +771,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtIva;
     private javax.swing.JTextField txtNomC;
+    private javax.swing.JTextField txtNomPro;
     private javax.swing.JTextField txtRol;
     private javax.swing.JTextField txtRuc;
     private javax.swing.JTextField txtStock;
+    private javax.swing.JTextField txtStock2;
     private javax.swing.JTextField txtSubtotal;
     private javax.swing.JTextField txtTelC;
     private javax.swing.JTextField txtTotal;

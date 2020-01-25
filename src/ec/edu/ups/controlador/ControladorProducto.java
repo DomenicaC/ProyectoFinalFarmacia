@@ -88,6 +88,45 @@ public class ControladorProducto {
         return pro;
     }
 
+    public Producto BuscarNombre(String nombre) {
+        Producto pro = new Producto();
+        try {
+
+            String sql = "SELECT * FROM \"SDF_PRODUCTOS\" WHERE pro_nombre =" + nombre;
+            System.out.println("Base " + sql);
+
+            db.conectar();
+            Statement sta = db.getConexionBD().createStatement();
+            ResultSet res = sta.executeQuery(sql);
+            
+            res.next();
+            
+            pro.setId(res.getInt("PRO_ID"));
+            pro.setNombre(nombre);
+            pro.setCodBarra(res.getString("PRO_COD_BARRA"));
+            pro.setPrecio(res.getDouble("PRO_PRECIO"));
+            pro.setStock(res.getInt("PRO_STOCK"));
+            String c = res.getString("PRO_NACIO");
+            pro.setNacionalidad(c.charAt(0));
+            c = res.getString("PRO_IVA");
+            pro.setIva(c.charAt(0));
+            pro.setUm(un.Buscaar(res.getInt("SDF_UNIDADES_MEDIDAS_MED_ID")));
+            pro.setCp(cc.Buscar(res.getInt("SDF_CATEGORIAS_CAT_ID")));
+            System.out.println(pro.toString());
+            
+            res.close();
+            sta.close();
+            db.desconectar();
+
+        } catch (SQLException error) {
+
+            error.printStackTrace();
+
+        }
+
+        return pro;
+    }
+    
     public void eliminar(int id) {
 
     }
