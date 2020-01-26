@@ -18,6 +18,9 @@ import javax.swing.JOptionPane;
 public class BuscarPersonas extends javax.swing.JInternalFrame {
     public static String x;
     private PersonaControlador personaControlador;
+     String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+     String user = "BaseFarmacia";
+     String password = "bf1234";
     
     /**
      * Creates new form BuscarPersonas
@@ -79,11 +82,15 @@ public class BuscarPersonas extends javax.swing.JInternalFrame {
             }
         });
 
+        txttelefono.setEnabled(false);
+
         jLabel8.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel8.setText("Rol:");
 
         jLabel3.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel3.setText("Cédula:");
+
+        txtcedula.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jButton1.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jButton1.setText("Buscar Persona");
@@ -106,47 +113,60 @@ public class BuscarPersonas extends javax.swing.JInternalFrame {
             }
         });
 
+        txtnombre.setEnabled(false);
+
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel1.setText("Buscar Persona");
 
         jLabel5.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel5.setText("Apellido:");
 
+        txtaoelldio.setEnabled(false);
+
         jLabel6.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel6.setText("Dirección:");
 
+        txtdireccion.setEnabled(false);
+
         jLabel7.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel7.setText("Teléfono:");
+
+        txtrol.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addComponent(jLabel1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtrol, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtcedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(txtnombre, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtaoelldio, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtdireccion, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txttelefono, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))))
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(78, 78, 78)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
+                                .addGap(48, 48, 48)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtrol, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtcedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                                    .addComponent(txtnombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtaoelldio, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtdireccion, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txttelefono, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,17 +177,17 @@ public class BuscarPersonas extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(17, 17, 17)
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(13, 13, 13)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8)
-                        .addGap(24, 24, 24))
+                        .addContainerGap(13, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtcedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,15 +196,14 @@ public class BuscarPersonas extends javax.swing.JInternalFrame {
                         .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtaoelldio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(13, 13, 13)
                         .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(11, 11, 11)
                         .addComponent(txtrol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jButton2)
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2))))
         );
 
         pack();
@@ -204,14 +223,14 @@ public class BuscarPersonas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-       
+        // TODO add your handling code here:       
+        PersonaControlador cp = new PersonaControlador(url, user, password);
         Personas p = new Personas();
-        p = personaControlador.BuscaarPersona(txtcedula.getText());
+        p = cp.BuscaarPersona(txtcedula.getText());
         if (p.getCedula() != null) {
             txtnombre.setText(p.getNombres());
-            txtaoelldio.setText(p.getApellidos());
-            txtdireccion.setText(p.getDireccion());  
+            txtaoelldio.setText(p.getApellidos());           
+            txtdireccion.setText(p.getDireccion()); 
             txttelefono.setText(p.getTelefono());
             txtrol.setText(String.valueOf(p.getRol_id()));
         }else{

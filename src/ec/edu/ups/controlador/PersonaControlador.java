@@ -46,16 +46,13 @@ public class PersonaControlador {
     public Personas BuscaarPersona(String cedula)  {
         Personas per = new Personas();
         try {
-
             String sql = "SELECT * FROM \"SDF_PERSONAS\" WHERE per_cedula ='" + cedula + "'";
             System.out.println("Base " + sql);
-
             db.conectar();
             Statement sta = db.getConexionBD().createStatement();
             ResultSet res = sta.executeQuery(sql);
 
           res.next();
-
                 per.setCedula(cedula);
                 per.setNombres(res.getString("PER_NOMBRES"));
                 per.setApellidos(res.getString("PER_APELLIDOS"));
@@ -64,8 +61,7 @@ public class PersonaControlador {
                 per.setUsername(res.getString("PER_USERNAME"));
                 per.setContrasenia(res.getString("PER_CONTRASENIA"));
                 per.setRol_id(res.getInt("SDF_ROLES_ROL_ID")); 
-                System.out.println(per.toString());
-                
+                System.out.println(per.toString());              
             
                 res.close();
             sta.close();
