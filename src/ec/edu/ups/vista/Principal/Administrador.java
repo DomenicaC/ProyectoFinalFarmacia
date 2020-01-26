@@ -559,7 +559,7 @@ public class Administrador extends javax.swing.JFrame {
         try {
             if (x == null) {
                 if (modificarEliminar == null || modificarEliminar.isVisible() == false) {
-                    modificarEliminar = new ModificarEliminar(personaControlador);
+                    modificarEliminar = new ModificarEliminar(url, user, password);
                     desktop.add(modificarEliminar);
                 }
             } else {

@@ -77,18 +77,23 @@ public class PersonaControlador {
     }
 
     public void modificar(Personas p) throws SQLException {
-        String sql = "UPDATE\"SDF_PERSONAS \" SET \"PER_NOMBRE\" = '" 
-                + p.getNombres() + "',\"PER_APELLIDO\" = '" 
-                + p.getDireccion() + "',\"PER_DIRECCION\"='" + p.getTelefono();
+        String sql = "UPDATE\"SDF_PERSONAS\" SET "
+                + "\"PER_NOMBRES\"='" + p.getNombres() + "',"
+                + "\"PER_APELLIDOS\"='"+ p.getApellidos() + "',"
+                + "\"PER_DIRECCION\"='" + p.getDireccion() + "',"
+                + "\"PER_TELEFONO\"='" + p.getTelefono() + "',"
+                + "\"PER_CONTRASENIA\"='" + p.getContrasenia()+ "',"
+                + "\"SDF_ROLES_ROL_ID\"='" + p.getRol_id() +"' "
+                + "WHERE \"PER_CEDULA\" = '" + p.getCedula()+ "'";
         System.out.println(sql);
-        /*MiBaseDatos.conectar();
+        db.conectar();
         try {
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
+            Statement sta = db.getConexionBD().createStatement();
             sta.execute(sql);
-            MiBaseDatos.desconectar();
+            db.desconectar();
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }*/
+        }
     }
     public void deletePer(String cedula) {
         String sql = "DELETE FROM \"PERSONA\"WHERE \"PER_CEDULA\" = '" + cedula + "';";
