@@ -17,23 +17,25 @@ import java.util.Set;
  * @author Domenica
  */
 public class FCabeceraControlador {
-    
+
     private BaseDeDatos db;
 
-    public FCabeceraControlador(String url ,String user, String password) {
-        
-        db = new BaseDeDatos(url,user,password);
-        
-    }
-    
-     public void createFacCab(FCabecera facCab) {
+    public FCabeceraControlador(String url, String user, String password) {
 
-        String sql = "INSERT INTO \"SDF_FACTURA_CABECERA\" VALUES(" + facCab.getRuc()+ "," 
-                + facCab.getFecha() + "," 
-                + facCab.getSubtotal() + "," 
-                + facCab.getIva()+"," 
-                + facCab.getTotal()
-                +");";
+        db = new BaseDeDatos(url, user, password);
+
+    }
+
+    public void createFacCab(FCabecera facCab) {
+
+        String sql = "INSERT INTO \"SDF_FACTURA_CABECERAS\" VALUES("
+                + facCab.getRuc() + ","
+                + facCab.getFecha() + ","
+                + facCab.getSubtotal() + ","
+                + facCab.getIva() + ","
+                + facCab.getTotal() + ",'"
+                + facCab.getEstado() + "',"
+                + ");";
 
         System.out.println(sql);
 
@@ -49,14 +51,14 @@ public class FCabeceraControlador {
         }
 
     }
-    
+
     public FCabecera BuscarFacCab(int ruc) {
 
         FCabecera facCab = new FCabecera();
 
         try {
 
-            String sql = "SELECT * FROM \"SDF_FACTURA_CABECERA\"WHERE\"ruc\"= " + ruc + ";";
+            String sql = "SELECT * FROM \"SDF_FACTURA_CABECERAS\"WHERE\"fac_id\"= " + ruc + ";";
             System.out.println("BASE" + sql);
 
             db.conectar();
@@ -82,14 +84,14 @@ public class FCabeceraControlador {
         return facCab;
 
     }
-    
+
     public Set printFacCab() {
 
         Set<FCabecera> lista = new HashSet<>();
 
         try {
 
-            String sql = "SELECT * FROM \"Factura_Cabecera\";";
+            String sql = "SELECT * FROM \"FACTURA_CABECERAS\";";
             System.out.println("Base listar" + sql);
 
             db.conectar();
@@ -99,14 +101,14 @@ public class FCabeceraControlador {
             while (res.next()) {
 
                 FCabecera facCab = new FCabecera();
-                facCab.setRuc(res.getInt("fCab_ruc"));
-                facCab.setFecha(res.getDate("fCab_fecha"));
-                facCab.setSubtotal(res.getDouble("fCab_subtotal"));
-                facCab.setIva(res.getDouble("fCab_iva"));
-                facCab.setTotal(res.getDouble("fCab_total"));
+                facCab.setRuc(res.getInt("fac_ruc"));
+                facCab.setFecha(res.getDate("fac_fecha"));
+                facCab.setSubtotal(res.getDouble("fac_subtotal"));
+                facCab.setIva(res.getDouble("fac_iva"));
+                facCab.setTotal(res.getDouble("fac_total"));
 
             }
-            
+
             res.close();
             sta.close();
             db.desconectar();
@@ -117,5 +119,5 @@ public class FCabeceraControlador {
         }
         return lista;
     }
-    
+
 }

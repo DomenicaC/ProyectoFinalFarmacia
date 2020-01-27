@@ -33,7 +33,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     private Date fecha;
     private int contador;
-    private double totalCP, subtotal, iva, ivaPro, total;
+    private double totalCP, subtotal, iva, ivaPro, total, a;
     private DefaultTableModel tablaF;
 
     //clases
@@ -59,6 +59,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         pro = null;
         contador = 0;
         ivaPro = 0;
+        a = 0;
 
         x = "x";
         int a = Administrador.desktop.getWidth() - this.getWidth();
@@ -564,7 +565,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             int columna = tblServF.getSelectedColumn();
             int codigoServ = 0;
 
-            Object[] datos1 = {"", 0, "", "", ""};
+            Object[] datos1 = {"", 0, "", "", "", "", ""};
 
             if (columna == 0) {
                 codigoServ = Integer.parseInt(tblServF.getValueAt(fila, columna).toString());
@@ -575,11 +576,12 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 tablaF = (DefaultTableModel) tblServF.getModel();
                 tablaF.removeRow(fila);
 
-                if (pro.getIva() == 'S') {
+                if (pro.getIva() == 'T') {
 
                     ivaPro = pro.getPrecio() * 0.12;
-
-                    totalCP = cant * ivaPro;
+                    a = cant * pro.getPrecio();
+                    totalCP = a + ivaPro;
+                    
 
                     Object[] datos = {codigoServ,
                         cant,
@@ -594,6 +596,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
                 } else {
                     ivaPro = 0;
+                    
                     totalCP = cant * pro.getPrecio();
 
                     Object[] datos = {codigoServ,
@@ -615,11 +618,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 tablaF.removeRow(fila);
                 tablaF.removeRow(tblServF.getRowCount() - 1);
 
-                if (pro.getIva() == 'S') {
+                if (pro.getIva() == 'T') {
 
                     ivaPro = pro.getPrecio() * 0.12;
-
-                    totalCP = cant * ivaPro;
+                    a = cant * pro.getPrecio();
+                    totalCP = a + ivaPro;
 
                     Object[] datos = {codigoServ,
                         cant,
@@ -633,6 +636,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                     tablaF.addRow(datos1);
 
                 } else {
+                    
                     ivaPro = 0;
                     totalCP = cant * pro.getPrecio();
 

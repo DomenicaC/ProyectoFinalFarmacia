@@ -20,7 +20,7 @@ public class FCabecera {
     private double subtotal;
     private double iva;
     private double total;
-    private String estado;
+    private char estado;
     
     //Clases
     private Personas per;
@@ -35,7 +35,7 @@ public class FCabecera {
         
     }
 
-    public FCabecera(int ruc, Date fecha, double subtotal, double iva, double total, String estado, Personas per, Producto pro, List<FDetalle> detalle) {
+    public FCabecera(int ruc, Date fecha, double subtotal, double iva, double total, char estado, Personas per, Producto pro, List<FDetalle> detalle) {
         this.ruc = ruc;
         this.fecha = fecha;
         this.subtotal = subtotal;
@@ -112,11 +112,11 @@ public class FCabecera {
         this.detalle = detalle;
     }
 
-    public String getEstado() {
+    public char getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(char estado) {
         this.estado = estado;
     }
 
