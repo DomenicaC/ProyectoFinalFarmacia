@@ -492,7 +492,7 @@ public class Administrador extends javax.swing.JFrame {
         try {
             if (x == null) {
                 if (eliminarPersona == null || eliminarPersona.isVisible() == false) {
-                    eliminarPersona = new EliminarPersona(personaControlador);
+                    eliminarPersona = new EliminarPersona(url, user, password);
                     desktop.add(eliminarPersona);
                 }
             } else {
@@ -559,7 +559,7 @@ public class Administrador extends javax.swing.JFrame {
         try {
             if (x == null) {
                 if (modificarEliminar == null || modificarEliminar.isVisible() == false) {
-                    modificarEliminar = new ModificarEliminar(personaControlador);
+                    modificarEliminar = new ModificarEliminar(url, user, password);
                     desktop.add(modificarEliminar);
                 }
             } else {
