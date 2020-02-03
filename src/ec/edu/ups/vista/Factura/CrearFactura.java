@@ -561,7 +561,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             txtApeC.setText(p.getApellidos());
             txtDirC.setText(p.getDireccion());
             txtTelC.setText(p.getTelefono());
-           // txtrol.setText(String.valueOf(p.getRol_id()));
+            // txtrol.setText(String.valueOf(p.getRol_id()));
         } else {
             JOptionPane.showMessageDialog(this, "No existe la persona", "Buscar Persona", JOptionPane.OK_OPTION);
         }
@@ -811,7 +811,9 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     private void btbnBusProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbnBusProActionPerformed
 
         pro = new Producto();
-        pro = contPro.BuscarNombre(txtNomPro.getText());
+        ControladorProducto pro1 = new ControladorProducto(url, user, password);
+        pro = pro1.BuscarNombre(txtNomPro.getText());
+        //Producto produ = new Producto();
 
         if (pro.getNombre() != null) {
 
