@@ -818,7 +818,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         if (pro.getNombre() != null) {
 
             txtCodPro.setText(String.valueOf(pro.getId()));
-            txtStock.setText(String.valueOf(pro.getPrecio()));
+            txtStock.setText(String.valueOf(pro.getStock()));
 
         } else {
 
