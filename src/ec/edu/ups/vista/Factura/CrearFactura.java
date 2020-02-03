@@ -32,6 +32,10 @@ public class CrearFactura extends javax.swing.JInternalFrame {
      * FCabeceraControlador fCabeceraControlador;
      */
 
+    String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+    String user = "BaseFarmacia";
+    String password = "bf1234";
+
     private Date fecha;
     private int contador;
     private double totalCP, subtotal, iva, ivaPro, total, a;
@@ -536,18 +540,30 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     private void btnBuscarCFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCFActionPerformed
 
-        Personas p = new Personas();
-        p = personaControlador.BuscaarPersona(txtCedC.getText());
+        /* Personas p = new Personas();
+         p = personaControlador.BuscaarPersona(txtCedC.getText());
 
+         if (p.getCedula() != null) {
+         txtNomC.setText(p.getNombres());
+         txtApeC.setText(p.getApellidos());
+         txtDirC.setText(p.getDireccion());
+         txtTelC.setText(p.getTelefono());
+         txtRol.setText(String.valueOf(p.getRol_id()));
+         } else {
+
+         JOptionPane.showMessageDialog(this, "La cedula ingresada no está registrada", "Buscar cédula de persona", JOptionPane.OK_OPTION);
+         }*/
+        PersonaControlador cp = new PersonaControlador(url, user, password);
+        Personas p = new Personas();
+        p = cp.BuscaarPersona(txtCedC.getText());
         if (p.getCedula() != null) {
             txtNomC.setText(p.getNombres());
             txtApeC.setText(p.getApellidos());
             txtDirC.setText(p.getDireccion());
             txtTelC.setText(p.getTelefono());
-            txtRol.setText(String.valueOf(p.getRol_id()));
+           // txtrol.setText(String.valueOf(p.getRol_id()));
         } else {
-
-            JOptionPane.showMessageDialog(this, "La cedula ingresada no está registrada", "Buscar cédula de persona", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(this, "No existe la persona", "Buscar Persona", JOptionPane.OK_OPTION);
         }
 
     }//GEN-LAST:event_btnBuscarCFActionPerformed
@@ -587,11 +603,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                     totalCP = a + ivaPro;
 
                     Object[] datos = {codigoServ,
-                                      cant,
-                                      pro.getNombre(),
-                                      pro.getPrecio(),
-                                      ivaPro,
-                                      totalCP
+                        cant,
+                        pro.getNombre(),
+                        pro.getPrecio(),
+                        ivaPro,
+                        totalCP
                     };
 
                     tablaF.addRow(datos);
@@ -604,11 +620,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                     totalCP = cant * pro.getPrecio();
 
                     Object[] datos = {codigoServ,
-                                      cant,
-                                      pro.getNombre(),
-                                      pro.getPrecio(),
-                                      ivaPro,
-                                      totalCP
+                        cant,
+                        pro.getNombre(),
+                        pro.getPrecio(),
+                        ivaPro,
+                        totalCP
                     };
 
                     tablaF.addRow(datos);
@@ -630,11 +646,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                     totalCP = a + ivaPro;
 
                     Object[] datos = {codigoServ,
-                                      cant,
-                                      pro.getNombre(),
-                                      pro.getPrecio(),
-                                      ivaPro,
-                                      totalCP
+                        cant,
+                        pro.getNombre(),
+                        pro.getPrecio(),
+                        ivaPro,
+                        totalCP
                     };
 
                     tablaF.addRow(datos);
@@ -647,11 +663,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                     totalCP = cant * pro.getPrecio();
 
                     Object[] datos = {codigoServ,
-                                      cant,
-                                      pro.getNombre(),
-                                      pro.getPrecio(),
-                                      ivaPro,
-                                      totalCP
+                        cant,
+                        pro.getNombre(),
+                        pro.getPrecio(),
+                        ivaPro,
+                        totalCP
                     };
 
                     tablaF.addRow(datos);
@@ -759,10 +775,8 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             int cant1 = (int) cant;
             fdet.setCant(cant1);
 
-            
             fdet.setPro(contPro.Buscar(Integer.parseInt(tblServF.getValueAt(i, 0).toString())));
             fcab.añadirFacDetalle(fdet);
-            
 
         }
 
@@ -778,10 +792,10 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
         /*txtRuc.setText(Integer.toString(controladorFactura.getCodigo()));
          factura.setRuc(Integer.parseInt(txtRuc.getText()));
-*/
-         int ruc = this.ContFCab.getRuc()+ 1;
-         txtRuc.setText(String.valueOf(ruc));
-         txtFecha.setText(ContFCab.getFecha());
+         */
+        int ruc = this.ContFCab.getRuc() + 1;
+        txtRuc.setText(String.valueOf(ruc));
+        txtFecha.setText(ContFCab.getFecha());
         contador = 0;
 
         vaciarDatos();
