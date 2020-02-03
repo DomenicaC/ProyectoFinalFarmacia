@@ -48,10 +48,10 @@ public class CrearFactura extends javax.swing.JInternalFrame {
     private FDetalle fdet;
 
     //Controladores
-    private FCabeceraControlador ContFCab;
-    private FDetalleControlador ContFDetalle;
-    private PersonaControlador personaControlador;
-    private ControladorProducto contPro;
+    private FCabeceraControlador ContFCab = new FCabeceraControlador(url, user, password);
+    private FDetalleControlador ContFDetalle = new FDetalleControlador(url, user, password);
+    private PersonaControlador personaControlador = new PersonaControlador(url, user, password);
+    private ControladorProducto contPro = new ControladorProducto(url, user, password);
 
     public CrearFactura(FCabeceraControlador fCabeceraControlador) {
         initComponents();
