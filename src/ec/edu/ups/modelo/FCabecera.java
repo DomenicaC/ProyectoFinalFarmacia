@@ -119,6 +119,10 @@ public class FCabecera {
     public void setEstado(char estado) {
         this.estado = estado;
     }
+    
+    public void añadirFacDetalle(FDetalle fDet){
+        detalle.add(fDet);
+    }
 
     @Override
     public String toString() {
