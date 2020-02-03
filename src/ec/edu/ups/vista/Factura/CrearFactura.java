@@ -554,9 +554,8 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     private void btnCancelarFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarFActionPerformed
 
-        this.setVisible(false);
-        this.dispose();
         x = null;
+        this.dispose();
 
     }//GEN-LAST:event_btnCancelarFActionPerformed
 
