@@ -92,7 +92,7 @@ public class ControladorProducto {
         Producto pro = new Producto();
         try {
 
-            String sql = "SELECT * FROM \"SDF_PRODUCTOS\" WHERE pro_nombre =" + nombre;
+            String sql = "SELECT * FROM \"SDF_PRODUCTOS\" WHERE pro_nombre ='" + nombre +"'";
             System.out.println("Base " + sql);
 
             db.conectar();
