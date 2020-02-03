@@ -572,7 +572,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
             if (columna == 0) {
                 codigoServ = Integer.parseInt(tblServF.getValueAt(fila, columna).toString());
-                //pro = controladorServicio.read(codigoServ);
+                pro = contPro.Buscar(codigoServ);
 
                 int cant = Integer.parseInt(tblServF.getValueAt(fila, 1).toString());
 
@@ -588,11 +588,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                     totalCP = a + ivaPro;
 
                     Object[] datos = {codigoServ,
-                        cant,
-                        pro.getNombre(),
-                        pro.getPrecio(),
-                        ivaPro,
-                        totalCP
+                                      cant,
+                                      pro.getNombre(),
+                                      pro.getPrecio(),
+                                      ivaPro,
+                                      totalCP
                     };
 
                     tablaF.addRow(datos);
@@ -605,11 +605,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                     totalCP = cant * pro.getPrecio();
 
                     Object[] datos = {codigoServ,
-                        cant,
-                        pro.getNombre(),
-                        pro.getPrecio(),
-                        ivaPro,
-                        totalCP
+                                      cant,
+                                      pro.getNombre(),
+                                      pro.getPrecio(),
+                                      ivaPro,
+                                      totalCP
                     };
 
                     tablaF.addRow(datos);
@@ -631,11 +631,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                     totalCP = a + ivaPro;
 
                     Object[] datos = {codigoServ,
-                        cant,
-                        pro.getNombre(),
-                        pro.getPrecio(),
-                        ivaPro,
-                        totalCP
+                                      cant,
+                                      pro.getNombre(),
+                                      pro.getPrecio(),
+                                      ivaPro,
+                                      totalCP
                     };
 
                     tablaF.addRow(datos);
@@ -648,11 +648,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                     totalCP = cant * pro.getPrecio();
 
                     Object[] datos = {codigoServ,
-                        cant,
-                        pro.getNombre(),
-                        pro.getPrecio(),
-                        ivaPro,
-                        totalCP
+                                      cant,
+                                      pro.getNombre(),
+                                      pro.getPrecio(),
+                                      ivaPro,
+                                      totalCP
                     };
 
                     tablaF.addRow(datos);
@@ -682,7 +682,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
         while (contador < lista.size()) {
 
-            Object[] datos2 = {fcab.getDetalle().get(contador).getCodigo(),
+            Object[] datos3 = {fcab.getDetalle().get(contador).getCodigo(),
                 lista.get(contador).getCant(),
                 lista.get(contador).getPro().getNombre(),
                 lista.get(contador).getPro().getPrecio(),
@@ -690,7 +690,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 lista.get(contador).getTotalIP()
             };
 
-            modeloP.addRow(datos2);
+            modeloP.addRow(datos3);
             contador++;
 
         }
@@ -760,12 +760,10 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             int cant1 = (int) cant;
             fdet.setCant(cant1);
 
-            //facDet.setCodigo(Integer.parseInt(tblServF.getValueAt(i, 0).toString()));
-            //int codigoS = ;
-            //facDet.setServ(controladorServicio.read(Integer.parseInt(tblServF.getValueAt(i, 0).toString())));
+            
             fdet.setPro(contPro.Buscar(Integer.parseInt(tblServF.getValueAt(i, 0).toString())));
             fcab.añadirFacDetalle(fdet);
-            //            controladorFDetalle.create(facDet);
+            
 
         }
 
@@ -781,10 +779,10 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
         /*txtRuc.setText(Integer.toString(controladorFactura.getCodigo()));
          factura.setRuc(Integer.parseInt(txtRuc.getText()));
-
-         int ruc = this.controladorFactura.getCodigo() + 1;
+*/
+         int ruc = this.ContFCab.getRuc()+ 1;
          txtRuc.setText(String.valueOf(ruc));
-         txtFecha.setText(controladorFactura.getFecha());*/
+         txtFecha.setText(ContFCab.getFecha());
         contador = 0;
 
         vaciarDatos();

@@ -5,7 +5,9 @@
  */
 package ec.edu.ups.controlador;
 import ec.edu.ups.modelo.FDetalle;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 /**
@@ -14,23 +16,59 @@ import java.util.Set;
  */
 public class FDetalleControlador {
     
-  /*   public void createFacDet(FDetalle facDet) {
+    private BaseDeDatos db;
+    private int codigo;
+    private Set<FDetalle> lista;
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public Set<FDetalle> getLista() {
+        return lista;
+    }
+
+    public FDetalleControlador() {
+        
+        lista = new HashSet<>();
+        codigo = 0;
+        
+    }
+
+    public FDetalleControlador(String url, String user, String password) {
+        
+        db = new BaseDeDatos(url, user, password);
+        
+    }
+    
+     public void createFacDet(FDetalle facDet) {
+
+         codigo++;
+         facDet.setCodigo(codigo);
+         
         String sql = "INSERT INTO \"Factura_Detalle\" VALUES(" + facDet.getCant()+ "," + facDet.getIvaPro() + "," + facDet.getCodigo() + ");";
 
         System.out.println(sql);
 
-        MiBaseDatos.conectar();
+        db.conectar();
         try {
 
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
+            Statement sta = db.getConexionBD().createStatement();
             sta.execute(sql);
-            MiBaseDatos.desconectar();
+            db.desconectar();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
+    }
+     
+    public void createFacDet1(FDetalle facDet) {
+        
+        codigo ++;
+        facDet.setCodigo(codigo);
+        lista.add(facDet);
+        
     }
 
     public FDetalle BuscarFacCab(int codigo) {
@@ -42,20 +80,20 @@ public class FDetalleControlador {
             String sql = "SELECT * FROM \"Factura_Detalle\"WHERE\"codigo\"= " + codigo + ";";
             System.out.println("BASE" + sql);
 
-            MiBaseDatos.conectar();
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
+            db.conectar();
+            Statement sta = db.getConexionBD().createStatement();
             ResultSet res = sta.executeQuery(sql);
 
             while (res.next()) {
 
                 facDet.setCodigo(codigo);
-                facDet.setCantidad(res.getInt("cantidad"));
+                facDet.setCant(res.getInt("cantidad"));
                 facDet.setTotalCP(res.getDouble("total"));
 
             }
             res.close();
             sta.close();
-            MiBaseDatos.desconectar();
+            db.desconectar();
 
         } catch (SQLException error) {
             error.printStackTrace();
@@ -63,25 +101,16 @@ public class FDetalleControlador {
         return facDet;
 
     }
-
-    public void AnularFacDet(int codigo) {
-
-        String sql = "DELETE FROM \"Factura_Detalle \"WHERE \"codigo \" = " + codigo + ";";
-        System.out.println("Base eliminada " + sql);
-
-        MiBaseDatos.conectar();
-        try {
-
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
-            sta.execute(sql);
-            MiBaseDatos.desconectar();
-
-        } catch (SQLException error) {
-
-            error.printStackTrace();
-
+    
+    public FDetalle BuscarFacCab1(int codigo) {
+        
+        for (FDetalle fac : lista) {
+            if (fac.getCodigo()== codigo) {
+                return fac;
+            }
         }
-
+        return null;
+        
     }
 
     public Set printFacCab() {
@@ -93,21 +122,21 @@ public class FDetalleControlador {
             String sql = "SELECT * FROM \"Factura_Cabecera\";";
             System.out.println("Base listar" + sql);
 
-            MiBaseDatos.conectar();
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
+            db.conectar();
+            Statement sta = db.getConexionBD().createStatement();
             ResultSet res = sta.executeQuery(sql);
 
             while (res.next()) {
 
                 FDetalle facDet = new FDetalle();
                 facDet.setCodigo(res.getInt("codigo"));
-                facDet.setCantidad(res.getInt("cantidad"));
+                facDet.setCant(res.getInt("cantidad"));
                 facDet.setTotalCP(res.getDouble("total"));
 
             }
             res.close();
             sta.close();
-            MiBaseDatos.desconectar();
+            db.desconectar();
         } catch (SQLException error) {
 
             error.printStackTrace();
@@ -115,5 +144,5 @@ public class FDetalleControlador {
         }
         return lista;
     }
-    */
+    
 }

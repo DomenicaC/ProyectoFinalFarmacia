@@ -24,7 +24,7 @@ public class FCabeceraControlador {
     private int ruc;
     private Set<FCabecera> lista;
 
-    public int getCodigo() {
+    public int getRuc() {
         return ruc;
     }
 
