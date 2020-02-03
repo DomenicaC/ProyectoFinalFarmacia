@@ -540,19 +540,6 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     private void btnBuscarCFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCFActionPerformed
 
-        /* Personas p = new Personas();
-         p = personaControlador.BuscaarPersona(txtCedC.getText());
-
-         if (p.getCedula() != null) {
-         txtNomC.setText(p.getNombres());
-         txtApeC.setText(p.getApellidos());
-         txtDirC.setText(p.getDireccion());
-         txtTelC.setText(p.getTelefono());
-         txtRol.setText(String.valueOf(p.getRol_id()));
-         } else {
-
-         JOptionPane.showMessageDialog(this, "La cedula ingresada no está registrada", "Buscar cédula de persona", JOptionPane.OK_OPTION);
-         }*/
         PersonaControlador cp = new PersonaControlador(url, user, password);
         Personas p = new Personas();
         p = cp.BuscaarPersona(txtCedC.getText());
@@ -563,7 +550,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             txtTelC.setText(p.getTelefono());
             // txtrol.setText(String.valueOf(p.getRol_id()));
         } else {
-            JOptionPane.showMessageDialog(this, "No existe la persona", "Buscar Persona", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(this, "La cedula ingresada no está registrada", "Buscar cédula de persona", JOptionPane.OK_OPTION);
         }
 
     }//GEN-LAST:event_btnBuscarCFActionPerformed
@@ -598,8 +585,8 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
                     Object[] datos2 = {codigoServ, 0, pro.getNombre(), pro.getPrecio(), 0.12, ""};
 
-                    ivaPro = pro.getPrecio() * 0.12;
                     a = cant * pro.getPrecio();
+                    ivaPro = a *  0.12;
                     totalCP = a + ivaPro;
 
                     Object[] datos = {codigoServ,
@@ -641,8 +628,9 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 if (pro.getIva() == 'T') {
 
                     Object[] datos2 = {codigoServ, 0, pro.getNombre(), pro.getPrecio(), 0.12, ""};
-                    ivaPro = pro.getPrecio() * 0.12;
+                    
                     a = cant * pro.getPrecio();
+                    ivaPro = a *  0.12;
                     totalCP = a + ivaPro;
 
                     Object[] datos = {codigoServ,
