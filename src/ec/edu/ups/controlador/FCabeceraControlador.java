@@ -39,13 +39,6 @@ public class FCabeceraControlador {
 
     }
 
-    public String getFecha() {
-        java.util.Date fecha = new Date();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaT = formatoFecha.format(fecha.getTime());
-        return fechaT;
-    }
-
     public FCabeceraControlador(String url, String user, String password) {
 
         db = new BaseDeDatos(url, user, password);
@@ -62,7 +55,8 @@ public class FCabeceraControlador {
                 + facCab.getSubtotal() + ","
                 + facCab.getIva() + ","
                 + facCab.getTotal() + ",'"
-                + facCab.getEstado() + "',"
+                + facCab.getEstado() + "','"
+                + facCab.getPer().getCedula() + "',"
                 + ");";
 
         System.out.println(sql);
@@ -78,16 +72,14 @@ public class FCabeceraControlador {
             ex.printStackTrace();
         }
 
-        lista.add(facCab);
-
     }
-    
+
     public void createFacCab1(FCabecera facCab) {
-        
+
         ruc++;
         facCab.setRuc(ruc);
         lista.add(facCab);
-        
+
     }
 
     public FCabecera BuscarFacCab(int ruc) {
@@ -110,6 +102,9 @@ public class FCabeceraControlador {
                 facCab.setSubtotal(res.getDouble("subtotal"));
                 facCab.setIva(res.getDouble("iva"));
                 facCab.setTotal(res.getDouble("total"));
+                String m = res.getString("FAC_ESTADO");
+                facCab.setEstado(m.charAt(0));
+               // facCab.setPer(res.getString("sdf_personas_per_cedula"));
 
             }
             res.close();
@@ -139,13 +134,35 @@ public class FCabeceraControlador {
         return null;
     }
 
+    private void modificar(FCabecera faC) throws SQLException {
+
+        String sql = "UPDATE\"SDF_FACTURA_CABECERAS\" SET "
+                + "\"FAC_FECHA\"='" + faC.getFecha() + "',"
+                + "\"FAC_SUBTOTAL\"=" + faC.getSubtotal() + ","
+                + "\"FAC_IVA\"=" + faC.getIva() + ","
+                + "\"FAC_TOTAL\"=" + faC.getTotal() + ","
+                + "\"FAC_ESTADO\"='" + faC.getEstado() + "',"
+                + "\"sdf_personas_per_cedula\"='" + faC.getPer().getCedula() + "' "
+                + "WHERE \"FAC_ID\" = " + faC.getRuc() + ";";
+
+        System.out.println(sql);
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            sta.execute(sql);
+            db.desconectar();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
     public Set printFacCab() {
 
         //Set<FCabecera> lista = new HashSet<>();
-
         try {
 
-            String sql = "SELECT * FROM \"FACTURA_CABECERAS\";";
+            String sql = "SELECT * FROM \"SDF_FACTURA_CABECERAS\";";
             System.out.println("Base listar" + sql);
 
             db.conectar();

@@ -46,7 +46,9 @@ public class FDetalleControlador {
          codigo++;
          facDet.setCodigo(codigo);
          
-        String sql = "INSERT INTO \"Factura_Detalle\" VALUES(" + facDet.getCant()+ "," + facDet.getIvaPro() + "," + facDet.getCodigo() + ");";
+        String sql = "INSERT INTO \"Factura_Detalle\" VALUES(" + facDet.getCant()+ "," 
+                                                                + facDet.getIvaPro() + "," 
+                                                                + facDet.getCodigo() + ");";
 
         System.out.println(sql);
 

@@ -309,9 +309,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             }
         });
 
-        txtFecha.setEditable(false);
         txtFecha.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
-        txtFecha.setEnabled(false);
 
         tblServF.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -741,21 +739,16 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
 
-        //obtener fecha
-        fecha = new Date();
-
+       
         //obtener clases
         String cedulaC = txtCedC.getText();
         per = personaControlador.BuscaarPersona(cedulaC);
 
-        //agregarDatos
-        fcab.setFecha(fecha);
-
-        //clases
-        fcab.setPer(per);
+        
 
         //facDetalle
         for (int i = 0; i < tblServF.getRowCount() - 1; i++) {
+            
             System.out.println("i " + i);
             fdet = new FDetalle();
 
@@ -769,12 +762,18 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         }
 
         llenarDatos();
+        
         //factura
+        //agregarDatos
+        fcab.setRuc(Integer.parseInt(txtRuc.getText()));
+        //fcab.setFecha(String.valueOf(txtFecha.getText()));
         fcab.setSubtotal(subtotal);
         fcab.setIva(iva);
         fcab.setTotal(total);
-
+       // fcab.setEstado(char.class(txtEstado.getText()));
+        fcab.setPer(per);
         ContFCab.createFacCab(fcab);
+        
         JOptionPane.showMessageDialog(this, "Factura Creada");
         System.out.println("factura \n" + fcab.toString());
 
@@ -783,7 +782,6 @@ public class CrearFactura extends javax.swing.JInternalFrame {
          */
         int ruc = this.ContFCab.getRuc() + 1;
         txtRuc.setText(String.valueOf(ruc));
-        txtFecha.setText(ContFCab.getFecha());
         contador = 0;
 
         vaciarDatos();
