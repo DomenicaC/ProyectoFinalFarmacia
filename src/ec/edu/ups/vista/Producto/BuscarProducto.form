@@ -59,14 +59,14 @@
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField7" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                          <Component id="jTextField6" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                          <Component id="jTextField4" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                          <Component id="jTextField5" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                          <Component id="jTCategoria" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                          <Component id="jTIVA" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                          <Component id="jTNacional" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                          <Component id="jTStock" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                          <Component id="jTPrecio" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
                           <Component id="jTNombre" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
                           <Component id="jTCBarra" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                          <Component id="jTextField8" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                          <Component id="jTUnidad" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -103,32 +103,32 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLStock" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTStock" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLNacional" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTNacional" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTIVA" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLUnidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTUnidad" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="29" max="32767" attributes="0"/>
               <Component id="jToggleButton2" max="32767" attributes="0"/>
@@ -146,7 +146,7 @@
         <Property name="text" type="java.lang.String" value="Stock:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField6">
+    <Component class="javax.swing.JTextField" name="jTIVA">
     </Component>
     <Component class="javax.swing.JLabel" name="jLNacional">
       <Properties>
@@ -157,7 +157,7 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField7">
+    <Component class="javax.swing.JTextField" name="jTCategoria">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -167,7 +167,7 @@
         <Property name="text" type="java.lang.String" value="IVA:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField8">
+    <Component class="javax.swing.JTextField" name="jTUnidad">
     </Component>
     <Component class="javax.swing.JLabel" name="jLUnidad">
       <Properties>
@@ -207,7 +207,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton2ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="jTPrecio">
     </Component>
     <Component class="javax.swing.JLabel" name="jLCBarras">
       <Properties>
@@ -237,7 +237,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTCBarra">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
+    <Component class="javax.swing.JTextField" name="jTNacional">
     </Component>
     <Component class="javax.swing.JLabel" name="jLPrecio">
       <Properties>
@@ -247,7 +247,7 @@
         <Property name="text" type="java.lang.String" value="Precio:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField5">
+    <Component class="javax.swing.JTextField" name="jTStock">
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButton3">
       <Properties>

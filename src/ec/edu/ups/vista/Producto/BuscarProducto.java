@@ -41,25 +41,25 @@ public class BuscarProducto extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLStock = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        jTIVA = new javax.swing.JTextField();
         jLNacional = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        jTCategoria = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        jTUnidad = new javax.swing.JTextField();
         jLUnidad = new javax.swing.JLabel();
         jTId = new javax.swing.JTextField();
         jLCategoria = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jToggleButton2 = new javax.swing.JToggleButton();
-        jTextField1 = new javax.swing.JTextField();
+        jTPrecio = new javax.swing.JTextField();
         jLCBarras = new javax.swing.JLabel();
         jTNombre = new javax.swing.JTextField();
         jLID = new javax.swing.JLabel();
         jLNombre = new javax.swing.JLabel();
         jTCBarra = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jTNacional = new javax.swing.JTextField();
         jLPrecio = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jTStock = new javax.swing.JTextField();
         jToggleButton3 = new javax.swing.JToggleButton();
 
         setClosable(true);
@@ -162,14 +162,14 @@ public class BuscarProducto extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTIVA, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTNacional, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTStock, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTCBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(157, 157, 157)
@@ -197,27 +197,27 @@ public class BuscarProducto extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLPrecio)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLStock)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNacional)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTNacional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTIVA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLUnidad)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLCategoria)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -240,6 +240,14 @@ public class BuscarProducto extends javax.swing.JInternalFrame {
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         Producto p = controladorProducto.Buscar(Integer.parseInt(jTId.getText()));
+        jTCBarra.setText(p.getCodBarra());
+        jTNombre.setText(p.getNombre());
+        jTPrecio.setText(String.valueOf(p.getPrecio()));
+        jTStock.setText(String.valueOf(p.getStock()));
+        jTIVA.setText(String.valueOf(p.getIva()));
+        jTNacional.setText(String.valueOf(p.getNacionalidad()));
+        jTUnidad.setText(p.getUm().getNombre());
+        jTCategoria.setText(String.valueOf(p.getCp().getNombre()));
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
 
@@ -255,14 +263,14 @@ public class BuscarProducto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTCBarra;
+    private javax.swing.JTextField jTCategoria;
+    private javax.swing.JTextField jTIVA;
     private javax.swing.JTextField jTId;
+    private javax.swing.JTextField jTNacional;
     private javax.swing.JTextField jTNombre;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTPrecio;
+    private javax.swing.JTextField jTStock;
+    private javax.swing.JTextField jTUnidad;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     // End of variables declaration//GEN-END:variables
