@@ -751,6 +751,33 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         per = personaControlador.BuscaarPersona(cedulaC);
 
         //facDetalle
+        
+
+        llenarDatos();
+        String fecha = txtFecha.getText();
+        SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
+        Date f = null;
+        try {
+            f = sf.parse(fecha);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        fcab.setFecha(f);
+
+        //factura
+        //agregarDatos Factura Cabecera
+        fcab.setRuc(Integer.parseInt(txtRuc.getText()));
+        fcab.setSubtotal(subtotal);
+        fcab.setIva(iva);
+        fcab.setTotal(total);
+        String est = txtEstado.getText();
+        fcab.setEstado(est.charAt(0));
+        fcab.setPer(per);
+        ContFCab.createFacCab(fcab);
+
+        JOptionPane.showMessageDialog(this, "Factura Creada");
+        System.out.println("Factura Cabecera \n" + fcab.toString());
+
         for (int i = 0; i < tblServF.getRowCount() - 1; i++) {
 
             System.out.println("i " + i);
@@ -778,32 +805,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             System.out.println("Factura Detalle \n " + fdet.toString());
 
         }
-
-        llenarDatos();
-        String fecha = txtFecha.getText();
-        SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
-        Date f = null;
-        try {
-            f = sf.parse(fecha);
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        }
-        fcab.setFecha(f);
-
-        //factura
-        //agregarDatos Factura Cabecera
-        fcab.setRuc(Integer.parseInt(txtRuc.getText()));
-        fcab.setSubtotal(subtotal);
-        fcab.setIva(iva);
-        fcab.setTotal(total);
-        String est = txtEstado.getText();
-        fcab.setEstado(est.charAt(0));
-        fcab.setPer(per);
-        ContFCab.createFacCab(fcab);
-
-        JOptionPane.showMessageDialog(this, "Factura Creada");
-        System.out.println("Factura Cabecera \n" + fcab.toString());
-
+        
         int ruc = ContFCab.buscarUltimoCodigo() + 1;
         txtRuc.setText(String.valueOf(ruc));
         contador = 0;
