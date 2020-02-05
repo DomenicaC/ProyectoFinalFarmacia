@@ -21,12 +21,8 @@ import java.util.Set;
 public class FCabeceraControlador {
 
     private BaseDeDatos db;
-    private int ruc;
     private Set<FCabecera> lista;
 
-    public int getRuc() {
-        return ruc;
-    }
 
     public Set<FCabecera> getFFactura() {
         return lista;
@@ -35,7 +31,6 @@ public class FCabeceraControlador {
     public FCabeceraControlador() {
 
         lista = new HashSet<>();
-        ruc = 0;
 
     }
 
@@ -44,20 +39,37 @@ public class FCabeceraControlador {
         db = new BaseDeDatos(url, user, password);
 
     }
+    /**
+     * Te devuelve el ultimo codigo del ultimo registro de la base de datos
+     * @return 
+     */
+     public int buscarUltimoCodigo() {
+        int resultado = 0;
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            ResultSet res = sta.executeQuery("SELECT MAX (\"FAC_ID\") FROM \"SDF_FACTURA_CABECERAS\"");
+            res.next();
+            resultado = res.getInt(1);
+            db.desconectar();
+        } catch (SQLException ex) {
+            System.out.println("Error en la buscarUltimoCodigo " + ex);
+        }
+        return resultado;
+    }
 
     public void createFacCab(FCabecera facCab) {
-
-        ruc++;
-        facCab.setRuc(ruc);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fecha = sdf.format(facCab.getFecha());
         String sql = "INSERT INTO \"SDF_FACTURA_CABECERAS\" VALUES("
-                + facCab.getRuc() + ","
-                + facCab.getFecha() + ","
+                + facCab.getRuc() + ",'"
+                + fecha + "',"
                 + facCab.getSubtotal() + ","
                 + facCab.getIva() + ","
                 + facCab.getTotal() + ",'"
                 + facCab.getEstado() + "','"
                 + facCab.getPer().getCedula() + "'"
-                + ");";
+                + ")";
 
         System.out.println(sql);
 
@@ -71,14 +83,6 @@ public class FCabeceraControlador {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-    }
-
-    public void createFacCab1(FCabecera facCab) {
-
-        ruc++;
-        facCab.setRuc(ruc);
-        lista.add(facCab);
 
     }
 

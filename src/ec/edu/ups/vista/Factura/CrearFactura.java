@@ -92,7 +92,8 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         //fecha actual 
         txtFecha.setText(fechaActual());
         //ruc 
-        txtRuc.setText(Integer.toString(ContFCab.getRuc() + 1));
+        int codigo=ContFCab.buscarUltimoCodigo()+1;
+        txtRuc.setText(String.valueOf(codigo));
         //estado factura
         txtEstado.setText("T");
 
@@ -779,22 +780,25 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         }
 
         llenarDatos();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYY");
-        //String fecha1 = sdf.format(txtFecha.getText());
+        String fecha=txtFecha.getText();
+        SimpleDateFormat sf=new SimpleDateFormat("dd/MM/yyyy");
+        Date f = null;
+        try {
+            f = sf.parse(fecha);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        fcab.setFecha(f);
 
         //factura
         //agregarDatos
         fcab.setRuc(Integer.parseInt(txtRuc.getText()));
-        try {
-            fcab.setFecha(sdf.parse(txtFecha.getText()));
-        } catch (ParseException ex) {
-            Logger.getLogger(CrearFactura.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
         fcab.setSubtotal(subtotal);
         fcab.setIva(iva);
         fcab.setTotal(total);
 
-        String est = txtFecha.getText();
+        String est = txtEstado.getText();
         fcab.setEstado(est.charAt(0));
 
         fcab.setPer(per);
@@ -806,8 +810,8 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         /*txtRuc.setText(Integer.toString(controladorFactura.getCodigo()));
          factura.setRuc(Integer.parseInt(txtRuc.getText()));
          */
-        int ruc = this.ContFCab.getRuc() + 1;
-        txtRuc.setText(String.valueOf(ruc));
+        int codigo=ContFCab.buscarUltimoCodigo()+1;
+        txtRuc.setText(String.valueOf(codigo));
         contador = 0;
 
         vaciarDatos();
