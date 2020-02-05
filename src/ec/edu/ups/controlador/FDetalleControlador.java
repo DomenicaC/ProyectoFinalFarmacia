@@ -50,7 +50,7 @@ public class FDetalleControlador {
         try {
 
             Statement sta = db.getConexionBD().createStatement();
-            ResultSet res = sta.executeQuery("SELECT MAX (\"FDT_ID\") FROM \"SDF_FACTURA_CABECERAS\"");
+            ResultSet res = sta.executeQuery("SELECT MAX (\"FDT_ID\") FROM \"SDF_FACTURAS_DETALLES\"");
             res.next();
             rest = res.getInt(1);
             db.desconectar();
@@ -70,7 +70,7 @@ public class FDetalleControlador {
                 + facDet.getIvaPro() + ","
                 + facDet.getTotalCP() + ","
                 + facDet.getRucFac() + ","
-                + facDet.getCodPro() + ");";
+                + facDet.getCodPro() + ")";
 
         System.out.println(sql);
 
