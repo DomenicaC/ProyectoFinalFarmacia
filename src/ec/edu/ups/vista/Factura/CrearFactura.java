@@ -92,8 +92,8 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         //fecha actual 
         txtFecha.setText(fechaActual());
         //ruc 
-        int codigo = ContFCab.buscarUltimoCodigo() + 1;
-        txtRuc.setText(String.valueOf(codigo));
+        int ruc = ContFCab.buscarUltimoCodigo() + 1;
+        txtRuc.setText(String.valueOf(ruc));
         //estado factura
         txtEstado.setText("T");
 
@@ -226,34 +226,32 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(lblTelC5)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTelC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(lblNomC5)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNomC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(79, 79, 79)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(lblApeC5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtApeC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(lblDirC5)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDirC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblCedC5)
                         .addGap(18, 18, 18)
-                        .addComponent(txtCedC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCedC, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscarCF)
-                        .addGap(129, 129, 129)))
+                        .addGap(129, 129, 129))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lblNomC5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNomC, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lblTelC5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtTelC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblApeC5)
+                            .addComponent(lblDirC5))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDirC, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addComponent(txtApeC))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -265,21 +263,19 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                     .addComponent(txtCedC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarCF))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNomC5)
+                    .addComponent(txtNomC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblApeC5)
-                        .addComponent(txtApeC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblNomC5)
-                        .addComponent(txtNomC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtApeC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblDirC5)
-                        .addComponent(txtDirC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDirC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblTelC5)
-                        .addComponent(txtTelC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtTelC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDirC5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -704,7 +700,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                 lista.get(contador).getPro().getNombre(),
                 lista.get(contador).getPro().getPrecio(),
                 lista.get(contador).getIvaPro(),
-                lista.get(contador).getTotalIP()
+                lista.get(contador).getTotalCP()
             };
 
             modeloP.addRow(datos3);
@@ -719,16 +715,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
         txtApeC.setText("");
         txtCedC.setText("");
-//        txtCodC.setText("");
         txtCodPro.setText("");
         txtDirC.setText("");
-        //   txtEstado.setText("");
-        //  txtFecha.setText("");
         txtIva.setText("");
         txtNomC.setText("");
         txtNomPro.setText("");
-        //    txtRol.setText("");
-        //txtRuc.setText("");
         txtStock.setText("");
         txtSubtotal.setText("");
         txtTelC.setText("");
@@ -767,11 +758,24 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
             double cant = Integer.parseInt(tblServF.getValueAt(i, 1).toString());
             int cant1 = (int) cant;
-            fdet.setCant(cant1);
+            int ruc1 = Integer.parseInt(txtRuc.getText());
+            int codigo = ContFDetalle.buscarUltCodigo() + (i + 1);
 
-            fdet.setPro(contPro.Buscar(Integer.parseInt(tblServF.getValueAt(i, 0).toString())));
+            double cod = Integer.parseInt(tblServF.getValueAt(i, 0).toString());
+            int cod1 = (int) cod;
+
+            //Agregar Datos Factura Detalle
+            fdet.setCodigo(codigo);
+            fdet.setCant(cant1);
+            fdet.setPrecioP(Double.parseDouble(tblServF.getValueAt(i, 3).toString()));
+            fdet.setIvaPro(ivaPro);
+            fdet.setTotalCP(totalCP);
+            fdet.setRucFac(ruc1);
+            fdet.setCodPro(cod1);
+
             fcab.añadirFacDetalle(fdet);
             ContFDetalle.createFacDet(fdet);
+            System.out.println("Factura Detalle \n " + fdet.toString());
 
         }
 
@@ -797,15 +801,11 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         fcab.setPer(per);
         ContFCab.createFacCab(fcab);
 
-        //Agregar Datos Factura Detalle
-        
-        
-        
         JOptionPane.showMessageDialog(this, "Factura Creada");
-        System.out.println("Factura \n" + fcab.toString());
+        System.out.println("Factura Cabecera \n" + fcab.toString());
 
-        int codigo = ContFCab.buscarUltimoCodigo() + 1;
-        txtRuc.setText(String.valueOf(codigo));
+        int ruc = ContFCab.buscarUltimoCodigo() + 1;
+        txtRuc.setText(String.valueOf(ruc));
         contador = 0;
 
         vaciarDatos();

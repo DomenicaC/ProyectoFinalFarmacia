@@ -12,24 +12,32 @@ import java.util.Date;
  * @author Domenica
  */
 public class FDetalle {
-    
+
     private int codigo;
     private int cant;
+    private double precioP;
     private double ivaPro;
-    private double totalIP;
-    
+    private double totalCP;
+    private int rucFac;
+    private int codPro;
+
     //Clase
     private Producto pro;
+    private FCabecera fcab;
 
     public FDetalle() {
     }
 
-    public FDetalle(int codigo, int cant, double ivaPro, double totalIP, Producto pro) {
+    public FDetalle(int codigo, int cant, double precioP, double ivaPro, double totalCP, int rucFac, int codPro, Producto pro, FCabecera fcab) {
         this.codigo = codigo;
         this.cant = cant;
+        this.precioP = precioP;
         this.ivaPro = ivaPro;
-        this.totalIP = totalIP;
+        this.totalCP = totalCP;
+        this.rucFac = rucFac;
+        this.codPro = codPro;
         this.pro = pro;
+        this.fcab = fcab;
     }
 
     public int getCodigo() {
@@ -48,6 +56,14 @@ public class FDetalle {
         this.cant = cant;
     }
 
+    public double getPrecioP() {
+        return precioP;
+    }
+
+    public void setPrecioP(double precioP) {
+        this.precioP = precioP;
+    }
+
     public double getIvaPro() {
         return ivaPro;
     }
@@ -56,12 +72,28 @@ public class FDetalle {
         this.ivaPro = ivaPro;
     }
 
-    public double getTotalIP() {
-        return totalIP;
+    public double getTotalCP() {
+        return totalCP;
     }
 
-    public void setTotalCP(double totalIP) {
-        this.totalIP = totalIP;
+    public void setTotalCP(double totalCP) {
+        this.totalCP = totalCP;
+    }
+
+    public int getRucFac() {
+        return rucFac;
+    }
+
+    public void setRucFac(int rucFac) {
+        this.rucFac = rucFac;
+    }
+
+    public int getCodPro() {
+        return codPro;
+    }
+
+    public void setCodPro(int codPro) {
+        this.codPro = codPro;
     }
 
     public Producto getPro() {
@@ -72,9 +104,17 @@ public class FDetalle {
         this.pro = pro;
     }
 
+    public FCabecera getFcab() {
+        return fcab;
+    }
+
+    public void setFcab(FCabecera fcab) {
+        this.fcab = fcab;
+    }
+
     @Override
     public String toString() {
-        return "FDetalle{" + "codigo=" + codigo + ", cant=" + cant + ", ivaPro=" + ivaPro + ", totalCP=" + totalIP + ", pro=" + pro + '}';
+        return "FDetalle{" + "codigo=" + codigo + ", cant=" + cant + ", precioP=" + precioP + ", ivaPro=" + ivaPro + ", totalCP=" + totalCP + ", rucFac=" + rucFac + ", codPro=" + codPro + ", pro=" + pro + ", fcab=" + fcab + '}';
     }
 
 }
