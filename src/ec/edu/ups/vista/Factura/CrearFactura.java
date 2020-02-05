@@ -92,7 +92,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         //fecha actual 
         txtFecha.setText(fechaActual());
         //ruc 
-        int codigo=ContFCab.buscarUltimoCodigo()+1;
+        int codigo = ContFCab.buscarUltimoCodigo() + 1;
         txtRuc.setText(String.valueOf(codigo));
         //estado factura
         txtEstado.setText("T");
@@ -226,7 +226,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -248,12 +248,12 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtDirC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
                         .addComponent(lblCedC5)
                         .addGap(18, 18, 18)
                         .addComponent(txtCedC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscarCF)))
+                        .addComponent(btnBuscarCF)
+                        .addGap(129, 129, 129)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -593,8 +593,6 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
                 if (pro.getIva() == 'T') {
 
-                    Object[] datos2 = {codigoServ, 0, pro.getNombre(), pro.getPrecio(), 0.12, ""};
-
                     a = cant * pro.getPrecio();
                     ivaPro = a * 0.12;
                     totalCP = a + ivaPro;
@@ -611,7 +609,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
                     tablaF.addRow(datos1);
 
                 } else if (pro.getIva() == 'F') {
-                    Object[] datos2 = {codigoServ, 0, pro.getNombre(), pro.getPrecio(), 0, ""};
+
                     ivaPro = 0;
 
                     totalCP = cant * pro.getPrecio();
@@ -637,8 +635,6 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
                 if (pro.getIva() == 'T') {
 
-                    Object[] datos2 = {codigoServ, 0, pro.getNombre(), pro.getPrecio(), 0.12, ""};
-
                     a = cant * pro.getPrecio();
                     ivaPro = a * 0.12;
                     totalCP = a + ivaPro;
@@ -656,7 +652,6 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
                 } else if (pro.getIva() == 'F') {
 
-                    Object[] datos2 = {codigoServ, 0, pro.getNombre(), pro.getPrecio(), 0, ""};
                     ivaPro = 0;
                     totalCP = cant * pro.getPrecio();
 
@@ -776,12 +771,13 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
             fdet.setPro(contPro.Buscar(Integer.parseInt(tblServF.getValueAt(i, 0).toString())));
             fcab.añadirFacDetalle(fdet);
+            ContFDetalle.createFacDet(fdet);
 
         }
 
         llenarDatos();
-        String fecha=txtFecha.getText();
-        SimpleDateFormat sf=new SimpleDateFormat("dd/MM/yyyy");
+        String fecha = txtFecha.getText();
+        SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
         Date f = null;
         try {
             f = sf.parse(fecha);
@@ -791,26 +787,24 @@ public class CrearFactura extends javax.swing.JInternalFrame {
         fcab.setFecha(f);
 
         //factura
-        //agregarDatos
+        //agregarDatos Factura Cabecera
         fcab.setRuc(Integer.parseInt(txtRuc.getText()));
-      
         fcab.setSubtotal(subtotal);
         fcab.setIva(iva);
         fcab.setTotal(total);
-
         String est = txtEstado.getText();
         fcab.setEstado(est.charAt(0));
-
         fcab.setPer(per);
         ContFCab.createFacCab(fcab);
 
+        //Agregar Datos Factura Detalle
+        
+        
+        
         JOptionPane.showMessageDialog(this, "Factura Creada");
-        System.out.println("factura \n" + fcab.toString());
+        System.out.println("Factura \n" + fcab.toString());
 
-        /*txtRuc.setText(Integer.toString(controladorFactura.getCodigo()));
-         factura.setRuc(Integer.parseInt(txtRuc.getText()));
-         */
-        int codigo=ContFCab.buscarUltimoCodigo()+1;
+        int codigo = ContFCab.buscarUltimoCodigo() + 1;
         txtRuc.setText(String.valueOf(codigo));
         contador = 0;
 
