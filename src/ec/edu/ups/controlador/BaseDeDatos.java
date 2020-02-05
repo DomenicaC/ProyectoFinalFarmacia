@@ -55,6 +55,7 @@ public class BaseDeDatos {
     
     public void conectar(){
         String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+        //String url = "jdbc:oracle:thin:@localhost:1521:xe";
         String user = "BaseFarmacia";
         String password = "bf1234";
         try {

@@ -56,7 +56,7 @@ public class FCabeceraControlador {
                 + facCab.getIva() + ","
                 + facCab.getTotal() + ",'"
                 + facCab.getEstado() + "','"
-                + facCab.getPer().getCedula() + "',"
+                + facCab.getPer().getCedula() + "'"
                 + ");";
 
         System.out.println(sql);
