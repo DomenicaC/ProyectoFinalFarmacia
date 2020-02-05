@@ -9,6 +9,8 @@ import ec.edu.ups.modelo.UnidadMedida;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -51,4 +53,29 @@ public class UnidadesControlador {
       
         return un;
     }
+    
+    public Set<UnidadMedida> listaUn() throws Exception {
+        Set<UnidadMedida> listaUnidad = new HashSet<UnidadMedida>();
+        String sentenciaSQL = "SELECT * FROM \"SDF_UNIDADES_MEDIDAS\" ";
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            ResultSet rs = sta.executeQuery(sentenciaSQL);
+            while (rs.next()) {
+                UnidadMedida u = new UnidadMedida();
+                u.setId(rs.getInt("MED_ID"));
+                u.setNombre(rs.getString("MED_nombre"));
+                
+                //System.out.println(p.toString());
+                listaUnidad.add(u);
+                
+            }
+            sta.close();
+            rs.close();
+            db.desconectar();
+        } catch (SQLException ex) {
+            System.out.println("Error Listar Personas: " + ex);
+        }
+        return listaUnidad;
+    } 
 }

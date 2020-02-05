@@ -9,6 +9,8 @@ import ec.edu.ups.modelo.CategoriaProducto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -69,6 +71,31 @@ public class CategoriaControlador {
       
         return cat;
     }
+    
+    public Set<CategoriaProducto> listaCategoria() throws Exception {
+        Set<CategoriaProducto> listaCategoria = new HashSet<CategoriaProducto>();
+        String sentenciaSQL = "SELECT * FROM \"SDF_CATEGORIAS\" ";
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            ResultSet rs = sta.executeQuery(sentenciaSQL);
+            while (rs.next()) {
+                CategoriaProducto c = new CategoriaProducto();
+                c.setId(rs.getInt("CAT_ID"));
+                c.setNombre(rs.getString("cat_nombre"));
+                
+                //System.out.println(p.toString());
+                listaCategoria.add(c);
+                
+            }
+            sta.close();
+            rs.close();
+            db.desconectar();
+        } catch (SQLException ex) {
+            System.out.println("Error Listar Personas: " + ex);
+        }
+        return listaCategoria;
+    } 
     
     public void eliminar(int id){
         

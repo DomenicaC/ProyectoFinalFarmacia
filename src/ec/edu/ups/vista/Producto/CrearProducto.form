@@ -38,11 +38,6 @@
                               <Component id="jComboBox6" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLStock" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextField5" min="-2" pref="166" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <Component id="jLID" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jTId" min="-2" pref="166" max="-2" attributes="0"/>
@@ -50,7 +45,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLPrecio" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jTextField1" min="-2" pref="166" max="-2" attributes="0"/>
+                              <Component id="jTPrecio" min="-2" pref="166" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLNombre" min="-2" max="-2" attributes="0"/>
@@ -124,12 +119,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLStock" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -151,12 +141,12 @@
                   <Component id="jLCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBox6" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jToggleButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jToggleButton2" alignment="3" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -192,14 +182,6 @@
           <Font name="Sitka Small" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Precio:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLStock">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Sitka Small" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Stock:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLNacional">
@@ -244,13 +226,11 @@
         <Property name="autoscrolls" type="boolean" value="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="jTPrecio">
     </Component>
     <Component class="javax.swing.JTextField" name="jTNombre">
     </Component>
     <Component class="javax.swing.JTextField" name="jTCBarra">
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField5">
     </Component>
     <Component class="javax.swing.JTextField" name="jTId">
     </Component>
@@ -261,6 +241,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Guradar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButton2">
       <Properties>
@@ -277,8 +260,8 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
-            <StringItem index="0" value="T"/>
-            <StringItem index="1" value="F"/>
+            <StringItem index="0" value="N"/>
+            <StringItem index="1" value="E"/>
           </StringArray>
         </Property>
       </Properties>

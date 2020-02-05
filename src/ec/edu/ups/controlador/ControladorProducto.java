@@ -9,6 +9,8 @@ import ec.edu.ups.modelo.Producto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -59,9 +61,9 @@ public class ControladorProducto {
             db.conectar();
             Statement sta = db.getConexionBD().createStatement();
             ResultSet res = sta.executeQuery(sql);
-             
+
             res.next();
-            
+
             pro.setId(id);
             pro.setNombre(res.getString("PRO_NOMBRE"));
             pro.setCodBarra(res.getString("PRO_COD_BARRA"));
@@ -74,7 +76,7 @@ public class ControladorProducto {
             pro.setUm(un.Buscaar(res.getInt("SDF_UNIDADES_MEDIDAS_MED_ID")));
             pro.setCp(cc.Buscar(res.getInt("SDF_CATEGORIAS_CAT_ID")));
             System.out.println(pro.toString());
-            
+
             res.close();
             sta.close();
             db.desconectar();
@@ -92,28 +94,28 @@ public class ControladorProducto {
         Producto pro = new Producto();
         try {
 
-            String sql = "SELECT * FROM \"SDF_PRODUCTOS\" WHERE pro_nombre ='" + nombre +"'";
+            String sql = "SELECT * FROM \"SDF_PRODUCTOS\" WHERE pro_nombre ='" + nombre + "'";
             System.out.println("Base " + sql);
 
             db.conectar();
             Statement sta = db.getConexionBD().createStatement();
             ResultSet res = sta.executeQuery(sql);
-            
+
             res.next();
-            
-                pro.setId(res.getInt("PRO_ID"));
-                pro.setNombre(nombre);
-                pro.setCodBarra(res.getString("PRO_COD_BARRA"));
-                pro.setPrecio(res.getDouble("PRO_PRECIO"));
-                pro.setStock(res.getInt("PRO_STOCK"));
-                String c = res.getString("PRO_NACIO");
-                pro.setNacionalidad(c.charAt(0));
-                c = res.getString("PRO_IVA");
-                pro.setIva(c.charAt(0));
-                pro.setUm(un.Buscaar(res.getInt("SDF_UNIDADES_MEDIDAS_MED_ID")));
-                pro.setCp(cc.Buscar(res.getInt("SDF_CATEGORIAS_CAT_ID")));
-                System.out.println(pro.toString());
-            
+
+            pro.setId(res.getInt("PRO_ID"));
+            pro.setNombre(nombre);
+            pro.setCodBarra(res.getString("PRO_COD_BARRA"));
+            pro.setPrecio(res.getDouble("PRO_PRECIO"));
+            pro.setStock(res.getInt("PRO_STOCK"));
+            String c = res.getString("PRO_NACIO");
+            pro.setNacionalidad(c.charAt(0));
+            c = res.getString("PRO_IVA");
+            pro.setIva(c.charAt(0));
+            pro.setUm(un.Buscaar(res.getInt("SDF_UNIDADES_MEDIDAS_MED_ID")));
+            pro.setCp(cc.Buscar(res.getInt("SDF_CATEGORIAS_CAT_ID")));
+            System.out.println(pro.toString());
+
             res.close();
             sta.close();
             db.desconectar();
@@ -126,9 +128,55 @@ public class ControladorProducto {
 
         return pro;
     }
-    
-    public void eliminar(int id) {
 
+    public int buscarUltimoCodigo() {
+        int resultado = 0;
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            ResultSet res = sta.executeQuery("SELECT MAX (\"PRO_ID\") FROM \"SDF_PRODUCTOS\"");
+            res.next();
+            resultado = res.getInt(1);
+            db.desconectar();
+        } catch (SQLException ex) {
+            System.out.println("Error en la buscarUltimoCodigo " + ex);
+        }
+        return resultado;
+    }
+
+    public Set<Producto> listaProductos() throws Exception {
+        Set<Producto> listaProductos = new HashSet<Producto>();
+        String sentenciaSQL = "SELECT * FROM \"SDF_PEODUCTOS\" ";
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            ResultSet res = sta.executeQuery(sentenciaSQL);
+            while (res.next()) {
+                
+                Producto pro = new Producto();
+                
+                pro.setId(res.getInt("PRO_ID"));
+                pro.setNombre(res.getString("PRO_NOMBRE"));
+                pro.setCodBarra(res.getString("PRO_COD_BARRA"));
+                pro.setPrecio(res.getDouble("PRO_PRECIO"));
+                pro.setStock(res.getInt("PRO_STOCK"));
+                String c = res.getString("PRO_NACIO");
+                pro.setNacionalidad(c.charAt(0));
+                c = res.getString("PRO_IVA");
+                pro.setIva(c.charAt(0));
+                pro.setUm(un.Buscaar(res.getInt("SDF_UNIDADES_MEDIDAS_MED_ID")));
+                pro.setCp(cc.Buscar(res.getInt("SDF_CATEGORIAS_CAT_ID")));
+                //System.out.println(p.toString());
+                listaProductos.add(pro);
+
+            }
+            sta.close();
+            res.close();
+            db.desconectar();
+        } catch (SQLException ex) {
+            System.out.println("Error Listar Personas: " + ex);
+        }
+        return listaProductos;
     }
 
 }

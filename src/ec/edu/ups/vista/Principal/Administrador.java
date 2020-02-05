@@ -9,6 +9,7 @@ import ec.edu.ups.controlador.CategoriaControlador;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.controlador.FCabeceraControlador;
 import ec.edu.ups.controlador.PersonaControlador;
+import ec.edu.ups.controlador.UnidadesControlador;
 import ec.edu.ups.empleados.BuscarEmpleado;
 import ec.edu.ups.empleados.CrearEmpleado;
 import ec.edu.ups.empleados.EliminarEmpleado;
@@ -65,6 +66,7 @@ public class Administrador extends javax.swing.JFrame {
       private FCabeceraControlador fCabeceraControlador;
       private CategoriaControlador categoriaControlador;
       private ControladorProducto controladorProducto1;
+      private UnidadesControlador unidadesControlador;
       String url = "jdbc:oracle:thin:@localhost:1521:orcl";
     String user = "BaseFarmacia";
     String password = "bf123";
@@ -76,6 +78,8 @@ public class Administrador extends javax.swing.JFrame {
         personaControlador=new PersonaControlador(url, user, password);
         categoriaControlador = new CategoriaControlador(url, user, password);
         controladorProducto = new ControladorProducto(url, user, password);
+        unidadesControlador = new UnidadesControlador(url, user, password);
+        
         desktop.setBorder(new FondoEs());
         this.setIconImage(new ImageIcon(("src/ec/edu/ups/imageness/escudo.png")).getImage());
         this.setExtendedState(Administrador.MAXIMIZED_BOTH);
@@ -645,7 +649,7 @@ public class Administrador extends javax.swing.JFrame {
         try {
             if (x == null) {
                 if (crearProducto == null || crearProducto.isVisible() == false) {
-                    crearProducto = new CrearProducto(controladorProducto);
+                    crearProducto = new CrearProducto(controladorProducto, categoriaControlador,unidadesControlador);
                     desktop.add(crearProducto);
                 }
             } else {
