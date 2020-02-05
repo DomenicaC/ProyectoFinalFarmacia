@@ -152,9 +152,9 @@ public class ControladorProducto {
             Statement sta = db.getConexionBD().createStatement();
             ResultSet res = sta.executeQuery(sentenciaSQL);
             while (res.next()) {
-                
+
                 Producto pro = new Producto();
-                
+
                 pro.setId(res.getInt("PRO_ID"));
                 pro.setNombre(res.getString("PRO_NOMBRE"));
                 pro.setCodBarra(res.getString("PRO_COD_BARRA"));
@@ -179,4 +179,38 @@ public class ControladorProducto {
         return listaProductos;
     }
 
+    public void modificar(Producto p) throws SQLException {
+        String sql = "UPDATE\"SDF_PRODUCTOS\" SET "
+                + "\"PRO_COD_BARRA\"='" + p.getCodBarra() + "',"
+                + "\"PRO_NOMBRE\"='" + p.getNombre() + "',"
+                + "\"PRO_PRECIO\"=" + p.getPrecio() + ","
+                + "\"PRO_STOCK\"=" + p.getStock() + ","
+                + "\"PRO_NACIO\"='" + p.getNacionalidad() + "',"
+                + "\"SDF_UNIDADES_MEDIDAS_MED_ID\"=" + p.getUm().getId() + ","
+                + "\"SDF_CATEGORIAS_CAT_ID\"=" + p.getCp().getId() + ","
+                + "\"PRO_IVA\"='" + p.getIva() + "'"
+                + "WHERE \"PRO_ID\" = " + p.getId();
+        System.out.println(sql);
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            sta.execute(sql);
+            db.desconectar();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void eliminar(int id){
+        String sql = "DELETE\"SDF_PRODUCTOS\" WHERE \"PRO_ID\" = " + id;
+        System.out.println(sql);
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            sta.execute(sql);
+            db.desconectar();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
