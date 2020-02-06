@@ -8,7 +8,7 @@ package ec.edu.ups.vista.Factura;
 import ec.edu.ups.controlador.FCabeceraControlador;
 import static ec.edu.ups.vista.Factura.BuscarFactura.x;
 import ec.edu.ups.vista.Principal.Administrador;
-
+//Hola
 /**
  *
  * @author Domenica
