@@ -5,17 +5,37 @@
  */
 package ec.edu.ups.vista.Proveedor;
 
+import ec.edu.ups.controlador.ProveedorControlador;
+import ec.edu.ups.modelo.Proveedor;
+import ec.edu.ups.vista.Principal.Administrador;
+import ec.edu.ups.vista.ProductoProveedor.CrearPP;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Edison
+ * @author Jose Guillermo Quinde
  */
 public class CrearProveedor extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CrearProveedor
      */
-    public CrearProveedor() {
+    public static String x;
+    private ProveedorControlador proveedorControlador;
+    public CrearProveedor(ProveedorControlador proveedorControlador) {
         initComponents();
+         x = "x";
+        int a = Administrador.desktop.getWidth() - this.getWidth();
+        int b = Administrador.desktop.getHeight() - this.getHeight();
+
+        setLocation(a / 2, b / 2);
+        setVisible(true);
+        
+        this.proveedorControlador=proveedorControlador;
+        int codigo=proveedorControlador.buscarUltimoCodigo()+1;
+        txtID.setText(String.valueOf(codigo));
     }
 
     /**
@@ -27,62 +47,117 @@ public class CrearProveedor extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTID = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTNombre = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jBCrear = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setTitle("CREAR PROVEEDOR");
+
+        txtID.setEnabled(false);
+
+        jBCrear.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
+        jBCrear.setText("Crear");
+        jBCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCrearActionPerformed(evt);
+            }
+        });
+
+        btCancelar.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
+        btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel1.setText("Id:");
 
+        jLabel2.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel2.setText("Nombre:");
-
-        jBCrear.setText("Crear");
-
-        btCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
                         .addComponent(jBCrear)
+                        .addGap(67, 67, 67)
+                        .addComponent(btCancelar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btCancelar)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCrear)
                     .addComponent(btCancelar))
-                .addContainerGap())
+                .addGap(30, 30, 30))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+        x = null;
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void jBCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCrearActionPerformed
+        // TODO add your handling code here:
+        Proveedor prov=new Proveedor();
+        prov.setId(Integer.parseInt(txtID.getText()));
+        prov.setNombre(txtNombre.getText());
+        proveedorControlador.createProveedor(prov);
+        
+         JOptionPane.showMessageDialog(this, "Proveedor Creado", "Registrar Proveedor", JOptionPane.OK_OPTION);
+         CrearPP.ComboProveedores.removeAllItems();
+        try {
+            CrearPP.mostrarProveedores();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        int codigo=proveedorControlador.buscarUltimoCodigo()+1;
+        txtID.setText(String.valueOf(codigo));
+        txtNombre.setText("");
+        
+         
+    }//GEN-LAST:event_jBCrearActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -90,7 +165,7 @@ public class CrearProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBCrear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTID;
-    private javax.swing.JTextField jTNombre;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,17 +5,34 @@
  */
 package ec.edu.ups.vista.Proveedor;
 
+import ec.edu.ups.controlador.ProveedorControlador;
+import ec.edu.ups.modelo.Proveedor;
+import ec.edu.ups.vista.Principal.Administrador;
+import static ec.edu.ups.vista.Proveedor.CrearProveedor.x;
+import javax.swing.JOptionPane;
+
+
 /**
  *
- * @author Edison
+ * @author Jose Guillermo Quinde
  */
 public class BuscarProveedor extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form BuscarProveedor
      */
-    public BuscarProveedor() {
+    public static String x;
+    private  ProveedorControlador proveedorControlador;
+    public BuscarProveedor(ProveedorControlador proveedorControlador) {
         initComponents();
+         x = "x";
+        int a = Administrador.desktop.getWidth() - this.getWidth();
+        int b = Administrador.desktop.getHeight() - this.getHeight();
+
+        setLocation(a / 2, b / 2);
+        setVisible(true);
+        
+        this.proveedorControlador=proveedorControlador;
     }
 
     /**
@@ -41,6 +58,11 @@ public class BuscarProveedor extends javax.swing.JInternalFrame {
 
         btCancelar.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel1.setText("Id:");
@@ -50,6 +72,11 @@ public class BuscarProveedor extends javax.swing.JInternalFrame {
 
         jBBuscar.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jBBuscar.setText("Buscar");
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarActionPerformed(evt);
+            }
+        });
 
         txtNombre.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
 
@@ -64,11 +91,9 @@ public class BuscarProveedor extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
-                                .addComponent(jLabel1)
-                                .addGap(92, 92, 92))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(92, 92, 92))))
+                                .addComponent(jLabel1))
+                            .addComponent(jLabel2))
+                        .addGap(92, 92, 92))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jBBuscar)
@@ -105,6 +130,21 @@ public class BuscarProveedor extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+        // TODO add your handling code here:
+        int codigo=Integer.parseInt(jTID.getText());
+        Proveedor p=proveedorControlador.BuscarProveedorCodigo(codigo);
+        txtNombre.setText(p.getNombre());
+        JOptionPane.showMessageDialog(this, "Proveedor Encontrado", "Buscar Proveedor", JOptionPane.OK_OPTION);
+    }//GEN-LAST:event_jBBuscarActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+        x = null;
+    }//GEN-LAST:event_btCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

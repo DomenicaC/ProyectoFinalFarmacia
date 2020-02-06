@@ -14,6 +14,7 @@ import ec.edu.ups.modelo.Producto;
 import ec.edu.ups.modelo.UnidadMedida;
 import static ec.edu.ups.personas.BuscarPersonas.x;
 import ec.edu.ups.vista.Principal.Administrador;
+import ec.edu.ups.vista.ProductoProveedor.CrearPP;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JOptionPane;
@@ -86,10 +87,10 @@ public class CrearProducto extends javax.swing.JInternalFrame {
         jTId = new javax.swing.JTextField();
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jComboBox7 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<String>();
+        jComboBox5 = new javax.swing.JComboBox<String>();
+        jComboBox6 = new javax.swing.JComboBox<String>();
+        jComboBox7 = new javax.swing.JComboBox<String>();
 
         setClosable(true);
         setIconifiable(true);
@@ -141,6 +142,8 @@ public class CrearProducto extends javax.swing.JInternalFrame {
         jLabel2.setText("Crear Producto");
         jLabel2.setAutoscrolls(true);
 
+        jTId.setEnabled(false);
+
         jToggleButton1.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jToggleButton1.setText("Guradar");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -157,9 +160,9 @@ public class CrearProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N", "E" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N", "E" }));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "T", "F" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "T", "F" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,21 +183,24 @@ public class CrearProducto extends javax.swing.JInternalFrame {
                             .addComponent(jLPrecio)
                             .addComponent(jLCategoria)
                             .addComponent(jLID))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(72, 72, 72)
                                 .addComponent(jToggleButton2))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTId, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                                     .addComponent(jTNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                                     .addComponent(jTCBarra, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                                     .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                                    .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addComponent(jTId, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(102, 102, 102))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -239,7 +245,7 @@ public class CrearProducto extends javax.swing.JInternalFrame {
                         .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jToggleButton1)
                     .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -275,7 +281,12 @@ public class CrearProducto extends javax.swing.JInternalFrame {
         
         controladorProducto.create(p);
         JOptionPane.showMessageDialog(this, "Producto creado correctamente", "Crear Producto", JOptionPane.OK_OPTION);
-        
+          CrearPP.ComboProductor.removeAllItems();
+        try {
+            CrearPP.mostrarProductos();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         mostrarId();
         jTCBarra.setText("");
         jTNombre.setText("");

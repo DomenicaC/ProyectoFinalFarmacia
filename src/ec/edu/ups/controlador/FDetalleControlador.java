@@ -101,7 +101,7 @@ public class FDetalleControlador {
 
         try {
 
-            String sql = "SELECT * FROM \"SDF_FACTURAS_DETALLES\"WHERE\"codigo\"= " + codigo + ";";
+            String sql = "SELECT * FROM \"SDF_FACTURAS_DETALLES\"WHERE\"codigo\"= " + codigo + "";
             System.out.println("BASE" + sql);
 
             db.conectar();
@@ -143,7 +143,7 @@ public class FDetalleControlador {
 
         try {
 
-            String sql = "SELECT * FROM \"SDF_FACTURAS_DETALLES\";";
+            String sql = "SELECT * FROM \"SDF_FACTURAS_DETALLES\"";
             System.out.println("Base listar" + sql);
 
             db.conectar();

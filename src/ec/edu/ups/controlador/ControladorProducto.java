@@ -146,7 +146,7 @@ public class ControladorProducto {
 
     public Set<Producto> listaProductos() throws Exception {
         Set<Producto> listaProductos = new HashSet<Producto>();
-        String sentenciaSQL = "SELECT * FROM \"SDF_PEODUCTOS\" ";
+        String sentenciaSQL = "SELECT * FROM \"SDF_PRODUCTOS\" ";
         db.conectar();
         try {
             Statement sta = db.getConexionBD().createStatement();
@@ -178,7 +178,22 @@ public class ControladorProducto {
         }
         return listaProductos;
     }
-
+    
+     public void modificarStock(Producto p,int cantidad) throws SQLException {
+         int sumar=p.getStock()+cantidad;
+        String sql = "UPDATE\"SDF_PRODUCTOS\" SET "
+                + "\"PRO_STOCK\"=" +sumar
+                + "WHERE \"PRO_ID\" = " + p.getId();
+        System.out.println(sql);
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            sta.execute(sql);
+            db.desconectar();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
     public void modificar(Producto p) throws SQLException {
         String sql = "UPDATE\"SDF_PRODUCTOS\" SET "
                 + "\"PRO_COD_BARRA\"='" + p.getCodBarra() + "',"

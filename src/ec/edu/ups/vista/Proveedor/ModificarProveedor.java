@@ -5,17 +5,36 @@
  */
 package ec.edu.ups.vista.Proveedor;
 
+import ec.edu.ups.controlador.ProveedorControlador;
+import ec.edu.ups.modelo.Proveedor;
+import ec.edu.ups.vista.Principal.Administrador;
+import static ec.edu.ups.vista.Proveedor.CrearProveedor.x;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Edison
+ * @author Jose Guillermo Quinde
  */
 public class ModificarProveedor extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ModificarProveedor
      */
-    public ModificarProveedor() {
+    public static String x;
+    private  ProveedorControlador proveedorControlador;
+    public ModificarProveedor(ProveedorControlador proveedorControlador) {
         initComponents();
+          x = "x";
+        int a = Administrador.desktop.getWidth() - this.getWidth();
+        int b = Administrador.desktop.getHeight() - this.getHeight();
+
+        setLocation(a / 2, b / 2);
+        setVisible(true);
+        
+        this.proveedorControlador=proveedorControlador;
     }
 
     /**
@@ -27,74 +46,132 @@ public class ModificarProveedor extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jBBuscar = new javax.swing.JButton();
-        btCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTID = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jTNombre = new javax.swing.JTextField();
-        jBModificar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jBCrear = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
+        jBBuscar = new javax.swing.JButton();
 
-        jBBuscar.setText("Buscar");
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setTitle("MODIFICAR PROVEEDOR");
 
-        btCancelar.setText("Cancelar");
-
+        jLabel1.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel1.setText("Id:");
 
+        jLabel2.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel2.setText("Nombre:");
 
-        jBModificar.setText("Modificar");
+        jBCrear.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
+        jBCrear.setText("Modificar");
+        jBCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCrearActionPerformed(evt);
+            }
+        });
+
+        btCancelar.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
+        btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
+
+        jBBuscar.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
+        jBBuscar.setText("Buscar");
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(36, 36, 36)
-                        .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btCancelar))
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
                         .addComponent(jBBuscar)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(107, 107, 107))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(118, 118, 118)
+                .addComponent(jBCrear)
+                .addGap(38, 38, 38)
+                .addComponent(btCancelar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
                     .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBBuscar))
+                    .addComponent(jBBuscar)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCancelar)
-                    .addComponent(jBModificar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jBCrear))
+                .addGap(0, 27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCrearActionPerformed
+        // TODO add your handling code here:
+        Proveedor p=new Proveedor();
+        p.setId(Integer.parseInt(jTID.getText()));
+        p.setNombre(jTNombre.getText());
+        try {
+            proveedorControlador.modificarProveedor(p);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        JOptionPane.showMessageDialog(this, "Proveedor Modificado", "Modificar Proveedor", JOptionPane.OK_OPTION);
+        jTID.setText("");
+        jTNombre.setText("");
+    }//GEN-LAST:event_jBCrearActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+        x = null;
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+        // TODO add your handling code here:
+        int codigo=Integer.parseInt(jTID.getText());
+        Proveedor p=proveedorControlador.BuscarProveedorCodigo(codigo);
+        jTNombre.setText(p.getNombre());
+    }//GEN-LAST:event_jBBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton jBBuscar;
-    private javax.swing.JButton jBModificar;
+    private javax.swing.JButton jBCrear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTID;

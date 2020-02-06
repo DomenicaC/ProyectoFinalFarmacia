@@ -9,6 +9,8 @@ import ec.edu.ups.controlador.CategoriaControlador;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.controlador.FCabeceraControlador;
 import ec.edu.ups.controlador.PersonaControlador;
+import ec.edu.ups.controlador.ProvProdControlador;
+import ec.edu.ups.controlador.ProveedorControlador;
 import ec.edu.ups.controlador.UnidadesControlador;
 import ec.edu.ups.empleados.BuscarEmpleado;
 import ec.edu.ups.empleados.CrearEmpleado;
@@ -29,6 +31,13 @@ import ec.edu.ups.vista.Producto.BuscarProducto;
 import ec.edu.ups.vista.Producto.CrearProducto;
 import ec.edu.ups.vista.Producto.EliminarProducto;
 import ec.edu.ups.vista.Producto.ModificarProducto;
+import ec.edu.ups.vista.ProductoProveedor.BuscarPP;
+import ec.edu.ups.vista.ProductoProveedor.CrearPP;
+import ec.edu.ups.vista.ProductoProveedor.ListarPP;
+import ec.edu.ups.vista.Proveedor.BuscarProveedor;
+import ec.edu.ups.vista.Proveedor.CrearProveedor;
+import ec.edu.ups.vista.Proveedor.ListarProveedores;
+import ec.edu.ups.vista.Proveedor.ModificarProveedor;
 import java.awt.Desktop;
 import java.net.URI;
 import javax.swing.JOptionPane;
@@ -59,6 +68,13 @@ public class Administrador extends javax.swing.JFrame {
     private BuscarCategoria buscarCategoria;
     private ModificarCategoria modificarCategoria;
     private EliminarCategoria eliminarCategoria;
+    private CrearPP cpp;
+    private BuscarPP bpp;
+    private ListarPP lpp;
+    private CrearProveedor  crearProveedor;
+    private BuscarProveedor buscarProveedor;
+    private ModificarProveedor modificarProveedor;
+    private ListarProveedores listarProveedores;
     
 //  ------------------------CONTROLADORES---------------------------
       private PersonaControlador personaControlador;
@@ -67,6 +83,8 @@ public class Administrador extends javax.swing.JFrame {
       private CategoriaControlador categoriaControlador;
       private ControladorProducto controladorProducto1;
       private UnidadesControlador unidadesControlador;
+      private ProveedorControlador proveedorControlador;
+      private ProvProdControlador provProdControlador;
       String url = "jdbc:oracle:thin:@localhost:1521:orcl";
     String user = "BaseFarmacia";
     String password = "bf123";
@@ -79,6 +97,8 @@ public class Administrador extends javax.swing.JFrame {
         categoriaControlador = new CategoriaControlador(url, user, password);
         controladorProducto = new ControladorProducto(url, user, password);
         unidadesControlador = new UnidadesControlador(url, user, password);
+        proveedorControlador = new ProveedorControlador(url, user, password);
+        provProdControlador = new ProvProdControlador(url, user, password);
         
         desktop.setBorder(new FondoEs());
         this.setIconImage(new ImageIcon(("src/ec/edu/ups/imageness/escudo.png")).getImage());
@@ -145,6 +165,15 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenu11 = new javax.swing.JMenu();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -198,15 +227,6 @@ public class Administrador extends javax.swing.JFrame {
 
         rSLabelHora1.setForeground(new java.awt.Color(0, 0, 0));
         rSLabelHora1.setFont(new java.awt.Font("Roboto Bold", 1, 36)); // NOI18N
-
-        desktop.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(rSLabelFecha1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(rSLabelHora1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
         desktop.setLayout(desktopLayout);
@@ -264,6 +284,14 @@ public class Administrador extends javax.swing.JFrame {
                                 .addComponent(rSLabelHora1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(5, 5, 5))))
         );
+        desktop.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(rSLabelFecha1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(rSLabelHora1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/persona.png"))); // NOI18N
         fileMenu.setMnemonic('f');
@@ -474,6 +502,79 @@ public class Administrador extends javax.swing.JFrame {
         jMenu9.add(jMenuItem12);
 
         menuBar.add(jMenu9);
+
+        jMenu10.setText("Registro Proveedor");
+        jMenu10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jMenuItem13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem13.setText("Crear Registro");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem13);
+
+        jMenuItem16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem16.setText("Buscar Registro");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem16);
+
+        jMenuItem17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem17.setText("Listar Registros");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem17);
+
+        menuBar.add(jMenu10);
+
+        jMenu11.setText("Proveedor");
+        jMenu11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jMenuItem18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem18.setText("Crear Proveedor");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem18);
+
+        jMenuItem19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem19.setText("Buscar Proveedor");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem19);
+
+        jMenuItem20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem20.setText("Modificar Proveedor");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem20);
+
+        jMenuItem21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem21.setText("Listar Proveedores");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem21);
+
+        menuBar.add(jMenu11);
 
         setJMenuBar(menuBar);
 
@@ -779,6 +880,125 @@ public class Administrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMCCActionPerformed
 
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+            String x = cpp.x;
+        try {
+            if (x == null) {
+                if (cpp == null || cpp.isVisible() == false) {
+                    cpp = new CrearPP(controladorProducto, proveedorControlador, provProdControlador,categoriaControlador, unidadesControlador);
+                    desktop.add(cpp);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        // TODO add your handling code here:
+             String x = crearProveedor.x;
+        try {
+            if (x == null) {
+                if (crearProveedor == null || crearProveedor.isVisible() == false) {
+                    crearProveedor = new CrearProveedor(proveedorControlador);
+                    desktop.add(crearProveedor);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // TODO add your handling code here:
+               String x = buscarProveedor.x;
+        try {
+            if (x == null) {
+                if (buscarProveedor == null || buscarProveedor.isVisible() == false) {
+                    buscarProveedor = new BuscarProveedor(proveedorControlador);
+                    desktop.add(buscarProveedor);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        // TODO add your handling code here:
+               String x = modificarProveedor.x;
+        try {
+            if (x == null) {
+                if (modificarProveedor == null || modificarProveedor.isVisible() == false) {
+                    modificarProveedor = new ModificarProveedor(proveedorControlador);
+                    desktop.add(modificarProveedor);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        // TODO add your handling code here:
+               String x = listarProveedores.x;
+        try {
+            if (x == null) {
+                if (listarProveedores == null || listarProveedores.isVisible() == false) {
+                    listarProveedores = new ListarProveedores(proveedorControlador);
+                    desktop.add(listarProveedores);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+             String x = bpp.x;
+        try {
+            if (x == null) {
+                if (bpp == null || bpp.isVisible() == false) {
+                    bpp = new BuscarPP( provProdControlador);
+                    desktop.add(bpp);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        // TODO add your handling code here:
+                   String x = lpp.x;
+        try {
+            if (x == null) {
+                if (lpp == null || lpp.isVisible() == false) {
+                    lpp = new ListarPP( provProdControlador);
+                    desktop.add(lpp);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -829,6 +1049,8 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMCC;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -844,9 +1066,16 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

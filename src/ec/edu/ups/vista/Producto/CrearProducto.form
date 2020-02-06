@@ -44,7 +44,7 @@
                           <Component id="jLCategoria" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLID" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                               <Component id="jToggleButton2" min="-2" max="-2" attributes="0"/>
@@ -52,7 +52,6 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTId" alignment="0" pref="166" max="32767" attributes="0"/>
                                   <Component id="jTNombre" alignment="0" pref="166" max="32767" attributes="0"/>
                                   <Component id="jTCBarra" alignment="0" pref="166" max="32767" attributes="0"/>
                                   <Component id="jComboBox7" alignment="0" max="32767" attributes="0"/>
@@ -61,6 +60,11 @@
                                   <Component id="jTPrecio" alignment="0" pref="166" max="32767" attributes="0"/>
                                   <Component id="jComboBox6" alignment="0" max="32767" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="18" max="32767" attributes="0"/>
+                              <Component id="jTId" min="-2" pref="64" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -115,7 +119,7 @@
                       <Component id="jComboBox6" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jToggleButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jToggleButton2" alignment="3" max="32767" attributes="0"/>
@@ -207,6 +211,9 @@
     <Component class="javax.swing.JTextField" name="jTCBarra">
     </Component>
     <Component class="javax.swing.JTextField" name="jTId">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButton1">
       <Properties>

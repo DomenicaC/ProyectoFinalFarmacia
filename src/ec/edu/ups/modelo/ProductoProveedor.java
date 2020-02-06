@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class ProductoProveedor {
 
-    private String id;
+    private int id;
     private String nroFActura;
     private Date fechaLlegada;
     private int cantidad;
@@ -23,14 +23,15 @@ public class ProductoProveedor {
     public ProductoProveedor() {
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
+    
     public String getNroFActura() {
         return nroFActura;
     }
