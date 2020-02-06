@@ -57,7 +57,7 @@ public class BaseDeDatos {
         String url = "jdbc:oracle:thin:@localhost:1521:orcl";
         //String url = "jdbc:oracle:thin:@localhost:1521:xe";
         String user = "BaseFarmacia";
-        String password = "bf123";
+        String password = "bf1234";
         try {
             connection = DriverManager.getConnection(url,user,password);
             if (connection.isValid(2000)) {

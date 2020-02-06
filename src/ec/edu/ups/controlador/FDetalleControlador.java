@@ -89,8 +89,8 @@ public class FDetalleControlador {
 
     public void createFacDet1(FDetalle facDet) {
 
-        codigo++;
-        facDet.setCodigo(codigo);
+        //codigo++;
+        facDet.setCodigo(buscarUltCodigo());
         lista.add(facDet);
 
     }
@@ -101,7 +101,7 @@ public class FDetalleControlador {
 
         try {
 
-            String sql = "SELECT * FROM \"SDF_FACTURAS_DETALLES\"WHERE\"codigo\"= " + codigo + ";";
+            String sql = "SELECT * FROM \"SDF_FACTURAS_DETALLES\"WHERE\" sdf_factura_cabeceras_fac_id\"= " + codigo + ";";
             System.out.println("BASE" + sql);
 
             db.conectar();
@@ -126,17 +126,16 @@ public class FDetalleControlador {
 
     }
 
-    public FDetalle BuscarFacCab1(int codigo) {
+    /*  public FDetalle BuscarFacCab1(int codigo) {
 
-        for (FDetalle fac : lista) {
-            if (fac.getCodigo() == codigo) {
-                return fac;
-            }
-        }
-        return null;
+     for (FDetalle fac : lista) {
+     if (fac.getCodigo() == codigo) {
+     return fac;
+     }
+     }
+     return null;
 
-    }
-
+     }*/
     public Set printFacDet() {
 
         Set<FDetalle> lista = new HashSet<>();
