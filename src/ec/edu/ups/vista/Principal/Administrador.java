@@ -495,6 +495,7 @@ public class Administrador extends javax.swing.JFrame {
         jMenu9.setText("Categoria");
         jMenu9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        jMCC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMCC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/agregarcat.png"))); // NOI18N
         jMCC.setText("Crear Categoria");
         jMCC.addActionListener(new java.awt.event.ActionListener() {
@@ -504,6 +505,7 @@ public class Administrador extends javax.swing.JFrame {
         });
         jMenu9.add(jMCC);
 
+        jMBC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMBC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/buscarcat.png"))); // NOI18N
         jMBC.setText("Buscar Categoria");
         jMBC.addActionListener(new java.awt.event.ActionListener() {
@@ -513,6 +515,7 @@ public class Administrador extends javax.swing.JFrame {
         });
         jMenu9.add(jMBC);
 
+        jMMC.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMMC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/modificarcat.png"))); // NOI18N
         jMMC.setText("Modificar Categoria");
         jMMC.addActionListener(new java.awt.event.ActionListener() {
@@ -528,7 +531,7 @@ public class Administrador extends javax.swing.JFrame {
         jMenu10.setText("Registro Proveedor");
         jMenu10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        jMenuItem13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/crearporvee.png"))); // NOI18N
         jMenuItem13.setText("Crear Registro");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
@@ -538,7 +541,7 @@ public class Administrador extends javax.swing.JFrame {
         });
         jMenu10.add(jMenuItem13);
 
-        jMenuItem16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/buscarproveed.png"))); // NOI18N
         jMenuItem16.setText("Buscar Registro");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
@@ -548,7 +551,7 @@ public class Administrador extends javax.swing.JFrame {
         });
         jMenu10.add(jMenuItem16);
 
-        jMenuItem17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/listarprovee.png"))); // NOI18N
         jMenuItem17.setText("Listar Registros");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
@@ -564,7 +567,7 @@ public class Administrador extends javax.swing.JFrame {
         jMenu11.setText("Proveedor");
         jMenu11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        jMenuItem18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/provcrear.png"))); // NOI18N
         jMenuItem18.setText("Crear Proveedor");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
@@ -574,7 +577,7 @@ public class Administrador extends javax.swing.JFrame {
         });
         jMenu11.add(jMenuItem18);
 
-        jMenuItem19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/provbuscar.png"))); // NOI18N
         jMenuItem19.setText("Buscar Proveedor");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
@@ -584,7 +587,7 @@ public class Administrador extends javax.swing.JFrame {
         });
         jMenu11.add(jMenuItem19);
 
-        jMenuItem20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/provmodifi.png"))); // NOI18N
         jMenuItem20.setText("Modificar Proveedor");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
@@ -594,7 +597,7 @@ public class Administrador extends javax.swing.JFrame {
         });
         jMenu11.add(jMenuItem20);
 
-        jMenuItem21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/provlistar.png"))); // NOI18N
         jMenuItem21.setText("Listar Proveedores");
         jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
@@ -610,6 +613,7 @@ public class Administrador extends javax.swing.JFrame {
         jMenu12.setText("Unidades de Medida");
         jMenu12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        jMenuItem12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/unicrear.png"))); // NOI18N
         jMenuItem12.setText("Crear Unidad");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
@@ -619,6 +623,7 @@ public class Administrador extends javax.swing.JFrame {
         });
         jMenu12.add(jMenuItem12);
 
+        jMenuItem14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/unibuscar.png"))); // NOI18N
         jMenuItem14.setText("Buscar Unidad");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
@@ -628,6 +633,7 @@ public class Administrador extends javax.swing.JFrame {
         });
         jMenu12.add(jMenuItem14);
 
+        jMenuItem15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/unimodificar.png"))); // NOI18N
         jMenuItem15.setText("Modificar Unidad");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
