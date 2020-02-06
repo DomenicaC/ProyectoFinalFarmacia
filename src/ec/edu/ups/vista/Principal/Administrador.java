@@ -524,10 +524,12 @@ public class Administrador extends javax.swing.JFrame {
 
         menuBar.add(jMenu9);
 
+        jMenu10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/proveed.png"))); // NOI18N
         jMenu10.setText("Registro Proveedor");
         jMenu10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jMenuItem13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/crearporvee.png"))); // NOI18N
         jMenuItem13.setText("Crear Registro");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -537,6 +539,7 @@ public class Administrador extends javax.swing.JFrame {
         jMenu10.add(jMenuItem13);
 
         jMenuItem16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/buscarproveed.png"))); // NOI18N
         jMenuItem16.setText("Buscar Registro");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -546,6 +549,7 @@ public class Administrador extends javax.swing.JFrame {
         jMenu10.add(jMenuItem16);
 
         jMenuItem17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/listarprovee.png"))); // NOI18N
         jMenuItem17.setText("Listar Registros");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -598,6 +602,7 @@ public class Administrador extends javax.swing.JFrame {
         menuBar.add(jMenu11);
 
         jMenu12.setText("Unidades de Medida");
+        jMenu12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jMenuItem12.setText("Crear Unidad");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
