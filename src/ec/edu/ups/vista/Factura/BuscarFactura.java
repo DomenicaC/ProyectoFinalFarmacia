@@ -11,10 +11,17 @@ import ec.edu.ups.vista.Principal.Administrador;
 import ec.edu.ups.modelo.FCabecera;
 import ec.edu.ups.modelo.FDetalle;
 import ec.edu.ups.modelo.Personas;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 
 /**
  *
@@ -23,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 public class BuscarFactura extends javax.swing.JInternalFrame {
 
     String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+    //String url = "jdbc:oracle:thin:@localhost:1521:xe";
     String user = "BaseFarmacia";
     String password = "bf1234";
 
@@ -30,6 +38,10 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
     private FCabeceraControlador fCabCont;
     private FCabecera fcab;
     private FDetalleControlador fdetc = new FDetalleControlador(url, user, password);
+
+    static Connection cn;
+    static Statement s;
+    static ResultSet rs;
 
     /**
      * Creates new form BuscarFactura
@@ -254,10 +266,10 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
 
         tblServF.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, "0", null, null, null, null}
+                {}
             },
             new String [] {
-                "codigo", "cantidad", "nombre", "precio u", "IvaProducto", "totalIP"
+
             }
         ));
         tblServF.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -451,6 +463,46 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
 
     }
 
+    public void Tabla() {
+
+        try {
+            //Para establecer el modelo al JTable
+            DefaultTableModel modelo = new DefaultTableModel();
+            this.tblServF.setModel(modelo);
+            //Para conectarnos a nuestra base de datos
+            // String url = "jdbc:oracle:thin:@localhost:1521:XE";
+            // Establecemos los valores de cadena de conexión, usuario y contraseña
+            cn = DriverManager.getConnection(url, user, password);
+            //Para ejecutar la consulta
+            s = cn.createStatement();
+            //Ejecutamos la consulta y los datos lo almacenamos en un ResultSet
+            int ruc = Integer.parseInt(txtRuc.getText());
+            rs = s.executeQuery("SELECT * FROM SDF_FACTURAS_DETALLES WHERE sdf_factura_cabeceras_fac_id = " + ruc + ";");
+            System.out.println("Base: " + rs);
+            //Obteniendo la informacion de las columnas que estan siendo consultadas
+            ResultSetMetaData rsMd = rs.getMetaData();
+            //La cantidad de columnas que tiene la consulta
+            int cantidadColumnas = rsMd.getColumnCount();
+            //Establecer como cabezeras el nombre de las colimnas
+            for (int i = 1; i <= cantidadColumnas; i++) {
+                modelo.addColumn(rsMd.getColumnLabel(i));
+            }
+            //Creando las filas para el JTable
+            while (rs.next()) {
+                Object[] fila = new Object[cantidadColumnas];
+                for (int i = 0; i < cantidadColumnas; i++) {
+                    fila[i] = rs.getObject(i + 1);
+                }
+                modelo.addRow(fila);
+            }
+            rs.close();
+            cn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
     private void btnBuscarFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFacActionPerformed
 
         FCabeceraControlador FCaCon = new FCabeceraControlador(url, user, password);
@@ -464,9 +516,9 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
             txtSubtotal.setText(Double.toString(fcab.getSubtotal()));
             txtIva.setText(Double.toString(fcab.getIva()));
             txtTotal.setText(Double.toString(fcab.getTotal()));
-          //  String est = txtEstado.getText();
+            //  String est = txtEstado.getText();
 //            fcab.setEstado(est.charAt(0));
-        txtEstado.setText(String.valueOf(fcab.getEstado()));
+            txtEstado.setText(String.valueOf(fcab.getEstado()));
             //Clientes
             txtCedC.setText(String.valueOf(fcab.getPer().getCedula()));
             txtApeC.setText(String.valueOf(fcab.getPer().getApellidos()));
@@ -476,7 +528,9 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
 
             //Llenar Factura Detalle
             vaciarTabla();
-            llenarTabla();
+            Tabla();
+            //tabla
+
         } else {
 
             JOptionPane.showMessageDialog(this, "El RUC no existe en la base de datos");
