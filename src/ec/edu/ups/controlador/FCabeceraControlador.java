@@ -6,6 +6,7 @@
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.modelo.FCabecera;
+import ec.edu.ups.modelo.Personas;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,7 +23,9 @@ public class FCabeceraControlador {
 
     private BaseDeDatos db;
     private Set<FCabecera> lista;
+    private int ruc;
 
+    private PersonaControlador per;
 
     public Set<FCabecera> getFFactura() {
         return lista;
@@ -34,16 +37,23 @@ public class FCabeceraControlador {
 
     }
 
+    public int getRuc() {
+        return ruc;
+    }
+
     public FCabeceraControlador(String url, String user, String password) {
 
         db = new BaseDeDatos(url, user, password);
+        per = new PersonaControlador(url, user, password);
 
     }
+
     /**
      * Te devuelve el ultimo codigo del ultimo registro de la base de datos
-     * @return 
+     *
+     * @return
      */
-     public int buscarUltimoCodigo() {
+    public int buscarUltimoCodigo() {
         int resultado = 0;
         db.conectar();
         try {
@@ -86,6 +96,13 @@ public class FCabeceraControlador {
 
     }
 
+    public void create(FCabecera fcab) {
+
+        fcab.setRuc(buscarUltimoCodigo());
+        lista.add(fcab);
+
+    }
+
     public FCabecera BuscarFacCab(int ruc) {
 
         FCabecera facCab = new FCabecera();
@@ -102,13 +119,13 @@ public class FCabeceraControlador {
             while (res.next()) {
 
                 facCab.setRuc(ruc);
-                facCab.setFecha(res.getDate("fac_fecha"));
-                facCab.setSubtotal(res.getDouble("fac_subtotal"));
-                facCab.setIva(res.getDouble("fac_iva"));
-                facCab.setTotal(res.getDouble("fac_total"));
+                facCab.setFecha(res.getDate("FAC_FECHA"));
+                facCab.setSubtotal(res.getDouble("FAC_SUBTOTAL"));
+                facCab.setIva(res.getDouble("FAC_IVA"));
+                facCab.setTotal(res.getDouble("FAC_TOTAL"));
                 String m = res.getString("FAC_ESTADO");
                 facCab.setEstado(m.charAt(0));
-               // facCab.setPer(res.getString("sdf_personas_per_cedula"));
+                facCab.setPer(per.BuscaarPersona(res.getString("SDF_PERSONAS_PER_CEDULA")));
 
             }
             res.close();
@@ -122,21 +139,21 @@ public class FCabeceraControlador {
         return facCab;
 
     }
-
+/*
     public FCabecera BuscarFacCab1(int ruc) {
 
-        FCabecera facCab = new FCabecera();
+        //FCabecera facCab = new FCabecera();
         for (FCabecera fac : lista) {
 
             if (fac.getRuc() == ruc) {
 
-                return facCab;
+                return fac;
 
             }
 
         }
         return null;
-    }
+    }*/
 
     private void modificar(FCabecera faC) throws SQLException {
 

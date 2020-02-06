@@ -21,6 +21,7 @@ public class FCabecera {
     private double iva;
     private double total;
     private char estado;
+    private String CedPer;
     
     //Clases
     private Personas per;
@@ -35,18 +36,22 @@ public class FCabecera {
         
     }
 
-    public FCabecera(int ruc, Date fecha, double subtotal, double iva, double total, char estado, Personas per, Producto pro, List<FDetalle> detalle) {
+    public void añadirFacDetalle(FDetalle fDet){
+        detalle.add(fDet);
+    }
+
+    public FCabecera(int ruc, Date fecha, double subtotal, double iva, double total, char estado, String CedPer, Personas per, Producto pro, List<FDetalle> detalle) {
         this.ruc = ruc;
         this.fecha = fecha;
         this.subtotal = subtotal;
         this.iva = iva;
         this.total = total;
         this.estado = estado;
+        this.CedPer = CedPer;
         this.per = per;
         this.pro = pro;
         this.detalle = detalle;
     }
-
 
     public int getRuc() {
         return ruc;
@@ -88,6 +93,22 @@ public class FCabecera {
         this.total = total;
     }
 
+    public char getEstado() {
+        return estado;
+    }
+
+    public void setEstado(char estado) {
+        this.estado = estado;
+    }
+
+    public String getCedPer() {
+        return CedPer;
+    }
+
+    public void setCedPer(String CedPer) {
+        this.CedPer = CedPer;
+    }
+
     public Personas getPer() {
         return per;
     }
@@ -112,21 +133,9 @@ public class FCabecera {
         this.detalle = detalle;
     }
 
-    public char getEstado() {
-        return estado;
-    }
-
-    public void setEstado(char estado) {
-        this.estado = estado;
-    }
-    
-    public void añadirFacDetalle(FDetalle fDet){
-        detalle.add(fDet);
-    }
-
     @Override
     public String toString() {
-        return "FCabecera{" + "ruc=" + ruc + ", fecha=" + fecha + ", subtotal=" + subtotal + ", iva=" + iva + ", total=" + total + ", estado=" + estado + ", per=" + per + ", pro=" + pro + ", detalle=" + detalle + '}';
+        return "FCabecera{" + "ruc=" + ruc + ", fecha=" + fecha + ", subtotal=" + subtotal + ", iva=" + iva + ", total=" + total + ", estado=" + estado + ", CedPer=" + CedPer + ", per=" + per + ", pro=" + pro + ", detalle=" + detalle + '}';
     }
 
     
