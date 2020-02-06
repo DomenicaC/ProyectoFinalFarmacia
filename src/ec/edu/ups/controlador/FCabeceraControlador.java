@@ -157,9 +157,9 @@ public class FCabeceraControlador {
      }*/
     public void modificar(FCabecera faC) throws SQLException {
 
-        String sql = "UPDATE\" SDF_FACTURA_CABECERAS\" SET "
+        String sql = "UPDATE \"SDF_FACTURA_CABECERAS\" SET "
                 + "FAC_ESTADO = '" + faC.getEstado() + "'"
-                + " WHERE \"FAC_ID\" = " + faC.getRuc() + ";" /*+
+                + " WHERE \"FAC_ID\" = " + faC.getRuc() + "" /*+
                 "commit;"*/;
 
         System.out.println(sql);

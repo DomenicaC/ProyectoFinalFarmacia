@@ -529,8 +529,9 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         //agregarDatos Factura Cabecera
         FCabeceraControlador fcabc = new FCabeceraControlador(url, user, password);
         int ruc = Integer.parseInt(txtRuc.getText());
-        
+        char estado = 'F';
         fcab.setRuc(ruc);
+        fcab.setEstado(estado);
         String est = txtEstado.getText();
         fcab.setEstado(est.charAt(0));
         try {
