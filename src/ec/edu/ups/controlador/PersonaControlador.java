@@ -32,7 +32,8 @@ public class PersonaControlador {
                 + "'"+persona.getTelefono()+ "',"
                 + "'"+persona.getUsername() + "',"
                 + "'"+persona.getContrasenia() + "',"
-                +persona.getRol_id()+         
+                +"'"+persona.getRol_id()+ "','"  
+                +persona.getEstado() +"'"+
                 ")";
         //System.out.println(sql);
         db.conectar();
