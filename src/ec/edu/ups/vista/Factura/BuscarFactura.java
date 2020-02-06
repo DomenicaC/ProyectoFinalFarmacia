@@ -22,9 +22,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BuscarFactura extends javax.swing.JInternalFrame {
 
-    String url = "jdbc:postgresql://localhost:5432/PROYECTO_INTERCICLO";
-    String user = "postgres";
-    String password = "QLJPikrq7833";
+    String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+    String user = "BaseFarmacia";
+    String password = "bf1234";
 
     public static String x;
     private FCabeceraControlador fCabCont;
@@ -464,7 +464,7 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
             txtSubtotal.setText(Double.toString(fcab.getSubtotal()));
             txtIva.setText(Double.toString(fcab.getIva()));
             txtTotal.setText(Double.toString(fcab.getTotal()));
-            String est = txtEstado.getText();
+          //  String est = txtEstado.getText();
 //            fcab.setEstado(est.charAt(0));
         txtEstado.setText(String.valueOf(fcab.getEstado()));
             //Clientes
@@ -483,35 +483,6 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
 
         }
 
-        /* FCabecera fcab1 = new FCabecera();
-         fcab1 = FCaCon.BuscarFacCab1(Integer.parseInt(txtRuc.getText()));
-        
-         if (fcab1 != null) {
-
-         //Clientes
-         txtApeC.setText(p.getApellidos());
-         txtCedC.setText(p.getCedula());
-         txtNomC.setText(p.getNombres());
-         txtDirC.setText(p.getDireccion());
-         txtTelC.setText(p.getTelefono());
-
-         //FacturaCabecera
-         //txtFecha.setText(fcab.getFecha());
-         txtSubtotal.setText(Double.toString(fcab.getSubtotal()));
-         txtIva.setText(Double.toString(fcab.getIva()));
-         txtTotal.setText(Double.toString(fcab.getTotal()));
-         String est = txtEstado.getText();
-         fcab.setEstado(est.charAt(0));
-            
-         //Llenar Factura Detalle
-         vaciarTabla();
-         llenarTabla();
-
-         } else {
-
-         JOptionPane.showMessageDialog(this, "El RUC no existe en la base de datos");
-
-         }*/
 
     }//GEN-LAST:event_btnBuscarFacActionPerformed
 

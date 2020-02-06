@@ -6,9 +6,19 @@
 package ec.edu.ups.vista.Factura;
 
 import ec.edu.ups.controlador.FCabeceraControlador;
+import ec.edu.ups.controlador.FDetalleControlador;
+import ec.edu.ups.modelo.FCabecera;
+import ec.edu.ups.modelo.FDetalle;
 import static ec.edu.ups.vista.Factura.BuscarFactura.x;
 import ec.edu.ups.vista.Principal.Administrador;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 //Hola
+
 /**
  *
  * @author Domenica
@@ -16,7 +26,14 @@ import ec.edu.ups.vista.Principal.Administrador;
 public class AnularFactura extends javax.swing.JInternalFrame {
 
     public static String x;
-    private FCabeceraControlador fCabeceraControlador;
+    private FCabeceraControlador fCabContr;
+
+    String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+    String user = "BaseFarmacia";
+    String password = "bf1234";
+    private FCabeceraControlador fCabeceraControlador = new FCabeceraControlador(url, user, password);
+    private FCabecera fcab = new FCabecera();
+    private FDetalleControlador fdetc = new FDetalleControlador(url, user, password);
 
     /**
      * Creates new form AnularFactura
@@ -29,6 +46,7 @@ public class AnularFactura extends javax.swing.JInternalFrame {
 
         setLocation(a / 2, b / 2);
         setVisible(true);
+        this.fCabeceraControlador = fCabeceraControlador;
 
     }
 
@@ -45,8 +63,6 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         lblCedC5 = new javax.swing.JLabel();
         txtCedC = new javax.swing.JTextField();
-        lblCodC5 = new javax.swing.JLabel();
-        txtCodC = new javax.swing.JTextField();
         lblNomC5 = new javax.swing.JLabel();
         txtNomC = new javax.swing.JTextField();
         lblTelC5 = new javax.swing.JLabel();
@@ -69,33 +85,10 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         lblSub = new javax.swing.JLabel();
         txtSubtotal = new javax.swing.JTextField();
         lblIva = new javax.swing.JLabel();
-        lblCodC6 = new javax.swing.JLabel();
-        txtStock = new javax.swing.JTextField();
-        btnBuscarCF = new javax.swing.JButton();
         txtEstado = new javax.swing.JTextField();
         lblCedC6 = new javax.swing.JLabel();
-        btnCrear = new javax.swing.JButton();
-
-        setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameClosing(evt);
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
+        btnBuscar = new javax.swing.JButton();
+        btnAnular = new javax.swing.JButton();
 
         jPanel1.setMinimumSize(new java.awt.Dimension(450, 500));
 
@@ -107,14 +100,6 @@ public class AnularFactura extends javax.swing.JInternalFrame {
 
         txtCedC.setEditable(false);
         txtCedC.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
-
-        lblCodC5.setBackground(new java.awt.Color(255, 255, 255));
-        lblCodC5.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        lblCodC5.setText("Codigo Cliente");
-
-        txtCodC.setEditable(false);
-        txtCodC.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
-        txtCodC.setEnabled(false);
 
         lblNomC5.setBackground(new java.awt.Color(255, 255, 255));
         lblNomC5.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
@@ -153,36 +138,34 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblTelC5)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtTelC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lblTelC5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtTelC))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lblNomC5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNomC, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lblApeC5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                .addComponent(txtApeC, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lblDirC5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDirC))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblNomC5)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNomC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(203, 203, 203)
                         .addComponent(lblCedC5)
                         .addGap(18, 18, 18)
-                        .addComponent(txtCedC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(79, 79, 79)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblCodC5)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCodC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(lblApeC5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtApeC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(lblDirC5)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtDirC, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtCedC, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,9 +173,7 @@ public class AnularFactura extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedC5)
-                    .addComponent(txtCedC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCodC5)
-                    .addComponent(txtCodC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCedC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -235,7 +216,7 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         txtTotal.setEnabled(false);
 
         lblTitulo.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        lblTitulo.setText("Anular Factura");
+        lblTitulo.setText("Buscar Factura");
 
         btnCancelarF.setFont(new java.awt.Font("Cambria Math", 1, 14)); // NOI18N
         btnCancelarF.setText("Cancelar");
@@ -276,34 +257,25 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         lblIva.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         lblIva.setText("I.V.A");
 
-        lblCodC6.setBackground(new java.awt.Color(255, 255, 255));
-        lblCodC6.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        lblCodC6.setText("Stock");
-
-        txtStock.setEditable(false);
-        txtStock.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
-        txtStock.setEnabled(false);
-
-        btnBuscarCF.setFont(new java.awt.Font("Cambria Math", 1, 14)); // NOI18N
-        btnBuscarCF.setText("Buscar");
-        btnBuscarCF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarCFActionPerformed(evt);
-            }
-        });
-
-        txtEstado.setEditable(false);
         txtEstado.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
 
         lblCedC6.setBackground(new java.awt.Color(255, 255, 255));
         lblCedC6.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         lblCedC6.setText("Estado Factura");
 
-        btnCrear.setFont(new java.awt.Font("Cambria Math", 1, 14)); // NOI18N
-        btnCrear.setText("Anular");
-        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setFont(new java.awt.Font("Cambria Math", 1, 14)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        btnAnular.setFont(new java.awt.Font("Cambria Math", 1, 14)); // NOI18N
+        btnAnular.setText("Anular");
+        btnAnular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnularActionPerformed(evt);
             }
         });
 
@@ -311,19 +283,13 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 327, Short.MAX_VALUE)
-                .addComponent(lblCodC6)
-                .addGap(18, 18, 18)
-                .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(224, 224, 224))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(147, 147, 147)
                 .addComponent(lblRuc)
                 .addGap(18, 18, 18)
                 .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscarCF)
+                .addComponent(btnBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblFecha)
                 .addGap(18, 18, 18)
@@ -333,52 +299,49 @@ public class AnularFactura extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblCedC6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(208, 208, 208)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(lblSub)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addGap(25, 25, 25)
-                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addComponent(lblIva)
-                                                                .addGap(16, 16, 16)
-                                                                .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                                .addComponent(lblTot)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(76, 76, 76)
-                                                .addComponent(btnCrear)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnCancelarF)))
-                                        .addGap(6, 6, 6))))))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(lblTitulo)))
+                        .addGap(303, 303, 303)
+                        .addComponent(lblTitulo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(461, 461, 461)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(lblSub)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(25, 25, 25)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(lblIva)
+                                                    .addGap(16, 16, 16)
+                                                    .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(lblTot)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblCedC6)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(46, 46, 46)
+                                    .addComponent(btnAnular)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnCancelarF)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(lblTitulo)
                 .addGap(6, 6, 6)
+                .addComponent(lblTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -388,16 +351,12 @@ public class AnularFactura extends javax.swing.JInternalFrame {
                             .addComponent(lblRuc)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblFecha)
-                                .addComponent(btnBuscarCF)))))
+                                .addComponent(btnBuscar)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCodC6)
-                    .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSub)
                     .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -411,34 +370,40 @@ public class AnularFactura extends javax.swing.JInternalFrame {
                         .addGap(6, 6, 6)
                         .addComponent(lblTot))
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCedC6)
-                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelarF)
-                    .addComponent(btnCrear))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCedC6)
+                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(122, 122, 122))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCancelarF)
+                            .addComponent(btnAnular))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 722, Short.MAX_VALUE)
+            .addGap(0, 753, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 751, Short.MAX_VALUE)
+            .addGap(0, 799, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 19, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 19, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -456,82 +421,10 @@ public class AnularFactura extends javax.swing.JInternalFrame {
 
     private void btnBuscarCFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCFActionPerformed
 
-        /* String cedula = txtCedC.getText();
-        cliente = controladorCliente.read1(cedula);
-
-        if (cliente == null) {
-            JOptionPane.showMessageDialog(null, "Cedula no Existe");
-        } else {
-            //txtCodC.setText(Integer.toString(cliente.getCodigo()));
-            txtNomC.setText(cliente.getNombre());
-            txtApeC.setText(cliente.getApellido());
-            txtDirC.setText(cliente.getDireccion());
-            txtTelC.setText(cliente.getTelefono());
-        }*/
     }//GEN-LAST:event_btnBuscarCFActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
 
-        /*//obtener fecha
-        fecha = new Date();
-
-        //obtener clases
-        String cedulaC = txtCedC.getText();
-        cliente = controladorCliente.readCedula(cedulaC);
-
-        String cedulaV = txtCedV.getText();
-        veterinario = controladorVeterinario.readCedula(cedulaV);
-
-        int codigoM = Integer.parseInt(txtCodM.getText());
-        mascota = controladorMascota.read(codigoM);
-
-        //agregarDatos
-        factura.setFecha(fecha);
-
-        //clases
-        factura.setVet(veterinario);
-        factura.setCli(cliente);
-        factura.setMasc(mascota);
-
-        //facDetalle
-        for (int i = 0; i < tblServF.getRowCount() - 1; i++) {
-            System.out.println("i " + i);
-            facDet = new FDetalle();
-
-            double cant = Integer.parseInt(tblServF.getValueAt(i, 1).toString());
-            int cant1 = (int) cant;
-            facDet.setCantidad(cant1);
-
-            //facDet.setCodigo(Integer.parseInt(tblServF.getValueAt(i, 0).toString()));
-            //int codigoS = ;
-            //facDet.setServ(controladorServicio.read(Integer.parseInt(tblServF.getValueAt(i, 0).toString())));
-            facDet.setServ(controladorServicio.read(Integer.parseInt(tblServF.getValueAt(i, 0).toString())));
-            factura.añadirFacDetalle(facDet);
-            //            controladorFDetalle.create(facDet);
-
-        }
-
-        llenarDatos();
-        //factura
-        factura.setSubtotal(subtotal);
-        factura.setIva(iva);
-        factura.setTotal(total);
-
-        controladorFactura.create(factura);
-        JOptionPane.showMessageDialog(this, "Factura Creada");
-        System.out.println("factura \n" + factura.toString());
-        /*
-        txtRuc.setText(Integer.toString(controladorFactura.getCodigo()));
-        factura.setRuc(Integer.parseInt(txtRuc.getText()));
-
-        int ruc = this.controladorFactura.getCodigo() + 1;
-        txtRuc.setText(String.valueOf(ruc));
-        txtFecha.setText(controladorFactura.getFecha());
-
-        contador = 0;
-
-        vaciarDatos();
-        vaciarTabla();*/
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
@@ -539,19 +432,134 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         x = null;
     }//GEN-LAST:event_formInternalFrameClosing
 
+    public void llenarTabla() {
+
+        DefaultTableModel modelo = (DefaultTableModel) tblServF.getModel();
+        List<FDetalle> lista = fcab.getDetalle();
+
+        FDetalle fdet = fdetc.BuscarFacDet(Integer.parseInt(txtRuc.getText()));
+
+        if (fdet != null) {
+
+            for (int i = 0; i < lista.size(); i++) {
+
+                Object[] datos4 = {
+                    lista.get(i).getPro().getId(),
+                    lista.get(i).getCant(),
+                    lista.get(i).getPro().getNombre(),
+                    lista.get(i).getPro().getPrecio(),
+                    lista.get(i).getIvaPro(),
+                    lista.get(i).getTotalCP()
+                };
+                modelo.addRow(datos4);
+            }
+
+        } else {
+
+            JOptionPane.showMessageDialog(this, "El codigo no existe en la base de datos");
+
+        }
+
+    }
+
+    public void vaciarTabla() {
+
+        DefaultTableModel modelo = (DefaultTableModel) tblServF.getModel();
+        int filas = tblServF.getRowCount();
+        for (int i = 0; i < filas; i++) {
+            modelo.removeRow(0);
+        }
+
+    }
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
+        FCabeceraControlador FCaCon = new FCabeceraControlador(url, user, password);
+        FCabecera fcab = new FCabecera();
+        int ruc2 = Integer.parseInt(txtRuc.getText());
+        fcab = FCaCon.BuscarFacCab(ruc2);
+
+        if (fcab != null) {
+            //FacturaCabecera
+            txtFecha.setText(String.valueOf(fcab.getFecha()));
+            txtSubtotal.setText(Double.toString(fcab.getSubtotal()));
+            txtIva.setText(Double.toString(fcab.getIva()));
+            txtTotal.setText(Double.toString(fcab.getTotal()));
+            //  String est = txtEstado.getText();
+//            fcab.setEstado(est.charAt(0));
+            txtEstado.setText(String.valueOf(fcab.getEstado()));
+            //Clientes
+            txtCedC.setText(String.valueOf(fcab.getPer().getCedula()));
+            txtApeC.setText(String.valueOf(fcab.getPer().getApellidos()));
+            txtNomC.setText(String.valueOf(fcab.getPer().getNombres()));
+            txtDirC.setText(String.valueOf(fcab.getPer().getDireccion()));
+            txtTelC.setText(String.valueOf(fcab.getPer().getTelefono()));
+
+            //Llenar Factura Detalle
+            vaciarTabla();
+            //llenarTabla();
+        } else {
+
+            JOptionPane.showMessageDialog(this, "El RUC no existe en la base de datos");
+
+        }
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    public void bloquear() {
+
+        txtEstado.setEnabled(true);
+        txtApeC.setEnabled(true);
+        txtCedC.setEnabled(true);
+        txtDirC.setEnabled(true);
+        txtFecha.setEnabled(true);
+        txtIva.setEnabled(true);
+        txtNomC.setEnabled(true);
+        txtNomC.setEnabled(true);
+        txtRuc.setEnabled(true);
+        txtSubtotal.setEnabled(true);
+        txtTelC.setEnabled(true);
+        txtTotal.setEnabled(true);
+        tblServF.setEnabled(true);
+
+    }
+    private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
+
+        //factura
+        //agregarDatos Factura Cabecera
+        FCabeceraControlador fcabc = new FCabeceraControlador(url, user, password);
+        int ruc = Integer.parseInt(txtRuc.getText());
+        
+        fcab.setRuc(ruc);
+        String est = txtEstado.getText();
+        fcab.setEstado(est.charAt(0));
+        try {
+
+            fcabc.modificar(fcab);
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+
+        }
+        JOptionPane.showMessageDialog(this, "Factura Anulada con exito", "Anular Factura", JOptionPane.OK_OPTION);
+
+        bloquear();
+
+
+    }//GEN-LAST:event_btnAnularActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarCF;
+    private javax.swing.JButton btnAnular;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelarF;
-    private javax.swing.JButton btnCrear;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblApeC5;
     private javax.swing.JLabel lblCedC5;
     private javax.swing.JLabel lblCedC6;
-    private javax.swing.JLabel lblCodC5;
-    private javax.swing.JLabel lblCodC6;
     private javax.swing.JLabel lblDirC5;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIva;
@@ -564,14 +572,12 @@ public class AnularFactura extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblServF;
     private javax.swing.JTextField txtApeC;
     private javax.swing.JTextField txtCedC;
-    private javax.swing.JTextField txtCodC;
     private javax.swing.JTextField txtDirC;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtIva;
     private javax.swing.JTextField txtNomC;
     private javax.swing.JTextField txtRuc;
-    private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtSubtotal;
     private javax.swing.JTextField txtTelC;
     private javax.swing.JTextField txtTotal;

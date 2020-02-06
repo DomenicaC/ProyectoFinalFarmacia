@@ -140,32 +140,27 @@ public class FCabeceraControlador {
 
     }
 
-/*
-    public FCabecera BuscarFacCab1(int ruc) {
+    /*
+     public FCabecera BuscarFacCab1(int ruc) {
 
-        //FCabecera facCab = new FCabecera();
-        for (FCabecera fac : lista) {
+     //FCabecera facCab = new FCabecera();
+     for (FCabecera fac : lista) {
 
-            if (fac.getRuc() == ruc) {
+     if (fac.getRuc() == ruc) {
 
-                return fac;
+     return fac;
 
-            }
+     }
 
-        }
-        return null;
-    }*/
+     }
+     return null;
+     }*/
+    public void modificar(FCabecera faC) throws SQLException {
 
-    private void modificar(FCabecera faC) throws SQLException {
-
-        String sql = "UPDATE\"SDF_FACTURA_CABECERAS\" SET "
-                + "\"FAC_FECHA\"='" + faC.getFecha() + "',"
-                + "\"FAC_SUBTOTAL\"=" + faC.getSubtotal() + ","
-                + "\"FAC_IVA\"=" + faC.getIva() + ","
-                + "\"FAC_TOTAL\"=" + faC.getTotal() + ","
-                + "\"FAC_ESTADO\"='" + faC.getEstado() + "',"
-                + "\"sdf_personas_per_cedula\"='" + faC.getPer().getCedula() + "' "
-                + "WHERE \"FAC_ID\" = " + faC.getRuc() + "";
+        String sql = "UPDATE\" SDF_FACTURA_CABECERAS\" SET "
+                + "FAC_ESTADO = '" + faC.getEstado() + "'"
+                + " WHERE \"FAC_ID\" = " + faC.getRuc() + ";" /*+
+                "commit;"*/;
 
         System.out.println(sql);
         db.conectar();
