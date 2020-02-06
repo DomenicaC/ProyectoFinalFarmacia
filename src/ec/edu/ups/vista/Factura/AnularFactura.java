@@ -535,11 +535,23 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         txtIva.setEnabled(true);
         txtNomC.setEnabled(true);
         txtNomC.setEnabled(true);
-        txtRuc.setEnabled(true);
         txtSubtotal.setEnabled(true);
         txtTelC.setEnabled(true);
         txtTotal.setEnabled(true);
         tblServF.setEnabled(true);
+        
+        txtEstado.setEditable(true);
+        txtApeC.setEditable(true);
+        txtCedC.setEditable(true);
+        txtDirC.setEditable(true);
+        txtFecha.setEditable(true);
+        txtIva.setEditable(true);
+        txtNomC.setEditable(true);
+        txtNomC.setEditable(true);
+        txtSubtotal.setEditable(true);
+        txtTelC.setEditable(true);
+        txtTotal.setEditable(true);
+       // tblServF.setEditable(true);
 
     }
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed

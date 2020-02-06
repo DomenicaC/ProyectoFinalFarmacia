@@ -473,6 +473,35 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
 
     }
 
+    public void bloquear() {
+
+        txtEstado.setEnabled(true);
+        txtApeC.setEnabled(true);
+        txtCedC.setEnabled(true);
+        txtDirC.setEnabled(true);
+        txtFecha.setEnabled(true);
+        txtIva.setEnabled(true);
+        txtNomC.setEnabled(true);
+        txtNomC.setEnabled(true);
+        txtSubtotal.setEnabled(true);
+        txtTelC.setEnabled(true);
+        txtTotal.setEnabled(true);
+        tblServF.setEnabled(true);
+
+        txtEstado.setEditable(true);
+        txtApeC.setEditable(true);
+        txtCedC.setEditable(true);
+        txtDirC.setEditable(true);
+        txtFecha.setEditable(true);
+        txtIva.setEditable(true);
+        txtNomC.setEditable(true);
+        txtNomC.setEditable(true);
+        txtSubtotal.setEditable(true);
+        txtTelC.setEditable(true);
+        txtTotal.setEditable(true);
+        // tblServF.setEditable(true);
+
+    }
 
     private void btnBuscarFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFacActionPerformed
 
@@ -500,7 +529,14 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
             //Llenar Factura Detalle
             vaciarTabla();
             llenarTabla();
-            //tabla
+
+            String est = txtEstado.getText();
+            if (est.charAt(0) == 'F') {
+
+                JOptionPane.showMessageDialog(this, "Esta factura esta Anulada");
+                bloquear();
+                
+            }
 
         } else {
 
