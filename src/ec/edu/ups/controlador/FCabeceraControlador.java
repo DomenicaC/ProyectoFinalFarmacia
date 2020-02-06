@@ -92,7 +92,7 @@ public class FCabeceraControlador {
 
         try {
 
-            String sql = "SELECT * FROM \"SDF_FACTURA_CABECERAS\"WHERE\"fac_id\"= " + ruc + ";";
+            String sql = "SELECT * FROM \"SDF_FACTURA_CABECERAS\"WHERE\"fac_id\"= " + ruc + "";
             System.out.println("BASE" + sql);
 
             db.conectar();
@@ -102,10 +102,10 @@ public class FCabeceraControlador {
             while (res.next()) {
 
                 facCab.setRuc(ruc);
-                facCab.setFecha(res.getDate("fecha"));
-                facCab.setSubtotal(res.getDouble("subtotal"));
-                facCab.setIva(res.getDouble("iva"));
-                facCab.setTotal(res.getDouble("total"));
+                facCab.setFecha(res.getDate("fac_fecha"));
+                facCab.setSubtotal(res.getDouble("fac_subtotal"));
+                facCab.setIva(res.getDouble("fac_iva"));
+                facCab.setTotal(res.getDouble("fac_total"));
                 String m = res.getString("FAC_ESTADO");
                 facCab.setEstado(m.charAt(0));
                // facCab.setPer(res.getString("sdf_personas_per_cedula"));
@@ -147,7 +147,7 @@ public class FCabeceraControlador {
                 + "\"FAC_TOTAL\"=" + faC.getTotal() + ","
                 + "\"FAC_ESTADO\"='" + faC.getEstado() + "',"
                 + "\"sdf_personas_per_cedula\"='" + faC.getPer().getCedula() + "' "
-                + "WHERE \"FAC_ID\" = " + faC.getRuc() + ";";
+                + "WHERE \"FAC_ID\" = " + faC.getRuc() + "";
 
         System.out.println(sql);
         db.conectar();
@@ -166,7 +166,7 @@ public class FCabeceraControlador {
         //Set<FCabecera> lista = new HashSet<>();
         try {
 
-            String sql = "SELECT * FROM \"SDF_FACTURA_CABECERAS\";";
+            String sql = "SELECT * FROM \"SDF_FACTURA_CABECERAS\" ";
             System.out.println("Base listar" + sql);
 
             db.conectar();
