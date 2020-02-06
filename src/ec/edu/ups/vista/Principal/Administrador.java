@@ -38,6 +38,9 @@ import ec.edu.ups.vista.Proveedor.BuscarProveedor;
 import ec.edu.ups.vista.Proveedor.CrearProveedor;
 import ec.edu.ups.vista.Proveedor.ListarProveedores;
 import ec.edu.ups.vista.Proveedor.ModificarProveedor;
+import ec.edu.ups.vista.Unidad.BuscarUnidad;
+import ec.edu.ups.vista.Unidad.CrearUnidad;
+import ec.edu.ups.vista.Unidad.ModificarUnidad;
 import java.awt.Desktop;
 import java.net.URI;
 import javax.swing.JOptionPane;
@@ -75,6 +78,9 @@ public class Administrador extends javax.swing.JFrame {
     private BuscarProveedor buscarProveedor;
     private ModificarProveedor modificarProveedor;
     private ListarProveedores listarProveedores;
+    private CrearUnidad crearUnidad;
+    private BuscarUnidad buscarUnidad;
+    private ModificarUnidad modificarUnidad;
     
 //  ------------------------CONTROLADORES---------------------------
       private PersonaControlador personaControlador;
@@ -162,9 +168,8 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jMCC = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        jMBC = new javax.swing.JMenuItem();
+        jMMC = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
@@ -174,6 +179,10 @@ public class Administrador extends javax.swing.JFrame {
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
+        jMenu12 = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -228,35 +237,43 @@ public class Administrador extends javax.swing.JFrame {
         rSLabelHora1.setForeground(new java.awt.Color(0, 0, 0));
         rSLabelHora1.setFont(new java.awt.Font("Roboto Bold", 1, 36)); // NOI18N
 
+        desktop.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(rSLabelFecha1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(rSLabelHora1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField1)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(desktopLayout.createSequentialGroup()
-                        .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(desktopLayout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(214, 214, 214))
-                            .addGroup(desktopLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rSLabelHora1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(desktopLayout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
-                                        .addComponent(rSLabelFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(214, 214, 214))
                     .addGroup(desktopLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel2))))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rSLabelHora1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(desktopLayout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(rSLabelFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap())
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,14 +301,6 @@ public class Administrador extends javax.swing.JFrame {
                                 .addComponent(rSLabelHora1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(5, 5, 5))))
         );
-        desktop.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(rSLabelFecha1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        desktop.setLayer(rSLabelHora1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/persona.png"))); // NOI18N
         fileMenu.setMnemonic('f');
@@ -492,14 +501,21 @@ public class Administrador extends javax.swing.JFrame {
         });
         jMenu9.add(jMCC);
 
-        jMenuItem14.setText("Buscar Categoria");
-        jMenu9.add(jMenuItem14);
+        jMBC.setText("Buscar Categoria");
+        jMBC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMBCActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMBC);
 
-        jMenuItem15.setText("Modificar Categoria");
-        jMenu9.add(jMenuItem15);
-
-        jMenuItem12.setText("Eliminar Categoria");
-        jMenu9.add(jMenuItem12);
+        jMMC.setText("Modificar Categoria");
+        jMMC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMMCActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMMC);
 
         menuBar.add(jMenu9);
 
@@ -575,6 +591,34 @@ public class Administrador extends javax.swing.JFrame {
         jMenu11.add(jMenuItem21);
 
         menuBar.add(jMenu11);
+
+        jMenu12.setText("Unidades de Medida");
+
+        jMenuItem12.setText("Crear Unidad");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu12.add(jMenuItem12);
+
+        jMenuItem14.setText("Buscar Unidad");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu12.add(jMenuItem14);
+
+        jMenuItem15.setText("Modificar Unidad");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu12.add(jMenuItem15);
+
+        menuBar.add(jMenu12);
 
         setJMenuBar(menuBar);
 
@@ -785,7 +829,7 @@ public class Administrador extends javax.swing.JFrame {
         try {
             if (x == null) {
                 if (modificarProducto == null || modificarProducto.isVisible() == false) {
-                    modificarProducto = new ModificarProducto(controladorProducto);
+                    modificarProducto = new ModificarProducto(controladorProducto, categoriaControlador, unidadesControlador);
                     desktop.add(modificarProducto);
                 }
             } else {
@@ -999,6 +1043,86 @@ public class Administrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
+    private void jMMCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMMCActionPerformed
+       String x = crearCategoria.x;
+        try {
+            if (x == null) {
+                if (modificarCategoria == null || modificarCategoria .isVisible() == false) {
+                    modificarCategoria  = new ModificarCategoria (categoriaControlador);
+                    desktop.add(modificarCategoria );
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMMCActionPerformed
+
+    private void jMBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBCActionPerformed
+        String x = buscarCategoria.x;
+        try {
+            if (x == null) {
+                if (buscarCategoria == null || buscarCategoria .isVisible() == false) {
+                    buscarCategoria  = new BuscarCategoria (categoriaControlador);
+                    desktop.add(buscarCategoria );
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMBCActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        String x = crearUnidad.x;
+        try {
+            if (x == null) {
+                if (crearUnidad == null || crearUnidad .isVisible() == false) {
+                    crearUnidad  = new CrearUnidad(unidadesControlador);
+                    desktop.add(crearUnidad);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        String x = buscarUnidad.x;
+        try {
+            if (x == null) {
+                if (buscarUnidad == null || buscarUnidad .isVisible() == false) {
+                    buscarUnidad  = new BuscarUnidad(unidadesControlador);
+                    desktop.add(buscarUnidad);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        String x = modificarUnidad.x;
+        try {
+            if (x == null) {
+                if (modificarUnidad == null || modificarUnidad .isVisible() == false) {
+                    modificarUnidad = new ModificarUnidad(unidadesControlador);
+                    desktop.add(modificarUnidad);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1047,10 +1171,13 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuItem jMBC;
     private javax.swing.JMenuItem jMCC;
+    private javax.swing.JMenuItem jMMC;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
+    private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;

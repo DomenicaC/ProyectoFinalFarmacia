@@ -23,6 +23,21 @@ public class UnidadesControlador {
     public UnidadesControlador(String url ,String user, String password) {
         db = new BaseDeDatos(url,user,password);
     }
+    
+    public void create(UnidadMedida u){
+        String sql = "INSERT INTO \"SDF_UNIDADES_MEDIDAS\" VALUES(" + u.getId() + ","
+                + "'" + u.getNombre() + "')";
+        System.out.println(sql);
+        
+         db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            sta.execute(sql);
+            db.desconectar();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
      
     public UnidadMedida Buscaar(int id)  {
         UnidadMedida un = new UnidadMedida();
@@ -54,6 +69,21 @@ public class UnidadesControlador {
         return un;
     }
     
+    public int buscarUltimoCodigo() {
+        int resultado = 0;
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            ResultSet res = sta.executeQuery("SELECT MAX (\"MED_ID\") FROM \"SDF_UNIDADES_MEDIDAS\"");
+            res.next();
+            resultado = res.getInt(1);
+            db.desconectar();
+        } catch (SQLException ex) {
+            System.out.println("Error en la buscarUltimoCodigo " + ex);
+        }
+        return resultado;
+    }
+    
     public Set<UnidadMedida> listaUn() throws Exception {
         Set<UnidadMedida> listaUnidad = new HashSet<UnidadMedida>();
         String sentenciaSQL = "SELECT * FROM \"SDF_UNIDADES_MEDIDAS\" ";
@@ -78,4 +108,19 @@ public class UnidadesControlador {
         }
         return listaUnidad;
     } 
+    
+    public void modificar(UnidadMedida u) throws SQLException {
+        String sql = "UPDATE\"SDF_UNIDADES_MEDIDAS\" SET "
+                + "\"MED_NOMBRE\"='" + u.getNombre() + "'"
+                + "WHERE \"MED_ID\" = " + u.getId();
+        System.out.println(sql);
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            sta.execute(sql);
+            db.desconectar();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

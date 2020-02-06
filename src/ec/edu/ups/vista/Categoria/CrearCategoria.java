@@ -28,7 +28,12 @@ public class CrearCategoria extends javax.swing.JInternalFrame {
         setLocation(a / 2, b / 2);
         setVisible(true);
         this.categoriaControlador = categoriaControlador;
+        mostrarID();
     }
+    
+    public void mostrarID(){
+        jTID.setText(String.valueOf(categoriaControlador.buscarUltimoCodigo()+1));
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,6 +78,8 @@ public class CrearCategoria extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel3.setText("Nombre:");
+
+        jTID.setEnabled(false);
 
         jToggleButton1.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jToggleButton1.setText("Guardar");

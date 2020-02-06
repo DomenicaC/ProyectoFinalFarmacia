@@ -97,6 +97,36 @@ public class CategoriaControlador {
         return listaCategoria;
     } 
     
+    public void modificar(CategoriaProducto c) throws SQLException {
+        String sql = "UPDATE\"SDF_CATEGORIAS\" SET "
+                + "\"CAT_NOMBRE\"='" + c.getNombre() + "'"
+                + "WHERE \"CAT_ID\" = " + c.getId();
+        System.out.println(sql);
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            sta.execute(sql);
+            db.desconectar();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public int buscarUltimoCodigo() {
+        int resultado = 0;
+        db.conectar();
+        try {
+            Statement sta = db.getConexionBD().createStatement();
+            ResultSet res = sta.executeQuery("SELECT MAX (\"CAT_ID\") FROM \"SDF_CATEGORIAS\"");
+            res.next();
+            resultado = res.getInt(1);
+            db.desconectar();
+        } catch (SQLException ex) {
+            System.out.println("Error en la buscarUltimoCodigo " + ex);
+        }
+        return resultado;
+    }
+    
     public void eliminar(int id){
         
     }

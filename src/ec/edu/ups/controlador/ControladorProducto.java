@@ -199,7 +199,6 @@ public class ControladorProducto {
                 + "\"PRO_COD_BARRA\"='" + p.getCodBarra() + "',"
                 + "\"PRO_NOMBRE\"='" + p.getNombre() + "',"
                 + "\"PRO_PRECIO\"=" + p.getPrecio() + ","
-                + "\"PRO_STOCK\"=" + p.getStock() + ","
                 + "\"PRO_NACIO\"='" + p.getNacionalidad() + "',"
                 + "\"SDF_UNIDADES_MEDIDAS_MED_ID\"=" + p.getUm().getId() + ","
                 + "\"SDF_CATEGORIAS_CAT_ID\"=" + p.getCp().getId() + ","

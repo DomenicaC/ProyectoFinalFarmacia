@@ -30,6 +30,7 @@ public static String x;
 
         setLocation(a / 2, b / 2);
         setVisible(true);
+        this.controladorProducto = controladorProducto;
     }
 
     /**
@@ -269,6 +270,15 @@ public static String x;
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         controladorProducto.eliminar(Integer.parseInt(jTId.getText()));
         JOptionPane.showMessageDialog(this, "Producto eliminado correctamente", "Elimonar Producto", JOptionPane.OK_OPTION);
+        jTId.setText("");
+        jTCBarra.setText("");
+        jTCategoria.setText("");
+        jTIVA.setText("");
+        jTNacional.setText("");
+        jTNombre.setText("");
+        jTPrecio.setText("");
+        jTStock.setText("");
+        jTUnidad.setText("");
         
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
