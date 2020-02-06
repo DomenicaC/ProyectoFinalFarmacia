@@ -32,7 +32,7 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
     String url = "jdbc:oracle:thin:@localhost:1521:orcl";
     //String url = "jdbc:oracle:thin:@localhost:1521:xe";
     String user = "BaseFarmacia";
-    String password = "bf1234";
+    String password = "bf123";
 
     public static String x;
     private FCabeceraControlador fCabCont;
@@ -477,7 +477,7 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
             s = cn.createStatement();
             //Ejecutamos la consulta y los datos lo almacenamos en un ResultSet
             int ruc = Integer.parseInt(txtRuc.getText());
-            rs = s.executeQuery("SELECT * FROM SDF_FACTURAS_DETALLES WHERE sdf_factura_cabeceras_fac_id = " + ruc + ";");
+            rs = s.executeQuery("SELECT * FROM SDF_FACTURAS_DETALLES WHERE sdf_factura_cabeceras_fac_id = " + ruc + "");
             System.out.println("Base: " + rs);
             //Obteniendo la informacion de las columnas que estan siendo consultadas
             ResultSetMetaData rsMd = rs.getMetaData();
