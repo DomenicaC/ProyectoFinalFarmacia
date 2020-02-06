@@ -16,6 +16,7 @@ import ec.edu.ups.personas.BuscarPer;
 import ec.edu.ups.personas.CrearPersonas;
 import ec.edu.ups.personas.EliminarPer;
 import ec.edu.ups.personas.ModificarPer;
+import ec.edu.ups.vista.Producto.BuscarPro;
 import java.awt.Desktop;
 import java.net.URI;
 import javax.swing.ImageIcon;
@@ -30,6 +31,7 @@ public class Empleado extends javax.swing.JFrame {
  private BuscarPer buscarPer;
 private ModificarPer modificarPer;
     private EliminarPer eliminarPer;
+    private BuscarPro buscarPro;
     /*private CrearEmpleado crearEmpleado;
     private BuscarEmpleado buscarEmpleado;
     private EliminarEmpleado eliminarEmpleado;    
@@ -98,10 +100,7 @@ private ModificarPer modificarPer;
         saveAsMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
         copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         contentsMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
@@ -244,29 +243,16 @@ private ModificarPer modificarPer;
         editMenu.setText("Producto");
         editMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        cutMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/elimarservicio.png"))); // NOI18N
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Crear Producto");
-        editMenu.add(cutMenuItem);
-
         copyMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         copyMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/buscarservicio.png"))); // NOI18N
         copyMenuItem.setMnemonic('y');
         copyMenuItem.setText("Buscar Producto");
+        copyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyMenuItemActionPerformed(evt);
+            }
+        });
         editMenu.add(copyMenuItem);
-
-        pasteMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        pasteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/modifi.png"))); // NOI18N
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Modificar Producto");
-        editMenu.add(pasteMenuItem);
-
-        deleteMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        deleteMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/eliminar.png"))); // NOI18N
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Eliminar Producto");
-        editMenu.add(deleteMenuItem);
 
         menuBar.add(editMenu);
 
@@ -289,12 +275,12 @@ private ModificarPer modificarPer;
 
         jMenuItem3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/listarrrr.png"))); // NOI18N
-        jMenuItem3.setText("Modificar Producto");
+        jMenuItem3.setText("Modificar Factura");
         helpMenu.add(jMenuItem3);
 
         jMenuItem4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/borrar.png"))); // NOI18N
-        jMenuItem4.setText("Eliminar Producto");
+        jMenuItem4.setText("Eliminar Factura");
         helpMenu.add(jMenuItem4);
 
         menuBar.add(helpMenu);
@@ -397,6 +383,23 @@ String x = EliminarPer.x;
         }
     }//GEN-LAST:event_saveAsMenuItemActionPerformed
 
+    private void copyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyMenuItemActionPerformed
+        // TODO add your handling code here:
+         String x = BuscarPro.x;
+        try {
+            if (x == null) {
+                if (buscarPro == null || buscarPro.isVisible() == false) {
+                    buscarPro = new BuscarPro(controladorProducto);
+                    desktop.add(buscarPro);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_copyMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -436,8 +439,6 @@ String x = EliminarPer.x;
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
     public static javax.swing.JDesktopPane desktop;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMenuItem;
@@ -453,7 +454,6 @@ String x = EliminarPer.x;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JMenuItem pasteMenuItem;
     private rojeru_san.RSLabelFecha rSLabelFecha1;
     private rojeru_san.RSLabelHora rSLabelHora1;
     private javax.swing.JMenuItem saveAsMenuItem;

@@ -7,24 +7,23 @@ package ec.edu.ups.vista.Producto;
 
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.Producto;
-import ec.edu.ups.vista.Principal.Administrador;
-import static ec.edu.ups.vista.Producto.CrearProducto.x;
+import ec.edu.ups.vista.Principal.Empleado;
 
 /**
  *
- * @author Edison
+ * @author ByronPC
  */
-public class BuscarProducto extends javax.swing.JInternalFrame {
-    public static String x;
+public class BuscarPro extends javax.swing.JInternalFrame {
+ public static String x;
     private ControladorProducto controladorProducto;
     /**
-     * Creates new form BuscarProducto
+     * Creates new form BuscarPro
      */
-    public BuscarProducto(ControladorProducto controladorProducto) {
+    public BuscarPro(ControladorProducto controladorProducto) {
         initComponents();
-         x = "x";
-        int a = Administrador.desktop.getWidth() - this.getWidth();
-        int b = Administrador.desktop.getHeight() - this.getHeight();
+        x = "x";
+        int a = Empleado.desktop.getWidth() - this.getWidth();
+        int b = Empleado.desktop.getHeight() - this.getHeight();
         this.controladorProducto = controladorProducto;
 
         setLocation(a / 2, b / 2);
@@ -40,48 +39,55 @@ public class BuscarProducto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLStock = new javax.swing.JLabel();
-        jTIVA = new javax.swing.JTextField();
-        jLNacional = new javax.swing.JLabel();
-        jTCategoria = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jTUnidad = new javax.swing.JTextField();
-        jLUnidad = new javax.swing.JLabel();
-        jTId = new javax.swing.JTextField();
-        jLCategoria = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jTPrecio = new javax.swing.JTextField();
-        jLCBarras = new javax.swing.JLabel();
-        jTNombre = new javax.swing.JTextField();
         jLID = new javax.swing.JLabel();
-        jLNombre = new javax.swing.JLabel();
-        jTCBarra = new javax.swing.JTextField();
-        jTNacional = new javax.swing.JTextField();
-        jLPrecio = new javax.swing.JLabel();
-        jTStock = new javax.swing.JTextField();
+        jTId = new javax.swing.JTextField();
         jToggleButton3 = new javax.swing.JToggleButton();
+        jLCBarras = new javax.swing.JLabel();
+        jTCBarra = new javax.swing.JTextField();
+        jLNombre = new javax.swing.JLabel();
+        jTNombre = new javax.swing.JTextField();
+        jLPrecio = new javax.swing.JLabel();
+        jTPrecio = new javax.swing.JTextField();
+        jLStock = new javax.swing.JLabel();
+        jTStock = new javax.swing.JTextField();
+        jLNacional = new javax.swing.JLabel();
+        jTNacional = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jTIVA = new javax.swing.JTextField();
+        jLUnidad = new javax.swing.JLabel();
+        jTUnidad = new javax.swing.JTextField();
+        jLCategoria = new javax.swing.JLabel();
+        jTCategoria = new javax.swing.JTextField();
+        jToggleButton2 = new javax.swing.JToggleButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameClosing(evt);
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel2.setText("Buscar Producto");
+        jLabel2.setAutoscrolls(true);
+
+        jLID.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jLID.setText("Id:");
+
+        jToggleButton3.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
+        jToggleButton3.setText("Buscar");
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
             }
         });
+
+        jLCBarras.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jLCBarras.setText("Codigo De Barras:");
+
+        jLNombre.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jLNombre.setText("Nombre:");
+
+        jLPrecio.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jLPrecio.setText("Precio:");
 
         jLStock.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLStock.setText("Stock:");
@@ -99,35 +105,11 @@ public class BuscarProducto extends javax.swing.JInternalFrame {
         jLCategoria.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLCategoria.setText("Categoria:");
 
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel2.setText("Buscar Producto");
-        jLabel2.setAutoscrolls(true);
-
         jToggleButton2.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jToggleButton2.setText("Cancelar");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
-            }
-        });
-
-        jLCBarras.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        jLCBarras.setText("Codigo De Barras:");
-
-        jLID.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        jLID.setText("Id:");
-
-        jLNombre.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        jLNombre.setText("Nombre:");
-
-        jLPrecio.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        jLPrecio.setText("Precio:");
-
-        jToggleButton3.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
-        jToggleButton3.setText("Buscar");
-        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton3ActionPerformed(evt);
             }
         });
 
@@ -218,24 +200,12 @@ public class BuscarProducto extends javax.swing.JInternalFrame {
                             .addComponent(jTCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jTCBarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-        // TODO add your handling code here:
-        x=null;
-    }//GEN-LAST:event_formInternalFrameClosing
-
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        this.dispose();
-        x = null;
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         Producto p = controladorProducto.Buscar(Integer.parseInt(jTId.getText()));
@@ -248,6 +218,13 @@ public class BuscarProducto extends javax.swing.JInternalFrame {
         jTUnidad.setText(p.getUm().getNombre());
         jTCategoria.setText(String.valueOf(p.getCp().getNombre()));
     }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+        x = null;
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

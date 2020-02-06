@@ -9,9 +9,6 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
-  <Events>
-    <EventHandler event="internalFrameClosing" listener="javax.swing.event.InternalFrameListener" parameters="javax.swing.event.InternalFrameEvent" handler="formInternalFrameClosing"/>
-  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -35,12 +32,12 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="jLID" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jTId" min="-2" pref="166" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -48,7 +45,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLUnidad" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLCBarras" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -89,7 +86,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jLCBarras" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -127,65 +124,16 @@
                           <Component id="jTCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jTCBarra" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTCBarra" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Component id="jToggleButton2" pref="27" max="32767" attributes="0"/>
+              <Component id="jToggleButton2" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLStock">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Sitka Small" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Stock:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTIVA">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLNacional">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Sitka Small" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Nacional:"/>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTCategoria">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Sitka Small" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="IVA:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTUnidad">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLUnidad">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Sitka Small" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Unidad de Medida:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTId">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLCategoria">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Sitka Small" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Categoria:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -195,29 +143,6 @@
         <Property name="autoscrolls" type="boolean" value="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton2">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Cambria Math" size="12" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton2ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTPrecio">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLCBarras">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Sitka Small" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Codigo De Barras:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTNombre">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLID">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -226,27 +151,7 @@
         <Property name="text" type="java.lang.String" value="Id:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLNombre">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Sitka Small" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Nombre:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTCBarra">
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTNacional">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLPrecio">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Sitka Small" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Precio:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTStock">
+    <Component class="javax.swing.JTextField" name="jTId">
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButton3">
       <Properties>
@@ -257,6 +162,98 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton3ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLCBarras">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Sitka Small" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Codigo De Barras:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTCBarra">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLNombre">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Sitka Small" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Nombre:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTNombre">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLPrecio">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Sitka Small" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Precio:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTPrecio">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLStock">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Sitka Small" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Stock:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTStock">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLNacional">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Sitka Small" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Nacional:"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTNacional">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Sitka Small" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="IVA:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTIVA">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLUnidad">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Sitka Small" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Unidad de Medida:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTUnidad">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLCategoria">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Sitka Small" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Categoria:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTCategoria">
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jToggleButton2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Cambria Math" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cancelar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton2ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
