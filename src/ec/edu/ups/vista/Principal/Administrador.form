@@ -358,11 +358,20 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu9">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ec/edu/ups/imageness/agregarcate.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Categoria"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMCC">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/ec/edu/ups/imageness/agregarcat.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Crear Categoria"/>
               </Properties>
               <Events>
@@ -371,6 +380,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMBC">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/ec/edu/ups/imageness/buscarcat.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Buscar Categoria"/>
               </Properties>
               <Events>
@@ -379,6 +391,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMMC">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/ec/edu/ups/imageness/modificarcat.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Modificar Categoria"/>
               </Properties>
               <Events>

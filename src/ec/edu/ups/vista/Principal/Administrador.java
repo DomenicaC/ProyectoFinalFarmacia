@@ -491,8 +491,11 @@ public class Administrador extends javax.swing.JFrame {
 
         menuBar.add(jMenu8);
 
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/agregarcate.png"))); // NOI18N
         jMenu9.setText("Categoria");
+        jMenu9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        jMCC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/agregarcat.png"))); // NOI18N
         jMCC.setText("Crear Categoria");
         jMCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -501,6 +504,7 @@ public class Administrador extends javax.swing.JFrame {
         });
         jMenu9.add(jMCC);
 
+        jMBC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/buscarcat.png"))); // NOI18N
         jMBC.setText("Buscar Categoria");
         jMBC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -509,6 +513,7 @@ public class Administrador extends javax.swing.JFrame {
         });
         jMenu9.add(jMBC);
 
+        jMMC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/modificarcat.png"))); // NOI18N
         jMMC.setText("Modificar Categoria");
         jMMC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

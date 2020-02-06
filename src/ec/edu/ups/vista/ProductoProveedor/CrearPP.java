@@ -16,6 +16,7 @@ import ec.edu.ups.modelo.Proveedor;
 import ec.edu.ups.vista.Principal.Administrador;
 import static ec.edu.ups.vista.Principal.Administrador.desktop;
 import ec.edu.ups.vista.Producto.CrearProducto;
+
 import ec.edu.ups.vista.Proveedor.CrearProveedor;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -123,6 +124,23 @@ public class CrearPP extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setTitle("REGISTRO DE LLEGADA DE PRODUCTOS");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel4.setText("REGISTRO DE PROVEEDOR-PRODUCTO");
@@ -379,6 +397,11 @@ public class CrearPP extends javax.swing.JInternalFrame {
         this.dispose();
         x = null;
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        // TODO add your handling code here:
+        x=null;
+    }//GEN-LAST:event_formInternalFrameClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
