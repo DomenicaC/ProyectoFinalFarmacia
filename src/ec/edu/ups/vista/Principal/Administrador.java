@@ -17,6 +17,7 @@ import ec.edu.ups.empleados.CrearEmpleado;
 import ec.edu.ups.empleados.EliminarEmpleado;
 import ec.edu.ups.empleados.ModificarEmpleado;
 import ec.edu.ups.personas.BuscarPersonas;
+import ec.edu.ups.personas.CrearPersonas;
 import ec.edu.ups.personas.EliminarPersona;
 import ec.edu.ups.personas.ModificarEliminar;
 import ec.edu.ups.personas.RegistrarPersonas;
@@ -112,7 +113,7 @@ public class Administrador extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("***** FÁRMACIA FÁRMACOS ADMINISTRADOR*****");
         this.setLocationRelativeTo(null);
-
+      
     }
 
     /**
@@ -694,6 +695,8 @@ public class Administrador extends javax.swing.JFrame {
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
         // TODO add your handling code here:
+          
+        
         String x = RegistrarPersonas.x;
         try {
             if (x == null) {
@@ -706,7 +709,10 @@ public class Administrador extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }    
+        
+        
+       
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
