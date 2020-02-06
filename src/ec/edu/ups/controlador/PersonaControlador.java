@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -126,6 +127,25 @@ public class PersonaControlador {
         String sql = "UPDATE \"SDF_PERSONAS\" SET \"PER_ESTADO\" = 'I' WHERE \"PER_CEDULA\" = '" + cedula + "'";
         System.out.println("Persona Eliminada eliminada " + sql);
          db.conectar();
+        try {
+
+            Statement sta = db.getConexionBD().createStatement();
+            sta.execute(sql);
+            db.desconectar();
+
+        } catch (SQLException error) {
+
+            error.printStackTrace();
+
+        }
+    }
+    
+    public void contar(String cedula){
+       
+        String sql = "SELECT COUNT(PER_CEDULA) FROM sdf_personas a, sdf_factura_cabeceras b WHERE a.per_cedula= b.sdf_personas_per_cedula AND a.per_cedula= '" + cedula + "'";
+        System.out.println("Consulta " + sql);   
+
+        db.conectar();
         try {
 
             Statement sta = db.getConexionBD().createStatement();

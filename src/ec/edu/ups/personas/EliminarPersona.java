@@ -279,9 +279,15 @@ public class EliminarPersona extends javax.swing.JInternalFrame {
             txtuser.setText(p.getUsername());
             txtcontraseña.setText(p.getContrasenia());
             txtrol.setText(String.valueOf(p.getRol_id()));
+            
         }else{
             JOptionPane.showMessageDialog(this, "No existe la persona", "Buscar Persona", JOptionPane.OK_OPTION);
         }
+        
+        cp.contar(txtcedula.getText());
+           
+        
+       
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
