@@ -96,8 +96,9 @@ public class PersonaControlador {
         }
     }
     public void deletePer(String cedula) {
-        String sql = "DELETE FROM \"PERSONA\"WHERE \"PER_CEDULA\" = '" + cedula + "';";
-        System.out.println("Base eliminada " + sql);
+        
+        String sql = "DELETE FROM \"SDF_PERSONAS\"WHERE \"PER_CEDULA\" = '" + cedula + "';";
+        System.out.println("Persona Eliminada eliminada " + sql);
 
        /*MiBaseDatos.conectar();
         try {

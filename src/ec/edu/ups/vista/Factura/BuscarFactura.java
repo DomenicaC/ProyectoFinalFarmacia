@@ -289,6 +289,7 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
 
         txtEstado.setEditable(false);
         txtEstado.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
+        txtEstado.setEnabled(false);
 
         lblCedC6.setBackground(new java.awt.Color(255, 255, 255));
         lblCedC6.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
@@ -464,8 +465,8 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
             txtIva.setText(Double.toString(fcab.getIva()));
             txtTotal.setText(Double.toString(fcab.getTotal()));
             String est = txtEstado.getText();
-            fcab.setEstado(est.charAt(0));
-
+//            fcab.setEstado(est.charAt(0));
+        txtEstado.setText(String.valueOf(fcab.getEstado()));
             //Clientes
             txtCedC.setText(String.valueOf(fcab.getPer().getCedula()));
             txtApeC.setText(String.valueOf(fcab.getPer().getApellidos()));

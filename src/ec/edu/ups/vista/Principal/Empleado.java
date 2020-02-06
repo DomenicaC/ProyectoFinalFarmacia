@@ -5,6 +5,14 @@
  */
 package ec.edu.ups.vista.Principal;
 
+
+
+import ec.edu.ups.controlador.CategoriaControlador;
+import ec.edu.ups.controlador.ControladorProducto;
+import ec.edu.ups.controlador.FCabeceraControlador;
+import ec.edu.ups.controlador.PersonaControlador;
+import ec.edu.ups.controlador.UnidadesControlador;
+import ec.edu.ups.personas.CrearPersonas;
 import java.awt.Desktop;
 import java.net.URI;
 import javax.swing.ImageIcon;
@@ -15,13 +23,46 @@ import javax.swing.JOptionPane;
  * @author ByronPC
  */
 public class Empleado extends javax.swing.JFrame {
-
+ private CrearPersonas crearPersonas;  
+    /*private BuscarPersonas buscarPersonas;
+    private ModificarEliminar modificarEliminar;
+    private EliminarPersona eliminarPersona;
+    private CrearEmpleado crearEmpleado;
+    private BuscarEmpleado buscarEmpleado;
+    private EliminarEmpleado eliminarEmpleado;    
+    private ModificarEmpleado modificarEmpleado;
+    private CrearProducto crearProducto;
+    private BuscarProducto buscarProducto;
+    private ModificarProducto modificarProducto;
+    private EliminarProducto eliminarProducto;
+    private CrearFactura crearFactura;
+    private BuscarFactura buscarFactura;
+    private AnularFactura anularFactura;
+    private CrearCategoria crearCategoria;
+    private BuscarCategoria buscarCategoria;
+    private ModificarCategoria modificarCategoria;
+    private EliminarCategoria eliminarCategoria;*/
+    
+//  ------------------------CONTROLADORES---------------------------
+      private PersonaControlador personaControlador;
+      private ControladorProducto controladorProducto;
+      private FCabeceraControlador fCabeceraControlador;
+      private CategoriaControlador categoriaControlador;
+      private ControladorProducto controladorProducto1;
+      private UnidadesControlador unidadesControlador;
+      String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+    String user = "BaseFarmacia";
+    String password = "bf123";
     /**
      * Creates new form Empleado
      */
     public Empleado() {
         initComponents();
-        dektop.setBorder(new FondoEs());
+        personaControlador=new PersonaControlador(url, user, password);
+        categoriaControlador = new CategoriaControlador(url, user, password);
+        controladorProducto = new ControladorProducto(url, user, password);
+        unidadesControlador = new UnidadesControlador(url, user, password);
+        desktop.setBorder(new FondoEs());
         this.setIconImage(new ImageIcon(("src/ec/edu/ups/imageness/escudo.png")).getImage());         
         this.setExtendedState(Administrador.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
@@ -40,7 +81,7 @@ public class Empleado extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        dektop = new javax.swing.JDesktopPane();
+        desktop = new javax.swing.JDesktopPane();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
@@ -97,48 +138,48 @@ public class Empleado extends javax.swing.JFrame {
             }
         });
 
-        dektop.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        dektop.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        dektop.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        dektop.setLayer(rSLabelFecha1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        dektop.setLayer(rSLabelHora1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        dektop.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(rSLabelFecha1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(rSLabelHora1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        desktop.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout dektopLayout = new javax.swing.GroupLayout(dektop);
-        dektop.setLayout(dektopLayout);
-        dektopLayout.setHorizontalGroup(
-            dektopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dektopLayout.createSequentialGroup()
+        javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
+        desktop.setLayout(desktopLayout);
+        desktopLayout.setHorizontalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(desktopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(dektopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dektopLayout.createSequentialGroup()
-                        .addGroup(dektopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(desktopLayout.createSequentialGroup()
+                        .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                        .addGroup(dektopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rSLabelFecha1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(rSLabelHora1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dektopLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addContainerGap())))
         );
-        dektopLayout.setVerticalGroup(
-            dektopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dektopLayout.createSequentialGroup()
+        desktopLayout.setVerticalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(desktopLayout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addGroup(dektopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dektopLayout.createSequentialGroup()
+                .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6))
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dektopLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
                         .addComponent(rSLabelHora1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rSLabelFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -153,6 +194,11 @@ public class Empleado extends javax.swing.JFrame {
         openMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/crearcliente.png"))); // NOI18N
         openMenuItem.setMnemonic('o');
         openMenuItem.setText("Crear Cliente");
+        openMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(openMenuItem);
 
         saveMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -248,12 +294,12 @@ public class Empleado extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(dektop)
+                .addComponent(desktop)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dektop)
+            .addComponent(desktop)
         );
 
         pack();
@@ -276,6 +322,23 @@ public class Empleado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error el URL no existe");
         }   
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
+        // TODO add your handling code here:
+        String x = CrearPersonas.x;
+        try {
+            if (x == null) {
+                if (crearPersonas == null || crearPersonas.isVisible() == false) {
+                    crearPersonas = new CrearPersonas(personaControlador);
+                    desktop.add(crearPersonas);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_openMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,8 +380,8 @@ public class Empleado extends javax.swing.JFrame {
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JDesktopPane dektop;
     private javax.swing.JMenuItem deleteMenuItem;
+    public static javax.swing.JDesktopPane desktop;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
