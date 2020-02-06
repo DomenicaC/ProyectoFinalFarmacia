@@ -97,21 +97,22 @@ public class PersonaControlador {
     }
     public void deletePer(String cedula) {
         
-        String sql = "DELETE FROM \"SDF_PERSONAS\"WHERE \"PER_CEDULA\" = '" + cedula + "';";
+        String sql = "DELETE FROM \"SDF_PERSONAS\"WHERE \"PER_CEDULA\" = '" + cedula + "'";
         System.out.println("Persona Eliminada eliminada " + sql);
 
-       /*MiBaseDatos.conectar();
+  
+        db.conectar();
         try {
 
-            Statement sta = MiBaseDatos.getConexionBD().createStatement();
+            Statement sta = db.getConexionBD().createStatement();
             sta.execute(sql);
-            MiBaseDatos.desconectar();
+            db.desconectar();
 
         } catch (SQLException error) {
 
             error.printStackTrace();
 
-        }*/
+        }
 
     }
     /**
@@ -120,6 +121,23 @@ public class PersonaControlador {
      * @return
      * @throws Exception
      */
+    
+    public void anularPer(String cedula){
+        String sql = "UPDATE \"SDF_PERSONAS\" SET \"PER_ESTADO\" = 'I' WHERE \"PER_CEDULA\" = '" + cedula + "'";
+        System.out.println("Persona Eliminada eliminada " + sql);
+         db.conectar();
+        try {
+
+            Statement sta = db.getConexionBD().createStatement();
+            sta.execute(sql);
+            db.desconectar();
+
+        } catch (SQLException error) {
+
+            error.printStackTrace();
+
+        }
+    }
    public Set<Personas> listaPersonas() throws Exception {
         Set<Personas> listaPersonas = new HashSet<Personas>();
         String sentenciaSQL = "SELECT * FROM \"SDF_PERSONAS\" ";

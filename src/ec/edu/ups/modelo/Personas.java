@@ -21,11 +21,12 @@ public class Personas {
     private String username;
     private String contrasenia;
     private int rol_id;
+    private char estado;
 
     public Personas() {
     }
 
-    public Personas(String cedula, String nombres, String apellidos, String direccion, String telefono, String username, String contrasenia, int rol_id) {
+    public Personas(String cedula, String nombres, String apellidos, String direccion, String telefono, String username, String contrasenia, int rol_id, char estado) {
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -34,7 +35,10 @@ public class Personas {
         this.username = username;
         this.contrasenia = contrasenia;
         this.rol_id = rol_id;
+        this.estado = estado;
     }
+
+  
 
     public String getCedula() {
         return cedula;
@@ -98,6 +102,14 @@ public class Personas {
 
     public void setRol_id(int rol_id) {
         this.rol_id = rol_id;
+    }
+
+    public char getEstado() {
+        return estado;
+    }
+
+    public void setEstado(char estado) {
+        this.estado = estado;
     }
     
     

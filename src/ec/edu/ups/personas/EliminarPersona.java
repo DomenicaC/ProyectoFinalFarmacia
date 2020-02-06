@@ -152,6 +152,11 @@ public class EliminarPersona extends javax.swing.JInternalFrame {
 
         jButton4.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jButton4.setText("Anular Persona");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -281,20 +286,22 @@ public class EliminarPersona extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JPasswordField admin = new JPasswordField();
+     JPasswordField admin = new JPasswordField();
       
 if(JOptionPane.showConfirmDialog(null, admin, "Ingrese contraseña para eliminar",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION){
     
 }
      
+   
      String cedula = txtcedula.getText();
      Personas personas= personaControlador.BuscaarPersona(cedula);
          int codigo = personas.getRol_id();
           if (personas == null) {
             JOptionPane.showMessageDialog(null, "Cliente no ha sido registrado");
         } else {
-         JOptionPane.showMessageDialog(null, "El cliente ha sido eliminado");
-         personaControlador.deletePer(String.valueOf(codigo));
+         JOptionPane.showMessageDialog(null, "El cliente ha sido Eliminado");
+         
+         personaControlador.deletePer(cedula);
         txtcedula.setText("");
         txtnombres.setText("");
         txtdireccion.setText("");
@@ -306,6 +313,35 @@ if(JOptionPane.showConfirmDialog(null, admin, "Ingrese contraseña para eliminar
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+           JPasswordField admin = new JPasswordField();
+      
+if(JOptionPane.showConfirmDialog(null, admin, "Ingrese contraseña para eliminar",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION){
+    
+}
+     
+    char estado = 'I';
+     String cedula = txtcedula.getText();
+     Personas personas= personaControlador.BuscaarPersona(cedula);
+         int codigo = personas.getRol_id();
+          if (personas == null) {
+            JOptionPane.showMessageDialog(null, "Cliente no ha sido registrado");
+        } else {
+         JOptionPane.showMessageDialog(null, "El cliente ha sido anulado");
+         personas.setEstado(estado);
+         personaControlador.anularPer(String.valueOf(cedula));
+        txtcedula.setText("");
+        txtnombres.setText("");
+        txtdireccion.setText("");
+        txtrol.setText("");
+        txttelefono.setText("");
+        txtapellido.setText("");
+        txtuser.setText("");
+        txtcontraseña.setText("");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
