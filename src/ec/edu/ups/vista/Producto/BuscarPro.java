@@ -64,6 +64,23 @@ public class BuscarPro extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel2.setText("Buscar Producto");
@@ -83,27 +100,51 @@ public class BuscarPro extends javax.swing.JInternalFrame {
         jLCBarras.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLCBarras.setText("Codigo De Barras:");
 
+        jTCBarra.setEditable(false);
+        jTCBarra.setEnabled(false);
+
         jLNombre.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLNombre.setText("Nombre:");
+
+        jTNombre.setEditable(false);
+        jTNombre.setEnabled(false);
 
         jLPrecio.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLPrecio.setText("Precio:");
 
+        jTPrecio.setEditable(false);
+        jTPrecio.setEnabled(false);
+
         jLStock.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLStock.setText("Stock:");
+
+        jTStock.setEditable(false);
+        jTStock.setEnabled(false);
 
         jLNacional.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLNacional.setText("Nacional:");
         jLNacional.setToolTipText("");
 
+        jTNacional.setEditable(false);
+        jTNacional.setEnabled(false);
+
         jLabel1.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel1.setText("IVA:");
+
+        jTIVA.setEditable(false);
+        jTIVA.setEnabled(false);
 
         jLUnidad.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLUnidad.setText("Unidad de Medida:");
 
+        jTUnidad.setEditable(false);
+        jTUnidad.setEnabled(false);
+
         jLCategoria.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLCategoria.setText("Categoria:");
+
+        jTCategoria.setEditable(false);
+        jTCategoria.setEnabled(false);
 
         jToggleButton2.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jToggleButton2.setText("Cancelar");
@@ -225,6 +266,11 @@ public class BuscarPro extends javax.swing.JInternalFrame {
         this.dispose();
         x = null;
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        // TODO add your handling code here:
+        x=null;
+    }//GEN-LAST:event_formInternalFrameClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

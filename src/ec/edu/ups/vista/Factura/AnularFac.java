@@ -7,54 +7,40 @@ package ec.edu.ups.vista.Factura;
 
 import ec.edu.ups.controlador.FCabeceraControlador;
 import ec.edu.ups.controlador.FDetalleControlador;
-import ec.edu.ups.vista.Principal.Administrador;
 import ec.edu.ups.modelo.FCabecera;
 import ec.edu.ups.modelo.FDetalle;
-import ec.edu.ups.modelo.Personas;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
+import ec.edu.ups.vista.Principal.Empleado;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import java.sql.*;
 
 /**
  *
- * @author Domenica
+ * @author ByronPC
  */
-public class BuscarFactura extends javax.swing.JInternalFrame {
+public class AnularFac extends javax.swing.JInternalFrame {
+ public static String x;
+    private FCabeceraControlador fCabContr;
 
     String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-    //String url = "jdbc:oracle:thin:@localhost:1521:xe";
     String user = "BaseFarmacia";
-    String password = "bf123";
-
-    public static String x;
-    private FCabeceraControlador fCabCont;
-    private FCabecera fcab;
+    String password = "bf1234";
+    private FCabeceraControlador fCabeceraControlador = new FCabeceraControlador(url, user, password);
+    private FCabecera fcab = new FCabecera();
     private FDetalleControlador fdetc = new FDetalleControlador(url, user, password);
-
-    static Connection cn;
-    static Statement s;
-    static ResultSet rs;
-
     /**
-     * Creates new form BuscarFactura
+     * Creates new form AnularFac
      */
-    public BuscarFactura(FCabeceraControlador fCabeceraControlador) {
+    public AnularFac(FCabeceraControlador fCabeceraControlador) {
         initComponents();
         x = "x";
-        int a = Administrador.desktop.getWidth() - this.getWidth();
-        int b = Administrador.desktop.getHeight() - this.getHeight();
+        int a = Empleado.desktop.getWidth() - this.getWidth();
+        int b = Empleado.desktop.getHeight() - this.getHeight();
 
         setLocation(a / 2, b / 2);
         setVisible(true);
-
+        this.fCabeceraControlador = fCabeceraControlador;
     }
 
     /**
@@ -66,8 +52,6 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         lblCedC5 = new javax.swing.JLabel();
@@ -94,16 +78,14 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
         lblSub = new javax.swing.JLabel();
         txtSubtotal = new javax.swing.JTextField();
         lblIva = new javax.swing.JLabel();
-        btnBuscarFac = new javax.swing.JButton();
         txtEstado = new javax.swing.JTextField();
         lblCedC6 = new javax.swing.JLabel();
-
-        jMenuItem1.setText("jMenuItem1");
+        btnBuscar = new javax.swing.JButton();
+        btnAnular = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setPreferredSize(new java.awt.Dimension(758, 769));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -121,8 +103,6 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
-
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 800));
 
         jPanel1.setMinimumSize(new java.awt.Dimension(450, 500));
 
@@ -266,10 +246,10 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
 
         tblServF.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {}
+                {null, "0", null, null, null, null}
             },
             new String [] {
-
+                "codigo", "cantidad", "nombre", "precio u", "IvaProducto", "totalIP"
             }
         ));
         tblServF.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -291,21 +271,27 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
         lblIva.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         lblIva.setText("I.V.A");
 
-        btnBuscarFac.setFont(new java.awt.Font("Cambria Math", 1, 14)); // NOI18N
-        btnBuscarFac.setText("Buscar");
-        btnBuscarFac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarFacActionPerformed(evt);
-            }
-        });
-
-        txtEstado.setEditable(false);
         txtEstado.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
-        txtEstado.setEnabled(false);
 
         lblCedC6.setBackground(new java.awt.Color(255, 255, 255));
         lblCedC6.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         lblCedC6.setText("Estado Factura");
+
+        btnBuscar.setFont(new java.awt.Font("Cambria Math", 1, 14)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        btnAnular.setFont(new java.awt.Font("Cambria Math", 1, 14)); // NOI18N
+        btnAnular.setText("Anular");
+        btnAnular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnularActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -317,7 +303,7 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscarFac)
+                .addComponent(btnBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblFecha)
                 .addGap(18, 18, 18)
@@ -356,11 +342,14 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(lblCedC6)
                                     .addGap(18, 18, 18)
-                                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(42, 42, 42)
-                                    .addComponent(btnCancelarF)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(82, Short.MAX_VALUE))
+                                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(245, 245, 245)
+                        .addComponent(btnAnular)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelarF)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,7 +366,7 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
                             .addComponent(lblRuc)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblFecha)
-                                .addComponent(btnBuscarFac)))))
+                                .addComponent(btnBuscar)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -396,66 +385,66 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
                         .addGap(6, 6, 6)
                         .addComponent(lblTot))
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedC6)
-                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelarF))
-                .addGap(120, 120, 120))
+                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelarF)
+                    .addComponent(btnAnular))
+                .addGap(52, 52, 52))
         );
-
-        jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+            .addGap(0, 753, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 799, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+public void llenarTabla() {
 
-    public void llenarTabla() {
+        DefaultTableModel modelo = (DefaultTableModel) tblServF.getModel();
+        List<FDetalle> lista = fcab.getDetalle();
 
-        try {
-            //Para establecer el modelo al JTable
-            DefaultTableModel modelo = new DefaultTableModel();
-            this.tblServF.setModel(modelo);
-            //Para conectarnos a nuestra base de datos
-            // String url = "jdbc:oracle:thin:@localhost:1521:XE";
-            // Establecemos los valores de cadena de conexión, usuario y contraseña
-            cn = DriverManager.getConnection(url, user, password);
-            //Para ejecutar la consulta
-            s = cn.createStatement();
-            //Ejecutamos la consulta y los datos lo almacenamos en un ResultSet
-            int ruc = Integer.parseInt(txtRuc.getText());
-            rs = s.executeQuery("SELECT * FROM SDF_FACTURAS_DETALLES WHERE sdf_factura_cabeceras_fac_id = " + ruc + "");
-            System.out.println("Base: " + rs);
-            //Obteniendo la informacion de las columnas que estan siendo consultadas
-            ResultSetMetaData rsMd = rs.getMetaData();
-            //La cantidad de columnas que tiene la consulta
-            int cantidadColumnas = rsMd.getColumnCount();
-            //Establecer como cabezeras el nombre de las colimnas
-            for (int i = 1; i <= cantidadColumnas; i++) {
-                modelo.addColumn(rsMd.getColumnLabel(i));
+        FDetalle fdet = fdetc.BuscarFacDet(Integer.parseInt(txtRuc.getText()));
+
+        if (fdet != null) {
+
+            for (int i = 0; i < lista.size(); i++) {
+
+                Object[] datos4 = {
+                    lista.get(i).getPro().getId(),
+                    lista.get(i).getCant(),
+                    lista.get(i).getPro().getNombre(),
+                    lista.get(i).getPro().getPrecio(),
+                    lista.get(i).getIvaPro(),
+                    lista.get(i).getTotalCP()
+                };
+                modelo.addRow(datos4);
             }
-            //Creando las filas para el JTable
-            while (rs.next()) {
-                Object[] fila = new Object[cantidadColumnas];
-                for (int i = 0; i < cantidadColumnas; i++) {
-                    fila[i] = rs.getObject(i + 1);
-                }
-                modelo.addRow(fila);
-            }
-            rs.close();
-            cn.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+
+        } else {
+
+            JOptionPane.showMessageDialog(this, "El codigo no existe en la base de datos");
+
         }
 
     }
@@ -469,38 +458,17 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
         }
 
     }
+    private void btnCancelarFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarFActionPerformed
+        this.setVisible(false);
+        this.dispose();
+        x = null;
+    }//GEN-LAST:event_btnCancelarFActionPerformed
 
-    public void bloquear() {
+    private void tblServFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblServFKeyReleased
 
-        txtEstado.setEnabled(true);
-        txtApeC.setEnabled(true);
-        txtCedC.setEnabled(true);
-        txtDirC.setEnabled(true);
-        txtFecha.setEnabled(true);
-        txtIva.setEnabled(true);
-        txtNomC.setEnabled(true);
-        txtNomC.setEnabled(true);
-        txtSubtotal.setEnabled(true);
-        txtTelC.setEnabled(true);
-        txtTotal.setEnabled(true);
-        tblServF.setEnabled(true);
+    }//GEN-LAST:event_tblServFKeyReleased
 
-        txtEstado.setEditable(true);
-        txtApeC.setEditable(true);
-        txtCedC.setEditable(true);
-        txtDirC.setEditable(true);
-        txtFecha.setEditable(true);
-        txtIva.setEditable(true);
-        txtNomC.setEditable(true);
-        txtNomC.setEditable(true);
-        txtSubtotal.setEditable(true);
-        txtTelC.setEditable(true);
-        txtTotal.setEditable(true);
-        // tblServF.setEditable(true);
-
-    }
-
-    private void btnBuscarFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFacActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
         FCabeceraControlador FCaCon = new FCabeceraControlador(url, user, password);
         FCabecera fcab = new FCabecera();
@@ -514,7 +482,7 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
             txtIva.setText(Double.toString(fcab.getIva()));
             txtTotal.setText(Double.toString(fcab.getTotal()));
             //  String est = txtEstado.getText();
-//            fcab.setEstado(est.charAt(0));
+            //            fcab.setEstado(est.charAt(0));
             txtEstado.setText(String.valueOf(fcab.getEstado()));
             //Clientes
             txtCedC.setText(String.valueOf(fcab.getPer().getCedula()));
@@ -525,50 +493,68 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
 
             //Llenar Factura Detalle
             vaciarTabla();
-            llenarTabla();
-
-            String est = txtEstado.getText();
-            if (est.charAt(0) == 'F') {
-
-                JOptionPane.showMessageDialog(this, "Esta factura esta Anulada");
-                bloquear();
-                
-            }
-
+            //llenarTabla();
         } else {
 
             JOptionPane.showMessageDialog(this, "El RUC no existe en la base de datos");
 
         }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
 
-    }//GEN-LAST:event_btnBuscarFacActionPerformed
+        //factura
+        //agregarDatos Factura Cabecera
+        FCabeceraControlador fcabc = new FCabeceraControlador(url, user, password);
+        int ruc = Integer.parseInt(txtRuc.getText());
+        char estado = 'F';
+        fcab.setRuc(ruc);
+        fcab.setEstado(estado);
+        String est = txtEstado.getText();
+        fcab.setEstado(est.charAt(0));
+        try {
 
-    private void btnCancelarFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarFActionPerformed
+            fcabc.modificar(fcab);
 
-        this.setVisible(false);
-        this.dispose();
-        x = null;
+        } catch (SQLException ex) {
 
-    }//GEN-LAST:event_btnCancelarFActionPerformed
+            ex.printStackTrace();
 
-    private void tblServFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblServFKeyReleased
+        }
+        JOptionPane.showMessageDialog(this, "Factura Anulada con exito", "Anular Factura", JOptionPane.OK_OPTION);
 
-    }//GEN-LAST:event_tblServFKeyReleased
+        bloquear();
+
+    }//GEN-LAST:event_btnAnularActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         // TODO add your handling code here:
-        x = null;
+        x=null;
     }//GEN-LAST:event_formInternalFrameClosing
+public void bloquear() {
 
+        txtEstado.setEnabled(true);
+        txtApeC.setEnabled(true);
+        txtCedC.setEnabled(true);
+        txtDirC.setEnabled(true);
+        txtFecha.setEnabled(true);
+        txtIva.setEnabled(true);
+        txtNomC.setEnabled(true);
+        txtNomC.setEnabled(true);
+        txtRuc.setEnabled(true);
+        txtSubtotal.setEnabled(true);
+        txtTelC.setEnabled(true);
+        txtTotal.setEnabled(true);
+        tblServF.setEnabled(true);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarFac;
+    private javax.swing.JButton btnAnular;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelarF;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblApeC5;
     private javax.swing.JLabel lblCedC5;

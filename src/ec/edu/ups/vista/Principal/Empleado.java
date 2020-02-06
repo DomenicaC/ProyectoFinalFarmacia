@@ -16,6 +16,9 @@ import ec.edu.ups.personas.BuscarPer;
 import ec.edu.ups.personas.CrearPersonas;
 import ec.edu.ups.personas.EliminarPer;
 import ec.edu.ups.personas.ModificarPer;
+import ec.edu.ups.vista.Factura.AnularFac;
+import ec.edu.ups.vista.Factura.BuscarFac;
+import ec.edu.ups.vista.Factura.CrearFac;
 import ec.edu.ups.vista.Producto.BuscarPro;
 import java.awt.Desktop;
 import java.net.URI;
@@ -32,6 +35,9 @@ public class Empleado extends javax.swing.JFrame {
 private ModificarPer modificarPer;
     private EliminarPer eliminarPer;
     private BuscarPro buscarPro;
+    private CrearFac crearFac;   
+    private BuscarFac buscarFac;
+    private AnularFac anularFac;
     /*private CrearEmpleado crearEmpleado;
     private BuscarEmpleado buscarEmpleado;
     private EliminarEmpleado eliminarEmpleado;    
@@ -104,7 +110,6 @@ private ModificarPer modificarPer;
         helpMenu = new javax.swing.JMenu();
         contentsMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
@@ -173,7 +178,7 @@ private ModificarPer modificarPer;
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopLayout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,22 +270,32 @@ private ModificarPer modificarPer;
         contentsMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/listar.png"))); // NOI18N
         contentsMenuItem.setMnemonic('c');
         contentsMenuItem.setText("Crear Factura");
+        contentsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contentsMenuItemActionPerformed(evt);
+            }
+        });
         helpMenu.add(contentsMenuItem);
 
         aboutMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/buscar.png"))); // NOI18N
         aboutMenuItem.setMnemonic('a');
         aboutMenuItem.setText("Buscar Factura");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
         helpMenu.add(aboutMenuItem);
-
-        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/listarrrr.png"))); // NOI18N
-        jMenuItem3.setText("Modificar Factura");
-        helpMenu.add(jMenuItem3);
 
         jMenuItem4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/borrar.png"))); // NOI18N
         jMenuItem4.setText("Eliminar Factura");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         helpMenu.add(jMenuItem4);
 
         menuBar.add(helpMenu);
@@ -400,6 +415,59 @@ String x = EliminarPer.x;
         }
     }//GEN-LAST:event_copyMenuItemActionPerformed
 
+    private void contentsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentsMenuItemActionPerformed
+        // TODO add your handling code here:
+         String x = CrearFac.x;
+        try {
+            if (x == null) {
+                if (crearFac == null || crearFac.isVisible() == false) {
+                    crearFac = new CrearFac(fCabeceraControlador);
+                    desktop.add(crearFac);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        
+    }//GEN-LAST:event_contentsMenuItemActionPerformed
+
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+        // TODO add your handling code here:
+         String x = BuscarFac.x;
+        try {
+            if (x == null) {
+                if (buscarFac == null || buscarFac.isVisible() == false) {
+                    buscarFac = new BuscarFac(fCabeceraControlador);
+                    desktop.add(buscarFac);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_aboutMenuItemActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        String x = AnularFac.x;
+        try {
+            if (x == null) {
+                if (anularFac == null || anularFac.isVisible() == false) {
+                    anularFac = new AnularFac(fCabeceraControlador);
+                    desktop.add(anularFac);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -449,7 +517,6 @@ String x = EliminarPer.x;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuBar menuBar;

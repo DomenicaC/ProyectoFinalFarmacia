@@ -9,6 +9,9 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="internalFrameClosing" listener="javax.swing.event.InternalFrameListener" parameters="javax.swing.event.InternalFrameEvent" handler="formInternalFrameClosing"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -173,6 +176,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTCBarra">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLNombre">
       <Properties>
@@ -183,6 +190,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTNombre">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLPrecio">
       <Properties>
@@ -193,6 +204,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTPrecio">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLStock">
       <Properties>
@@ -203,6 +218,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTStock">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLNacional">
       <Properties>
@@ -214,6 +233,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTNacional">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -224,6 +247,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTIVA">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLUnidad">
       <Properties>
@@ -234,6 +261,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTUnidad">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLCategoria">
       <Properties>
@@ -244,6 +275,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTCategoria">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButton2">
       <Properties>
