@@ -35,7 +35,7 @@ public class AnularFactura extends javax.swing.JInternalFrame {
     String url = "jdbc:oracle:thin:@localhost:1521:orcl";
     //String url = "jdbc:oracle:thin:@localhost:1521:xe";
     String user = "BaseFarmacia";
-    String password = "bf1234";
+    String password = "bf123";
     private FCabeceraControlador fCabeceraControlador = new FCabeceraControlador(url, user, password);
     private FCabecera fcab = new FCabecera();
     private FDetalleControlador fdetc = new FDetalleControlador(url, user, password);
