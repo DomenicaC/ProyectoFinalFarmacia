@@ -452,64 +452,6 @@ public class AnularFactura extends javax.swing.JInternalFrame {
 
     private void tblServFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblServFKeyReleased
 
-        /*int key = evt.getKeyCode();
-        if (key == KeyEvent.VK_ENTER) {
-            int fila = tblServF.getSelectedRow();
-            int columna = tblServF.getSelectedColumn();
-            int codigoServ = 0;
-
-            Object[] datos1 = {"", 0, "", "", ""};
-
-            if (columna == 0) {
-                codigoServ = Integer.parseInt(tblServF.getValueAt(fila, columna).toString());
-                servicio = controladorServicio.read(codigoServ);
-
-                int cant = Integer.parseInt(tblServF.getValueAt(fila, 1).toString());
-
-                tablaF = (DefaultTableModel) tblServF.getModel();
-                tablaF.removeRow(fila);
-                totalCP = cant * servicio.getPrecio();
-
-                Object[] datos = {codigoServ,
-                    cant,
-                    servicio.getNombreservicio(),
-                    servicio.getPrecio(),
-                    totalCP
-                };
-
-                tablaF.addRow(datos);
-                tablaF.addRow(datos1);
-            } else if (columna == 1) {
-
-                codigoServ = Integer.parseInt(tblServF.getValueAt(fila, columna - 1).toString());
-                int cant = Integer.parseInt(tblServF.getValueAt(fila, columna).toString());
-                tablaF.removeRow(fila);
-                tablaF.removeRow(tblServF.getRowCount() - 1);
-
-                totalCP = cant * servicio.getPrecio();
-
-                Object[] datos = {codigoServ,
-                    cant,
-                    servicio.getNombreservicio(),
-                    servicio.getPrecio(),
-                    totalCP
-                };
-
-                tablaF.addRow(datos);
-                tablaF.addRow(datos1);
-
-            }
-
-            subtotal = subtotal + totalCP;
-            txtSubtotal.setText(String.valueOf(subtotal));
-
-            iva = subtotal * 0.12;
-            txtIva.setText(String.valueOf(iva));
-
-            total = subtotal + iva;
-            txtTotal.setText(String.valueOf(total));
-
-        }*/
     }//GEN-LAST:event_tblServFKeyReleased
 
     private void btnBuscarCFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCFActionPerformed

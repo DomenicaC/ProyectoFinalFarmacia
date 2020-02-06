@@ -95,14 +95,14 @@ public class FDetalleControlador {
 
     }
 
-    public FDetalle BuscarFacDet(int codigo) {
+     public FDetalle BuscarFacDet(int codigo) {
 
         FDetalle facDet = new FDetalle();
 
         try {
 
-            String sql = "SELECT * FROM \"SDF_FACTURAS_DETALLES\"WHERE\"codigo\"= " + codigo + "";
-            System.out.println("BASE" + sql);
+            String sql = "SELECT * FROM \"SDF_FACTURAS_DETALLES\"WHERE sdf_factura_cabeceras_fac_id = " + codigo + ";";
+            System.out.println("BASE " + sql);
 
             db.conectar();
             Statement sta = db.getConexionBD().createStatement();
@@ -110,11 +110,18 @@ public class FDetalleControlador {
 
             while (res.next()) {
 
-                facDet.setCodigo(codigo);
-                facDet.setCant(res.getInt("cantidad"));
-                facDet.setTotalCP(res.getDouble("total"));
+               // facDet.setCodigo(codigo);
+                facDet.setCodPro(res.getInt("sdf_productos_pro_id"));
+                facDet.setCant(res.getInt("fdt_cantidad"));
+                //facDet.set
+                //facDet.set
+                facDet.setIvaPro(res.getDouble("fdt_precio_iva"));
+                facDet.setTotalCP(res.getDouble("fdt_total"));
 
-            }
+            }/*    fdt_precio_pro
+            fdt_precio_iva
+            fdt_total
+            sdf_factura_cabeceras_fac_id*/
             res.close();
             sta.close();
             db.desconectar();
@@ -125,6 +132,7 @@ public class FDetalleControlador {
         return facDet;
 
     }
+
 
     /*  public FDetalle BuscarFacCab1(int codigo) {
 

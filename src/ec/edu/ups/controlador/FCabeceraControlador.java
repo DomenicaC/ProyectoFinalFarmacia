@@ -109,8 +109,8 @@ public class FCabeceraControlador {
 
         try {
 
-            String sql = "SELECT * FROM \"SDF_FACTURA_CABECERAS\"WHERE\"fac_id\"= " + ruc + "";
-            System.out.println("BASE" + sql);
+            String sql = "SELECT * FROM \"SDF_FACTURA_CABECERAS\" WHERE fac_id = " + ruc + "";
+            System.out.println("BASE: " + sql);
 
             db.conectar();
             Statement sta = db.getConexionBD().createStatement();
@@ -139,6 +139,7 @@ public class FCabeceraControlador {
         return facCab;
 
     }
+
 /*
     public FCabecera BuscarFacCab1(int ruc) {
 

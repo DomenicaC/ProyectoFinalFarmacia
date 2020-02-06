@@ -802,6 +802,7 @@ public class CrearFactura extends javax.swing.JInternalFrame {
 
         vaciarDatos();
         vaciarTabla();
+        
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
