@@ -9,9 +9,13 @@ import ec.edu.ups.controlador.FCabeceraControlador;
 import ec.edu.ups.controlador.FDetalleControlador;
 import ec.edu.ups.modelo.FCabecera;
 import ec.edu.ups.modelo.FDetalle;
-import static ec.edu.ups.vista.Factura.BuscarFactura.x;
 import ec.edu.ups.vista.Principal.Administrador;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,11 +33,16 @@ public class AnularFactura extends javax.swing.JInternalFrame {
     private FCabeceraControlador fCabContr;
 
     String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+    //String url = "jdbc:oracle:thin:@localhost:1521:xe";
     String user = "BaseFarmacia";
     String password = "bf1234";
     private FCabeceraControlador fCabeceraControlador = new FCabeceraControlador(url, user, password);
     private FCabecera fcab = new FCabecera();
     private FDetalleControlador fdetc = new FDetalleControlador(url, user, password);
+    
+    static Connection cn;
+    static Statement s;
+    static ResultSet rs;
 
     /**
      * Creates new form AnularFactura
@@ -434,30 +443,40 @@ public class AnularFactura extends javax.swing.JInternalFrame {
 
     public void llenarTabla() {
 
-        DefaultTableModel modelo = (DefaultTableModel) tblServF.getModel();
-        List<FDetalle> lista = fcab.getDetalle();
-
-        FDetalle fdet = fdetc.BuscarFacDet(Integer.parseInt(txtRuc.getText()));
-
-        if (fdet != null) {
-
-            for (int i = 0; i < lista.size(); i++) {
-
-                Object[] datos4 = {
-                    lista.get(i).getPro().getId(),
-                    lista.get(i).getCant(),
-                    lista.get(i).getPro().getNombre(),
-                    lista.get(i).getPro().getPrecio(),
-                    lista.get(i).getIvaPro(),
-                    lista.get(i).getTotalCP()
-                };
-                modelo.addRow(datos4);
+        try {
+            //Para establecer el modelo al JTable
+            DefaultTableModel modelo = new DefaultTableModel();
+            this.tblServF.setModel(modelo);
+            //Para conectarnos a nuestra base de datos
+            // String url = "jdbc:oracle:thin:@localhost:1521:XE";
+            // Establecemos los valores de cadena de conexión, usuario y contraseña
+            cn = DriverManager.getConnection(url, user, password);
+            //Para ejecutar la consulta
+            s = cn.createStatement();
+            //Ejecutamos la consulta y los datos lo almacenamos en un ResultSet
+            int ruc = Integer.parseInt(txtRuc.getText());
+            rs = s.executeQuery("SELECT * FROM SDF_FACTURAS_DETALLES WHERE sdf_factura_cabeceras_fac_id = " + ruc + "");
+            System.out.println("Base: " + rs);
+            //Obteniendo la informacion de las columnas que estan siendo consultadas
+            ResultSetMetaData rsMd = rs.getMetaData();
+            //La cantidad de columnas que tiene la consulta
+            int cantidadColumnas = rsMd.getColumnCount();
+            //Establecer como cabezeras el nombre de las colimnas
+            for (int i = 1; i <= cantidadColumnas; i++) {
+                modelo.addColumn(rsMd.getColumnLabel(i));
             }
-
-        } else {
-
-            JOptionPane.showMessageDialog(this, "El codigo no existe en la base de datos");
-
+            //Creando las filas para el JTable
+            while (rs.next()) {
+                Object[] fila = new Object[cantidadColumnas];
+                for (int i = 0; i < cantidadColumnas; i++) {
+                    fila[i] = rs.getObject(i + 1);
+                }
+                modelo.addRow(fila);
+            }
+            rs.close();
+            cn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
     }
@@ -497,7 +516,7 @@ public class AnularFactura extends javax.swing.JInternalFrame {
 
             //Llenar Factura Detalle
             vaciarTabla();
-            //llenarTabla();
+            llenarTabla();
         } else {
 
             JOptionPane.showMessageDialog(this, "El RUC no existe en la base de datos");

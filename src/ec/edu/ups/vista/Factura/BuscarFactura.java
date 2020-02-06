@@ -425,46 +425,6 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
 
     public void llenarTabla() {
 
-        DefaultTableModel modelo = (DefaultTableModel) tblServF.getModel();
-        List<FDetalle> lista = fcab.getDetalle();
-
-        FDetalle fdet = fdetc.BuscarFacDet(Integer.parseInt(txtRuc.getText()));
-
-        if (fdet != null) {
-
-            for (int i = 0; i < lista.size(); i++) {
-
-                Object[] datos4 = {
-                    lista.get(i).getPro().getId(),
-                    lista.get(i).getCant(),
-                    lista.get(i).getPro().getNombre(),
-                    lista.get(i).getPro().getPrecio(),
-                    lista.get(i).getIvaPro(),
-                    lista.get(i).getTotalCP()
-                };
-                modelo.addRow(datos4);
-            }
-
-        } else {
-
-            JOptionPane.showMessageDialog(this, "El codigo no existe en la base de datos");
-
-        }
-
-    }
-
-    public void vaciarTabla() {
-
-        DefaultTableModel modelo = (DefaultTableModel) tblServF.getModel();
-        int filas = tblServF.getRowCount();
-        for (int i = 0; i < filas; i++) {
-            modelo.removeRow(0);
-        }
-
-    }
-
-    public void Tabla() {
-
         try {
             //Para establecer el modelo al JTable
             DefaultTableModel modelo = new DefaultTableModel();
@@ -503,6 +463,17 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
 
     }
 
+    public void vaciarTabla() {
+
+        DefaultTableModel modelo = (DefaultTableModel) tblServF.getModel();
+        int filas = tblServF.getRowCount();
+        for (int i = 0; i < filas; i++) {
+            modelo.removeRow(0);
+        }
+
+    }
+
+
     private void btnBuscarFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFacActionPerformed
 
         FCabeceraControlador FCaCon = new FCabeceraControlador(url, user, password);
@@ -528,7 +499,7 @@ public class BuscarFactura extends javax.swing.JInternalFrame {
 
             //Llenar Factura Detalle
             vaciarTabla();
-            Tabla();
+            llenarTabla();
             //tabla
 
         } else {
