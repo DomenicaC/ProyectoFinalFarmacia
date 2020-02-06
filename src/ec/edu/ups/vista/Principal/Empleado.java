@@ -12,7 +12,10 @@ import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.controlador.FCabeceraControlador;
 import ec.edu.ups.controlador.PersonaControlador;
 import ec.edu.ups.controlador.UnidadesControlador;
+import ec.edu.ups.personas.BuscarPer;
 import ec.edu.ups.personas.CrearPersonas;
+import ec.edu.ups.personas.EliminarPer;
+import ec.edu.ups.personas.ModificarPer;
 import java.awt.Desktop;
 import java.net.URI;
 import javax.swing.ImageIcon;
@@ -24,10 +27,10 @@ import javax.swing.JOptionPane;
  */
 public class Empleado extends javax.swing.JFrame {
  private CrearPersonas crearPersonas;  
-    /*private BuscarPersonas buscarPersonas;
-    private ModificarEliminar modificarEliminar;
-    private EliminarPersona eliminarPersona;
-    private CrearEmpleado crearEmpleado;
+ private BuscarPer buscarPer;
+private ModificarPer modificarPer;
+    private EliminarPer eliminarPer;
+    /*private CrearEmpleado crearEmpleado;
     private BuscarEmpleado buscarEmpleado;
     private EliminarEmpleado eliminarEmpleado;    
     private ModificarEmpleado modificarEmpleado;
@@ -156,7 +159,7 @@ public class Empleado extends javax.swing.JFrame {
                         .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                         .addGroup(desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rSLabelFecha1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(rSLabelHora1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,12 +208,22 @@ public class Empleado extends javax.swing.JFrame {
         saveMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/buscarcliente.png"))); // NOI18N
         saveMenuItem.setMnemonic('s');
         saveMenuItem.setText("Buscar Cliente");
+        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(saveMenuItem);
 
         saveAsMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         saveAsMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imageness/modificarcliente.png"))); // NOI18N
         saveAsMenuItem.setMnemonic('a');
         saveAsMenuItem.setText("Modificar Cliente");
+        saveAsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveAsMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(saveAsMenuItem);
 
         exitMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -292,10 +305,7 @@ public class Empleado extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(desktop)
-                .addContainerGap())
+            .addComponent(desktop)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,7 +316,20 @@ public class Empleado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-      
+String x = EliminarPer.x;
+        try {
+            if (x == null) {
+                if (eliminarPer == null || eliminarPer.isVisible() == false) {
+                    eliminarPer = new EliminarPer(url, user, password);
+                    desktop.add(eliminarPer);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -339,6 +362,40 @@ public class Empleado extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_openMenuItemActionPerformed
+
+    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
+        // TODO add your handling code here:
+            String x = BuscarPer.x;
+        try {
+            if (x == null) {
+                if (buscarPer == null || buscarPer.isVisible() == false) {
+                    buscarPer = new BuscarPer(personaControlador);
+                    desktop.add(buscarPer);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_saveMenuItemActionPerformed
+
+    private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed
+        // TODO add your handling code here:
+           String x = ModificarPer.x;
+        try {
+            if (x == null) {
+                if (modificarPer == null || modificarPer.isVisible() == false) {
+                    modificarPer = new ModificarPer(url, user, password);
+                    desktop.add(modificarPer);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "La ventana ya esta abierta");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_saveAsMenuItemActionPerformed
 
     /**
      * @param args the command line arguments

@@ -7,30 +7,28 @@ package ec.edu.ups.personas;
 
 import ec.edu.ups.controlador.PersonaControlador;
 import ec.edu.ups.modelo.Personas;
-import static ec.edu.ups.personas.RegistrarPersonas.x;
-import ec.edu.ups.vista.Principal.Administrador;
+import ec.edu.ups.vista.Principal.Empleado;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author ByronPC
  */
-public class BuscarPersonas extends javax.swing.JInternalFrame {
-    public static String x;
+public class BuscarPer extends javax.swing.JInternalFrame {
+public static String x;
     private PersonaControlador personaControlador;
      String url = "jdbc:oracle:thin:@localhost:1521:orcl";
      String user = "BaseFarmacia";
-     String password = "bf1234";
-    
+     String password = "bf123";
     /**
-     * Creates new form BuscarPersonas
+     * Creates new form BuscarPer
      */
-    public BuscarPersonas(PersonaControlador personaControlador) {
+    public BuscarPer(PersonaControlador personaControlador) {
         initComponents();
-       this.personaControlador=personaControlador;
+         this.personaControlador=personaControlador;
         x = "x";
-        int a = Administrador.desktop.getWidth() - this.getWidth();
-        int b = Administrador.desktop.getHeight() - this.getHeight();
+        int a = Empleado.desktop.getWidth() - this.getWidth();
+        int b = Empleado.desktop.getHeight() - this.getHeight();
 
         setLocation(a / 2, b / 2);
         setVisible(true);
@@ -45,52 +43,38 @@ public class BuscarPersonas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txttelefono = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        txtnombre = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtcedula = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        txtnombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         txtaoelldio = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtdireccion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        txttelefono = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         txtrol = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameClosing(evt);
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
 
-        txttelefono.setEnabled(false);
+        txtnombre.setEnabled(false);
 
-        jLabel8.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        jLabel8.setText("Rol:");
+        jLabel2.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jLabel2.setText("Nombre:");
 
         jLabel3.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel3.setText("Cédula:");
 
         txtcedula.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel1.setText("Buscar Persona");
 
         jButton1.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
         jButton1.setText("Buscar Persona");
@@ -101,27 +85,10 @@ public class BuscarPersonas extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        jLabel2.setText("Nombre:");
-
-        jButton2.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
-        jButton2.setText("Salir");
-        jButton2.setActionCommand("");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        txtnombre.setEnabled(false);
-
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel1.setText("Buscar Persona");
+        txtaoelldio.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel5.setText("Apellido:");
-
-        txtaoelldio.setEnabled(false);
 
         jLabel6.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel6.setText("Dirección:");
@@ -131,7 +98,21 @@ public class BuscarPersonas extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabel7.setText("Teléfono:");
 
+        txttelefono.setEnabled(false);
+
+        jLabel8.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jLabel8.setText("Rol:");
+
         txtrol.setEnabled(false);
+
+        jButton2.setFont(new java.awt.Font("Cambria Math", 1, 12)); // NOI18N
+        jButton2.setText("Salir");
+        jButton2.setActionCommand("");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,7 +168,7 @@ public class BuscarPersonas extends javax.swing.JInternalFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8)
-                        .addContainerGap(26, Short.MAX_VALUE))
+                        .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtcedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,34 +190,29 @@ public class BuscarPersonas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-        // TODO add your handling code here:
-        x=null;
-    }//GEN-LAST:event_formInternalFrameClosing
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        this.dispose();
-        x = null;
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:       
+        // TODO add your handling code here:
         PersonaControlador cp = new PersonaControlador(url, user, password);
         Personas p = new Personas();
         p = cp.BuscaarPersona(txtcedula.getText());
         if (p.getCedula() != null) {
             txtnombre.setText(p.getNombres());
-            txtaoelldio.setText(p.getApellidos());           
-            txtdireccion.setText(p.getDireccion()); 
+            txtaoelldio.setText(p.getApellidos());
+            txtdireccion.setText(p.getDireccion());
             txttelefono.setText(p.getTelefono());
             txtrol.setText(String.valueOf(p.getRol_id()));
         }else{
             JOptionPane.showMessageDialog(this, "No existe la persona", "Buscar Persona", JOptionPane.OK_OPTION);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+        x = null;
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
