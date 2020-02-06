@@ -140,8 +140,8 @@ public class PersonaControlador {
         }
     }
     
-    public void contar(String cedula){
-       
+    public int contar(String cedula){
+        int resultado = 0;
         String sql = "SELECT COUNT(PER_CEDULA) FROM sdf_personas a, sdf_factura_cabeceras b WHERE a.per_cedula= b.sdf_personas_per_cedula AND a.per_cedula= '" + cedula + "'";
         System.out.println("Consulta " + sql);   
 
@@ -149,7 +149,10 @@ public class PersonaControlador {
         try {
 
             Statement sta = db.getConexionBD().createStatement();
-            sta.execute(sql);
+            
+            ResultSet res=sta.executeQuery(sql);
+            res.next();
+            resultado=res.getInt(1);
             db.desconectar();
 
         } catch (SQLException error) {
@@ -157,6 +160,7 @@ public class PersonaControlador {
             error.printStackTrace();
 
         }
+        return resultado;
     }
    public Set<Personas> listaPersonas() throws Exception {
         Set<Personas> listaPersonas = new HashSet<Personas>();
