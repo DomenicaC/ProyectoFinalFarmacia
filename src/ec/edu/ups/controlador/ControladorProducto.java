@@ -181,6 +181,7 @@ public class ControladorProducto {
     
      public void modificarStock(Producto p,int cantidad) throws SQLException {
          int sumar=p.getStock()+cantidad;
+         System.out.println("11111111111 "+p.getStock()+" "+cantidad);
         String sql = "UPDATE\"SDF_PRODUCTOS\" SET "
                 + "\"PRO_STOCK\"=" +sumar
                 + " WHERE \"PRO_ID\" = " + p.getId();

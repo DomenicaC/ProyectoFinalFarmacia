@@ -962,7 +962,7 @@ public class Administrador extends javax.swing.JFrame {
         try {
             if (x == null) {
                 if (anularFactura == null || anularFactura.isVisible() == false) {
-                    anularFactura = new AnularFactura(fCabeceraControlador);
+                    anularFactura = new AnularFactura(fCabeceraControlador,controladorProducto);
                     desktop.add(anularFactura);
                 }
             } else {

@@ -5,10 +5,12 @@
  */
 package ec.edu.ups.vista.Factura;
 
+import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.controlador.FCabeceraControlador;
 import ec.edu.ups.controlador.FDetalleControlador;
 import ec.edu.ups.modelo.FCabecera;
 import ec.edu.ups.modelo.FDetalle;
+import static ec.edu.ups.vista.Factura.AnularFac.rs;
 import ec.edu.ups.vista.Principal.Administrador;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -40,17 +42,18 @@ public class AnularFactura extends javax.swing.JInternalFrame {
     private FCabeceraControlador fCabeceraControlador = new FCabeceraControlador(url, user, password);
     private FCabecera fcab = new FCabecera();
     private FDetalleControlador fdetc = new FDetalleControlador(url, user, password);
-    
+    private ControladorProducto controladorProducto;
+
     static Connection cn;
     static Statement s;
     static ResultSet rs;
-    
-    private List<String>l;
+
+    private List<String> l;
 
     /**
      * Creates new form AnularFactura
      */
-    public AnularFactura(FCabeceraControlador fCabeceraControlador) {
+    public AnularFactura(FCabeceraControlador fCabeceraControlador, ControladorProducto controladorProducto) {
         initComponents();
         x = "x";
         int a = Administrador.desktop.getWidth() - this.getWidth();
@@ -59,6 +62,7 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         setLocation(a / 2, b / 2);
         setVisible(true);
         this.fCabeceraControlador = fCabeceraControlador;
+        this.controladorProducto = controladorProducto;
         l = new ArrayList<>();
 
     }
@@ -475,8 +479,8 @@ public class AnularFactura extends javax.swing.JInternalFrame {
                 for (int i = 0; i < cantidadColumnas; i++) {
                     fila[i] = rs.getObject(i + 1);
                 }
-                l.add(rs.getInt("SDF_PRODUCTOS_PRO_ID")+" "+rs.getInt("FDT_CANTIDAD"));
-                System.out.println(rs.getInt("SDF_PRODUCTOS_PRO_ID")+" "+rs.getInt("FDT_CANTIDAD"));
+                l.add(rs.getInt("SDF_PRODUCTOS_PRO_ID") + " " + rs.getInt("FDT_CANTIDAD"));
+                //System.out.println(rs.getInt("SDF_PRODUCTOS_PRO_ID")+" "+rs.getInt("FDT_CANTIDAD"));
                 modelo.addRow(fila);
             }
             rs.close();
@@ -545,7 +549,7 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         txtTelC.setEnabled(true);
         txtTotal.setEnabled(true);
         tblServF.setEnabled(true);
-        
+
         txtEstado.setEditable(true);
         txtApeC.setEditable(true);
         txtCedC.setEditable(true);
@@ -557,30 +561,45 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         txtSubtotal.setEditable(true);
         txtTelC.setEditable(true);
         txtTotal.setEditable(true);
-       // tblServF.setEditable(true);
+        // tblServF.setEditable(true);
 
     }
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
 
         //factura
         //agregarDatos Factura Cabecera
-        FCabeceraControlador fcabc = new FCabeceraControlador(url, user, password);
-        int ruc = Integer.parseInt(txtRuc.getText());
-        char estado = 'F';
-        fcab.setRuc(ruc);
-        fcab.setEstado(estado);
-        String est = txtEstado.getText();
-        fcab.setEstado(est.charAt(0));
-        try {
+        if (txtEstado.getText().equals("T")) {
+            FCabeceraControlador fcabc = new FCabeceraControlador(url, user, password);
+            int ruc = Integer.parseInt(txtRuc.getText());
+            char estado = 'F';
+            fcab.setRuc(ruc);
+            fcab.setEstado(estado);
+            txtEstado.setText("F");
+            try {
 
-            fcabc.modificar(fcab);
+                fcabc.modificar(fcab);
 
-        } catch (SQLException ex) {
+            } catch (SQLException ex) {
 
-            ex.printStackTrace();
+                ex.printStackTrace();
 
+            }
+            for (int i = 0; i < l.size(); i++) {
+                String[] p = l.get(i).split(" ");
+                System.out.println("ii*************" + controladorProducto.Buscar(Integer.parseInt(p[0])).getId() + " " + Integer.parseInt(p[1]) + "\n");
+                try {
+                    controladorProducto.modificarStock(controladorProducto.Buscar(Integer.parseInt(p[0])),
+                            Integer.parseInt(p[1]));
+                } catch (SQLException ex) {
+                    System.out.println("mod stock");
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Factura Anulada con exito", "Anular Factura", JOptionPane.OK_OPTION);
+
+            l = null;
+        } else {
+            JOptionPane.showMessageDialog(this, "Factura ya anulada", "Anular Factura", JOptionPane.OK_OPTION);
         }
-        JOptionPane.showMessageDialog(this, "Factura Anulada con exito", "Anular Factura", JOptionPane.OK_OPTION);
 
         bloquear();
 

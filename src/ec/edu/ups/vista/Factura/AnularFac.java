@@ -466,7 +466,7 @@ public void llenarTabla() {
                 for (int i = 0; i < cantidadColumnas; i++) {
                     fila[i] = rs.getObject(i + 1);
                 }
-               // l.add(rs.getInt("SDF_PRODUCTOS_PRO_ID")+" "+rs.getInt("FDT_CANTIDAD"));
+                l.add(rs.getInt("SDF_PRODUCTOS_PRO_ID")+" "+rs.getInt("FDT_CANTIDAD"));
                 modelo.addRow(fila);
             }
             rs.close();
@@ -533,34 +533,38 @@ public void llenarTabla() {
 
         //factura
         //agregarDatos Factura Cabecera
-        FCabeceraControlador fcabc = new FCabeceraControlador(url, user, password);
-        int ruc = Integer.parseInt(txtRuc.getText());
-        char estado = 'F';
-        fcab.setRuc(ruc);
-        fcab.setEstado(estado);
-        String est = txtEstado.getText();
-        fcab.setEstado(est.charAt(0));
-        try {
-
-            fcabc.modificar(fcab);
-
-        } catch (SQLException ex) {
-
-            ex.printStackTrace();
-
-        }
-        /*System.out.println("66");
-        for (int i = 0; i < l.size(); i++) {
-            String []p = l.get(i).split(" ");
-            System.out.println("ii*************"+controladorProducto.Buscar(Integer.parseInt(p[0]))+" "+Integer.parseInt(p[1])+"\n");
+        if (txtEstado.getText().equals("T")) {
+            FCabeceraControlador fcabc = new FCabeceraControlador(url, user, password);
+            int ruc = Integer.parseInt(txtRuc.getText());
+            char estado = 'F';
+            fcab.setRuc(ruc);
+            fcab.setEstado(estado);
+            txtEstado.setText("F");
             try {
-                controladorProducto.modificarStock(controladorProducto.Buscar(Integer.parseInt(p[0])), 
-                Integer.parseInt(p[1]));
+
+                fcabc.modificar(fcab);
+
             } catch (SQLException ex) {
-                System.out.println("mod stock");
+
+                ex.printStackTrace();
+
             }
-        }*/
-        JOptionPane.showMessageDialog(this, "Factura Anulada con exito", "Anular Factura", JOptionPane.OK_OPTION);
+            for (int i = 0; i < l.size(); i++) {
+                String[] p = l.get(i).split(" ");
+                System.out.println("ii*************" + controladorProducto.Buscar(Integer.parseInt(p[0])).getId() + " " + Integer.parseInt(p[1]) + "\n");
+                try {
+                    controladorProducto.modificarStock(controladorProducto.Buscar(Integer.parseInt(p[0])),
+                            Integer.parseInt(p[1]));
+                } catch (SQLException ex) {
+                    System.out.println("mod stock");
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Factura Anulada con exito", "Anular Factura", JOptionPane.OK_OPTION);
+
+            l = null;
+        } else {
+            JOptionPane.showMessageDialog(this, "Factura ya anulada", "Anular Factura", JOptionPane.OK_OPTION);
+        }
 
         bloquear();
 

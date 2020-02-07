@@ -156,7 +156,7 @@ public class FCabeceraControlador {
      return null;
      }*/
     public void modificar(FCabecera faC) throws SQLException {
-
+        System.out.println("*******************************");
         String sql = "UPDATE \"SDF_FACTURA_CABECERAS\" SET "
                 + "FAC_ESTADO = '" + faC.getEstado() + "'"
                 + " WHERE \"FAC_ID\" = " + faC.getRuc() + "" /*+

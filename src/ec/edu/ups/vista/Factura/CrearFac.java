@@ -742,6 +742,8 @@ public class CrearFac extends javax.swing.JInternalFrame {
 
         vaciarDatos();
         vaciarTabla();
+        
+        dispose();
 
     }//GEN-LAST:event_btnCrearActionPerformed
  public void llenarDatos() {
