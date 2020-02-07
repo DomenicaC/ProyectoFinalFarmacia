@@ -3,10 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
-	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" isBold="true"/>
+	<style name="Detail" fontName="Arial"/>
 	<queryString>
 		<![CDATA[SELECT
      SDF_FACTURA_CABECERAS."FAC_ID" AS SDF_FACTURA_CABECERAS_FAC_ID,
@@ -113,15 +113,15 @@ FROM
 				<text><![CDATA[Wood SubTitle]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="115" y="5" width="333" height="56" forecolor="#000066" uuid="da0cb3db-a904-42ef-a1b0-88f2a04ea67f"/>
+				<reportElement x="122" y="6" width="333" height="56" forecolor="#000066" uuid="da0cb3db-a904-42ef-a1b0-88f2a04ea67f"/>
 				<textElement textAlignment="Center">
-					<font fontName="Kristen ITC" size="36" isUnderline="true"/>
+					<font fontName="Kristen ITC" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Registro Facturas]]></text>
 			</staticText>
 			<image>
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="-43" width="195" height="82" uuid="d95d78e5-4951-4383-aa0c-ce405ba12a0e"/>
-				<imageExpression><![CDATA["D:\\NetBeans\\Tabajos\\Farmacia\\ProyectoFinalFarmacia\\src\\ec\\edu\\ups\\imageness\\universidad-politecnica-salesiana-infodesarrollo.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="122" height="62" uuid="1ed388b1-ff07-4ce1-9ced-b3e4ed798204"/>
+				<imageExpression><![CDATA["C:\\Users\\Edison\\Documents\\NetBeansProjects\\ProyectoFinalFarmacia\\src\\ec\\edu\\ups\\imageness\\universidad-politecnica-salesiana-infodesarrollo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -266,21 +266,21 @@ FROM
 			<textField>
 				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="de6b56a6-5bf6-45c1-9ae8-11f7ca897901"/>
 				<textElement textAlignment="Right">
-					<font size="10" isBold="false"/>
+					<font isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="79019361-8f63-4545-95bf-6b8c2a78fbe5"/>
 				<textElement>
-					<font size="10" isBold="false"/>
+					<font isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="c9c7d241-9841-407e-8422-6bc614ea2812"/>
 				<textElement>
-					<font size="10" isBold="false"/>
+					<font isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>

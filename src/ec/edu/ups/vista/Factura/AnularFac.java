@@ -5,12 +5,20 @@
  */
 package ec.edu.ups.vista.Factura;
 
+import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.controlador.FCabeceraControlador;
 import ec.edu.ups.controlador.FDetalleControlador;
 import ec.edu.ups.modelo.FCabecera;
 import ec.edu.ups.modelo.FDetalle;
+import static ec.edu.ups.vista.Factura.AnularFactura.cn;
 import ec.edu.ups.vista.Principal.Empleado;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,14 +33,21 @@ public class AnularFac extends javax.swing.JInternalFrame {
 
     String url = "jdbc:oracle:thin:@localhost:1521:orcl";
     String user = "BaseFarmacia";
-    String password = "bf1234";
+    String password = "bf123";
     private FCabeceraControlador fCabeceraControlador = new FCabeceraControlador(url, user, password);
     private FCabecera fcab = new FCabecera();
     private FDetalleControlador fdetc = new FDetalleControlador(url, user, password);
+    private ControladorProducto controladorProducto;
+    
+    private List<String>l;
+    
+    static Connection cn;
+    static Statement s;
+    static ResultSet rs;
     /**
      * Creates new form AnularFac
      */
-    public AnularFac(FCabeceraControlador fCabeceraControlador) {
+    public AnularFac(FCabeceraControlador fCabeceraControlador, ControladorProducto controladorProducto) {
         initComponents();
         x = "x";
         int a = Empleado.desktop.getWidth() - this.getWidth();
@@ -41,6 +56,8 @@ public class AnularFac extends javax.swing.JInternalFrame {
         setLocation(a / 2, b / 2);
         setVisible(true);
         this.fCabeceraControlador = fCabeceraControlador;
+        this.controladorProducto = controladorProducto;
+        l = new ArrayList<>();
     }
 
     /**
@@ -421,30 +438,41 @@ public class AnularFac extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 public void llenarTabla() {
 
-        DefaultTableModel modelo = (DefaultTableModel) tblServF.getModel();
-        List<FDetalle> lista = fcab.getDetalle();
-
-        FDetalle fdet = fdetc.BuscarFacDet(Integer.parseInt(txtRuc.getText()));
-
-        if (fdet != null) {
-
-            for (int i = 0; i < lista.size(); i++) {
-
-                Object[] datos4 = {
-                    lista.get(i).getPro().getId(),
-                    lista.get(i).getCant(),
-                    lista.get(i).getPro().getNombre(),
-                    lista.get(i).getPro().getPrecio(),
-                    lista.get(i).getIvaPro(),
-                    lista.get(i).getTotalCP()
-                };
-                modelo.addRow(datos4);
+        try {
+            //Para establecer el modelo al JTable
+            DefaultTableModel modelo = new DefaultTableModel();
+            this.tblServF.setModel(modelo);
+            //Para conectarnos a nuestra base de datos
+            // String url = "jdbc:oracle:thin:@localhost:1521:XE";
+            // Establecemos los valores de cadena de conexión, usuario y contraseña
+            cn = DriverManager.getConnection(url, user, password);
+            //Para ejecutar la consulta
+            s = cn.createStatement();
+            //Ejecutamos la consulta y los datos lo almacenamos en un ResultSet
+            int ruc = Integer.parseInt(txtRuc.getText());
+            rs = s.executeQuery("SELECT * FROM SDF_FACTURAS_DETALLES WHERE sdf_factura_cabeceras_fac_id = " + ruc + "");
+            System.out.println("Base: " + rs);
+            //Obteniendo la informacion de las columnas que estan siendo consultadas
+            ResultSetMetaData rsMd = rs.getMetaData();
+            //La cantidad de columnas que tiene la consulta
+            int cantidadColumnas = rsMd.getColumnCount();
+            //Establecer como cabezeras el nombre de las colimnas
+            for (int i = 1; i <= cantidadColumnas; i++) {
+                modelo.addColumn(rsMd.getColumnLabel(i));
             }
-
-        } else {
-
-            JOptionPane.showMessageDialog(this, "El codigo no existe en la base de datos");
-
+            //Creando las filas para el JTable
+            while (rs.next()) {
+                Object[] fila = new Object[cantidadColumnas];
+                for (int i = 0; i < cantidadColumnas; i++) {
+                    fila[i] = rs.getObject(i + 1);
+                }
+               // l.add(rs.getInt("SDF_PRODUCTOS_PRO_ID")+" "+rs.getInt("FDT_CANTIDAD"));
+                modelo.addRow(fila);
+            }
+            rs.close();
+            cn.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
     }
@@ -493,7 +521,7 @@ public void llenarTabla() {
 
             //Llenar Factura Detalle
             vaciarTabla();
-            //llenarTabla();
+            llenarTabla();
         } else {
 
             JOptionPane.showMessageDialog(this, "El RUC no existe en la base de datos");
@@ -521,6 +549,17 @@ public void llenarTabla() {
             ex.printStackTrace();
 
         }
+        /*System.out.println("66");
+        for (int i = 0; i < l.size(); i++) {
+            String []p = l.get(i).split(" ");
+            System.out.println("ii*************"+controladorProducto.Buscar(Integer.parseInt(p[0]))+" "+Integer.parseInt(p[1])+"\n");
+            try {
+                controladorProducto.modificarStock(controladorProducto.Buscar(Integer.parseInt(p[0])), 
+                Integer.parseInt(p[1]));
+            } catch (SQLException ex) {
+                System.out.println("mod stock");
+            }
+        }*/
         JOptionPane.showMessageDialog(this, "Factura Anulada con exito", "Anular Factura", JOptionPane.OK_OPTION);
 
         bloquear();

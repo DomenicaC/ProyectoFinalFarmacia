@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,6 +44,8 @@ public class AnularFactura extends javax.swing.JInternalFrame {
     static Connection cn;
     static Statement s;
     static ResultSet rs;
+    
+    private List<String>l;
 
     /**
      * Creates new form AnularFactura
@@ -56,6 +59,7 @@ public class AnularFactura extends javax.swing.JInternalFrame {
         setLocation(a / 2, b / 2);
         setVisible(true);
         this.fCabeceraControlador = fCabeceraControlador;
+        l = new ArrayList<>();
 
     }
 
@@ -471,6 +475,8 @@ public class AnularFactura extends javax.swing.JInternalFrame {
                 for (int i = 0; i < cantidadColumnas; i++) {
                     fila[i] = rs.getObject(i + 1);
                 }
+                l.add(rs.getInt("SDF_PRODUCTOS_PRO_ID")+" "+rs.getInt("FDT_CANTIDAD"));
+                System.out.println(rs.getInt("SDF_PRODUCTOS_PRO_ID")+" "+rs.getInt("FDT_CANTIDAD"));
                 modelo.addRow(fila);
             }
             rs.close();

@@ -21,6 +21,8 @@ public class FDetalleControlador {
     private BaseDeDatos db;
     private int codigo;
     private Set<FDetalle> lista;
+    private FCabeceraControlador cabeceraControlador;
+    private ControladorProducto controladorProducto;
 
     public int getCodigo() {
         return codigo;
@@ -34,12 +36,16 @@ public class FDetalleControlador {
 
         lista = new HashSet<>();
         codigo = 0;
+        
 
     }
 
     public FDetalleControlador(String url, String user, String password) {
 
         db = new BaseDeDatos(url, user, password);
+        this.cabeceraControlador = new FCabeceraControlador(url, user, password);
+        this.controladorProducto = new ControladorProducto(url, user, password);
+        
 
     }
 
@@ -101,7 +107,7 @@ public class FDetalleControlador {
 
         try {
 
-            String sql = "SELECT * FROM \"SDF_FACTURAS_DETALLES\"WHERE sdf_factura_cabeceras_fac_id = " + codigo + ";";
+            String sql = "SELECT * FROM \"SDF_FACTURAS_DETALLES\"WHERE sdf_factura_cabeceras_fac_id = " + codigo;
             System.out.println("BASE " + sql);
 
             db.conectar();
@@ -174,6 +180,48 @@ public class FDetalleControlador {
 
         }
         return lista;
+    }
+    
+    public Set<FDetalle> listarFacDet(int codigo) {
+        Set<FDetalle> l = new HashSet<>();
+        
+
+        try {
+
+            String sql = "SELECT * FROM \"SDF_FACTURAS_DETALLES\"WHERE sdf_factura_cabeceras_fac_id = " + codigo;
+            System.out.println("BASE " + sql);
+
+            db.conectar();
+            Statement sta = db.getConexionBD().createStatement();
+            ResultSet res = sta.executeQuery(sql);
+
+            while (res.next()) {
+                FDetalle facDet = new FDetalle();
+                facDet.setCodigo(res.getInt("FDT_ID"));
+                facDet.setCant(res.getInt("FDT_CANTIDAD"));
+                facDet.setPrecioP(res.getDouble("FDT_PRECIO_PRO"));
+                facDet.setIvaPro(res.getDouble("FDT_PRECIO_IVA"));
+                facDet.setTotalCP(res.getDouble("FDT_TOTAL"));
+                facDet.setFcab(cabeceraControlador.BuscarFacCab(res.getInt("SDF_FACTURA_CABECERAS_FAC_ID")));
+                facDet.setPro(controladorProducto.Buscar(res.getInt("SDF_PRODUCTOS_PRO_ID")));
+                facDet.setCodPro(res.getInt("SDF_PRODUCTOS_PRO_ID"));
+                facDet.setRucFac(codigo);
+                System.out.println(facDet.toString());
+                l.add(facDet);
+
+            }/*    fdt_precio_pro
+            fdt_precio_iva
+            fdt_total
+            sdf_factura_cabeceras_fac_id*/
+            res.close();
+            sta.close();
+            db.desconectar();
+
+        } catch (SQLException error) {
+            error.printStackTrace();
+        }
+        return l;
+
     }
 
 }

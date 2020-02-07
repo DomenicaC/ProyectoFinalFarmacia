@@ -457,7 +457,7 @@ String x = EliminarPer.x;
         try {
             if (x == null) {
                 if (anularFac == null || anularFac.isVisible() == false) {
-                    anularFac = new AnularFac(fCabeceraControlador);
+                    anularFac = new AnularFac(fCabeceraControlador,controladorProducto);
                     desktop.add(anularFac);
                 }
             } else {

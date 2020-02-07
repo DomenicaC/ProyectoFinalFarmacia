@@ -183,7 +183,7 @@ public class ControladorProducto {
          int sumar=p.getStock()+cantidad;
         String sql = "UPDATE\"SDF_PRODUCTOS\" SET "
                 + "\"PRO_STOCK\"=" +sumar
-                + "WHERE \"PRO_ID\" = " + p.getId();
+                + " WHERE \"PRO_ID\" = " + p.getId();
         System.out.println(sql);
         db.conectar();
         try {
